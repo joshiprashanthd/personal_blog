@@ -1,34 +1,42 @@
 import { NextPage } from "next";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { getCategories } from "../services";
+import { useRouter } from "next/router";
+import React from "react";
 
 const Header: NextPage = () => {
-	const [categories, setCategories] = useState([]);
+	const router = useRouter();
+	const path = router.pathname;
 
-	useEffect(() => {
-		getCategories().then((data) => setCategories(data));
-	}, []);
+	const routes = [
+		{
+			href: "/",
+			name: "Home"
+		},
+		{
+			href: "/projects",
+			name: "Projects"
+		},
+		{
+			href: "/blog",
+			name: "Blog"
+		}
+	];
 
 	return (
-		<div className="container mx-auto mb-8">
-			<div className="inline-block w-full border-b border-gray-400 py-6 px-16">
-				<div className="block md:float-left md:contents">
-					<Link href="/">
-						<span className="cursor-pointer text-2xl font-bold text-black">
-							Prashant Joshi
+		<div className="container mx-auto mb-4 flex justify-center">
+			<div className="flex gap-8 py-8">
+				{routes.map((route: { href: string; name: string }) => (
+					<Link href={route.href}>
+						<span
+							className={`cursor-pointer rounded-md px-4 py-2 hover:bg-gray-100 ${
+								path == route.href && "font-semibold"
+							}`}
+						>
+							{" "}
+							{route.name}{" "}
 						</span>
 					</Link>
-				</div>
-				<div className="hidden md:float-left md:contents">
-					{categories.map((category: any) => (
-						<Link key={category.slug} href={`/category/${category.slug}`}>
-							<span className="ml-4 mt-1 cursor-pointer border-gray-700 align-middle font-medium text-black hover:border-b md:float-right">
-								{category.name}
-							</span>
-						</Link>
-					))}
-				</div>
+				))}
 			</div>
 		</div>
 	);
