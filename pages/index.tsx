@@ -1,30 +1,22 @@
 import { gql } from "@apollo/client";
-import { Categories, PostCard, PostWidget } from "../components";
+import Head from "next/head";
+import Image from "next/image";
+import RecentPostCard from "../components/RecentPostCard";
 import client from "../services/apollo_client";
 import { Post } from "../types";
 
 export async function getStaticProps() {
 	const { data } = await client.query({
 		query: gql`
-			query GetAllPosts {
-				posts {
-					author {
-						name
-						photo {
-							url
-						}
-					}
-					createdAt
-					excerpt
+			query GetPostDetails {
+				posts(orderBy: createdAt_ASC, last: 3) {
+					title
 					featuredImage {
 						url
 					}
+					createdAt
 					slug
-					title
-					categories {
-						name
-						slug
-					}
+					excerpt
 				}
 			}
 		`
@@ -42,22 +34,38 @@ type Props = {
 };
 
 const Home: React.ComponentType<Props> = ({ posts }) => {
+	console.log(posts);
 	return (
-		<div className="container mx-auto mb-8 px-10">
-			<div className="grid grid-cols-1 gap-12 gap-y-12 lg:grid-cols-12">
-				<div className="col-span-1 lg:col-span-8">
-					{posts.map((post) => (
-						<PostCard post={post as any} key={post.title} />
-					))}
+		<>
+			<Head>
+				<title>Jastor J - Developer</title>
+			</Head>
+			<div className="mb-12 flex w-full flex-col-reverse items-center px-8 text-center md:flex-row md:justify-center md:gap-8 md:px-0">
+				<div className="md:text-left">
+					<h1 className="mb-4 text-4xl font-bold md:mb-0">Prashant Joshi</h1>
+					<p className="font-light md:text-lg">
+						Part Time Developer. Part Time Reader. Love to explore new
+						technology. I am a self taught developer and a self taught reader.
+					</p>
 				</div>
-				<div className="col-span-1 lg:col-span-4">
-					<div className="relative top-8 lg:sticky">
-						<PostWidget />
-						<Categories />
-					</div>
+				<div className="mb-8 md:mb-0 md:basis-1/3">
+					<Image
+						src="https://picsum.photos/200/300"
+						height="150"
+						width="150"
+						className="h-16 w-16 rounded-full object-cover"
+					/>
 				</div>
 			</div>
-		</div>
+			<div className="px-8 md:px-0">
+				<h1 className="mb-8 text-3xl font-bold">Recent Posts</h1>
+				<div className="md:flex md:gap-4">
+					{posts.map((post: Post, index) => (
+						<RecentPostCard post={post} />
+					))}
+				</div>
+			</div>
+		</>
 	);
 };
 
