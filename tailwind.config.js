@@ -7,7 +7,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['IBM Plex Sans', 'sans-serif'],
-        heading: ["Poppins", "sans-serif"]
+        heading: ["Poppins", "sans-serif"],
+        mono: ['IBM Plex Mono', 'monospace']
       },
     },
   },
