@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["media.graphcms.com"],
+    domains: ["media.graphcms.com", "picsum.photos"],
   },
   env: {
     GRAPHCMS_ENDPOINT: process.env.GRAPHCMS_ENDPOINT,
