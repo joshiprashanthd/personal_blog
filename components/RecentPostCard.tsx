@@ -1,4 +1,4 @@
-import Image from "next/image";
+import moment from "moment";
 import Link from "next/link";
 import React from "react";
 import { Post } from "../types";
@@ -20,7 +20,10 @@ const RecentPostCard: React.ComponentType<Props> = ({ post }) => {
 					className="h-36 w-36 rounded-l-md object-cover md:w-full md:rounded-none md:rounded-t-md"
 				/>
 				<div className="p-4">
-					<h2 className="text-2xl font-semibold">{post.title}</h2>
+					<p className="mb-4 text-sm text-gray-600">
+						{moment(post.createdAt).format("MMM DD, YYYY")}
+					</p>
+					<h2 className="mb-2 text-2xl font-semibold">{post.title}</h2>
 					<p className="text-gray-500">{post.excerpt}</p>
 				</div>
 			</div>
