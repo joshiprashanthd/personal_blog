@@ -1,8 +1,13 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { Categories, PostWidget } from "../../components";
-import { Author, Comments, CommentsForm, PostContent } from "../../components";
-import { getPostDetails, getPosts } from "../../services";
+import { Categories, PostWidget } from "../../../components";
+import {
+	Author,
+	Comments,
+	CommentsForm,
+	PostContent
+} from "../../../components";
+import { getPostDetails, getPosts } from "../../../services";
 
 export async function getStaticPaths() {
 	const posts = await getPosts();
