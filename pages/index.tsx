@@ -17,6 +17,12 @@ export async function getStaticProps() {
 					createdAt
 					slug
 					excerpt
+					author {
+						name
+						photo {
+							url
+						}
+					}
 				}
 			}
 		`
@@ -42,7 +48,7 @@ const Home: React.ComponentType<Props> = ({ posts }) => {
 			</Head>
 			<div className="mb-12 flex w-full flex-col-reverse items-center px-8 text-center md:flex-row md:justify-center md:gap-8 md:px-0">
 				<div className="md:text-left">
-					<h1 className="mb-4 text-4xl font-bold md:mb-0">Prashant Joshi</h1>
+					<h1 className="mb-4 text-4xl font-bold">Prashant Joshi</h1>
 					<p className="font-light md:text-lg">
 						Part Time Developer. Part Time Reader. Love to explore new
 						technology. I am a self taught developer and a self taught reader.
