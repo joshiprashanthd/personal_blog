@@ -49,10 +49,7 @@ export const getRecentPosts = async () => {
 		}
 	`;
 
-	const result = await request(
-		"https://api-ap-south-1.graphcms.com/v2/cl012xout9klw01xn5hwz8of6/master",
-		query
-	);
+	const result = await request(graphqlEndpoint, query);
 	return result.posts;
 };
 
@@ -77,14 +74,10 @@ export const getSimilarPosts = async ({ slug, categories }: any) => {
 		}
 	`;
 
-	const result = await request(
-		"https://api-ap-south-1.graphcms.com/v2/cl012xout9klw01xn5hwz8of6/master",
-		query,
-		{
-			slug,
-			categories
-		}
-	);
+	const result = await request(graphqlEndpoint, query, {
+		slug,
+		categories
+	});
 
 	return result.posts.map((post: any) => post);
 };
@@ -99,10 +92,7 @@ export const getCategories = async () => {
 		}
 	`;
 
-	const result = await request(
-		"https://api-ap-south-1.graphcms.com/v2/cl012xout9klw01xn5hwz8of6/master",
-		query
-	);
+	const result = await request(graphqlEndpoint, query);
 	return result.categories;
 };
 
@@ -162,13 +152,9 @@ export const getComments = async (slug: string) => {
 		}
 	`;
 
-	const result = await request(
-		"https://api-ap-south-1.graphcms.com/v2/cl012xout9klw01xn5hwz8of6/master",
-		query,
-		{
-			slug
-		}
-	);
+	const result = await request(graphqlEndpoint, query, {
+		slug
+	});
 	return result.comments;
 };
 
@@ -204,11 +190,7 @@ export const getCategoryPost = async (slug: string) => {
 		}
 	`;
 
-	const result = await request(
-		"https://api-ap-south-1.graphcms.com/v2/cl012xout9klw01xn5hwz8of6/master",
-		query,
-		{ slug }
-	);
+	const result = await request(graphqlEndpoint, query, { slug });
 
 	return result.postsConnection.edges.map((edge: any) => edge.node);
 };
