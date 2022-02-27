@@ -10,7 +10,7 @@ const Layout: NextPage<Props> = ({ children }) => {
 	return (
 		<>
 			<Header />
-			{children}
+			<div className="mx-auto max-w-screen-md">{children}</div>
 		</>
 	);
 };
