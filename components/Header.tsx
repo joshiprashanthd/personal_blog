@@ -29,7 +29,7 @@ const Header: NextPage = () => {
 					<Link href={route.href}>
 						<span
 							className={`cursor-pointer rounded-md px-4 py-2 hover:bg-gray-50 ${
-								path == route.href && "font-semibold"
+								path == route.href && "font-semibold text-blue-600"
 							}`}
 						>
 							{" "}
