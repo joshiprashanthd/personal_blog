@@ -1,7 +1,5 @@
 import { request, gql } from "graphql-request";
 
-const graphqlEndpoint: string = process.env.GRAPHCMS_ENDPOINT! as string;
-
 export const getPosts = async () => {
 	const query = gql`
 		query GetAllPosts {
@@ -27,7 +25,7 @@ export const getPosts = async () => {
 		}
 	`;
 
-	const result = await request(graphqlEndpoint, query);
+	const result = await request(process.env.GRAPHCMS_ENDPOINT!, query);
 	return result.posts.map((post: any) => post);
 };
 
@@ -49,7 +47,7 @@ export const getRecentPosts = async () => {
 		}
 	`;
 
-	const result = await request(graphqlEndpoint, query);
+	const result = await request(process.env.GRAPHCMS_ENDPOINT!, query);
 	return result.posts;
 };
 
@@ -74,7 +72,7 @@ export const getSimilarPosts = async ({ slug, categories }: any) => {
 		}
 	`;
 
-	const result = await request(graphqlEndpoint, query, {
+	const result = await request(process.env.GRAPHCMS_ENDPOINT!, query, {
 		slug,
 		categories
 	});
@@ -92,7 +90,7 @@ export const getCategories = async () => {
 		}
 	`;
 
-	const result = await request(graphqlEndpoint, query);
+	const result = await request(process.env.GRAPHCMS_ENDPOINT!, query);
 	return result.categories;
 };
 
@@ -123,7 +121,7 @@ export const getPostDetails = async (slug: string) => {
 		}
 	`;
 
-	const result = await request(graphqlEndpoint, query, {
+	const result = await request(process.env.GRAPHCMS_ENDPOINT!, query, {
 		slug
 	});
 	return result.post;
@@ -152,7 +150,7 @@ export const getComments = async (slug: string) => {
 		}
 	`;
 
-	const result = await request(graphqlEndpoint, query, {
+	const result = await request(process.env.GRAPHCMS_ENDPOINT!, query, {
 		slug
 	});
 	return result.comments;
@@ -190,7 +188,7 @@ export const getCategoryPost = async (slug: string) => {
 		}
 	`;
 
-	const result = await request(graphqlEndpoint, query, { slug });
+	const result = await request(process.env.GRAPHCMS_ENDPOINT!, query, { slug });
 
 	return result.postsConnection.edges.map((edge: any) => edge.node);
 };
