@@ -10,21 +10,35 @@ type Props = {
 const RecentPostCard: React.ComponentType<Props> = ({ post }) => {
 	console.log(post.excerpt);
 	return (
-		<Link href={`/post/${post.slug}`}>
-			<div className="mb-8 flex w-full cursor-pointer rounded-md border-2 border-gray-200 bg-gray-50 shadow-slate-100 transition duration-500 hover:shadow-lg md:basis-1/3 md:flex-col">
+		<Link href={`/blog/post/${post.slug}`}>
+			<div className="mb-8 flex w-full cursor-pointer flex-col rounded-lg border-2 bg-gray-50 p-4 transition duration-500 hover:shadow-lg hover:shadow-blue-200 md:basis-1/3">
 				<img
 					src={post.featuredImage?.url!}
 					height="150"
 					width="150"
 					loading="lazy"
-					className="h-36 w-36 rounded-l-md object-cover md:w-full md:rounded-none md:rounded-t-md"
+					className="mb-4 h-36 w-full rounded-md object-cover"
 				/>
-				<div className="p-4">
-					<p className="mb-4 text-sm text-gray-600">
-						{moment(post.createdAt).format("MMM DD, YYYY")}
-					</p>
-					<h2 className="mb-2 text-2xl font-semibold">{post.title}</h2>
-					<p className="text-gray-500">{post.excerpt}</p>
+				<div className="">
+					<div className="mb-4">
+						<p className="mb-4 text-sm font-bold text-blue-600">Article</p>
+						<h2 className="mb-2 text-2xl font-semibold">{post.title}</h2>
+						<p className="text-gray-500">{post.excerpt}</p>
+					</div>
+					<div className="flex items-center">
+						<img
+							src={post.author?.photo.url!}
+							height="10px"
+							width="10px"
+							className="mr-4 h-10 w-10 rounded-full"
+						/>
+						<div>
+							<p className="text-sm font-semibold">{post.author?.name}</p>
+							<p className="font-mono text-xs text-gray-500">
+								{moment(post.createdAt).format("MMM DD, YYYY")}
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</Link>
