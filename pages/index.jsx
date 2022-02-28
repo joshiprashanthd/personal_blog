@@ -34,7 +34,6 @@ export async function getStaticProps() {
 	};
 }
 
-
 const Home = ({ posts }) => {
 	console.log(posts);
 	return (
@@ -42,30 +41,37 @@ const Home = ({ posts }) => {
 			<Head>
 				<title>Jastor J - Developer</title>
 			</Head>
-			<div className="mb-12 flex w-full flex-col-reverse items-center px-8 text-center md:flex-row md:justify-center md:gap-8 md:px-0">
-				<div className="md:text-left">
-					<h1 className="mb-4 text-4xl font-bold">Prashant Joshi</h1>
-					<p className="font-light md:text-lg">
-						Part Time Developer. Part Time Reader. Love to explore new
-						technology. I am a self taught developer and a self taught reader.
-					</p>
+			<div className="grid grid-cols-12">
+				<div className="hidden md:col-span-1 md:block lg:col-span-2"></div>
+				<div className="col-span-12 md:col-span-10 lg:col-span-8">
+					<div className="mb-12 flex flex-col-reverse items-center px-8 text-center md:flex-row md:justify-center md:gap-8 md:px-0">
+						<div className="md:text-left">
+							<h1 className="mb-4 text-4xl font-bold">Prashant Joshi</h1>
+							<p className="font-light md:text-lg">
+								Part Time Developer. Part Time Reader. Love to explore new
+								technology. I am a self taught developer and a self taught
+								reader.
+							</p>
+						</div>
+						<div className="mb-8 text-right md:mb-0 md:basis-1/3">
+							<Image
+								src="https://picsum.photos/200/300"
+								height="150"
+								width="150"
+								className="h-16 w-16 rounded-full object-cover"
+							/>
+						</div>
+					</div>
+					<div className="px-8 md:px-0">
+						<h1 className="mb-8 text-3xl font-bold">Recent Posts</h1>
+						<div className="md:flex md:gap-4">
+							{posts.map((post) => (
+								<RecentPostCard post={post} />
+							))}
+						</div>
+					</div>
 				</div>
-				<div className="mb-8 md:mb-0 md:basis-1/3">
-					<Image
-						src="https://picsum.photos/200/300"
-						height="150"
-						width="150"
-						className="h-16 w-16 rounded-full object-cover"
-					/>
-				</div>
-			</div>
-			<div className="px-8 md:px-0">
-				<h1 className="mb-8 text-3xl font-bold">Recent Posts</h1>
-				<div className="md:flex md:gap-4">
-					{posts.map((post) => (
-						<RecentPostCard post={post} />
-					))}
-				</div>
+				<div className="hidden md:col-span-1 md:block lg:col-span-2"></div>
 			</div>
 		</>
 	);
