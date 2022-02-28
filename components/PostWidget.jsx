@@ -19,8 +19,8 @@ const PostWidget = ({ categories, slug }) => {
 	}, [slug]);
 
 	return (
-		<div className="mb-8 rounded-lg bg-white p-8 shadow-lg">
-			<h3 className="mb-8 border-b border-gray-100 pb-4 text-xl font-semibold">
+		<div className="mb-8">
+			<h3 className="mb-4 border-b border-gray-200 pb-4 text-xl font-semibold">
 				{slug ? "Similar Posts" : "Recent Posts"}
 			</h3>
 			{relatedPosts.map((post) => (
