@@ -28,7 +28,7 @@ const PostContent = ({ post }) => {
 					className="h-full w-full object-cover object-top"
 				/>
 			</div>
-			<div className="px-8 text-left lg:px-4">
+			<div className="px-8 text-left lg:px-20">
 				<ReactMarkdown components={components}>{post.content}</ReactMarkdown>
 			</div>
 		</div>
