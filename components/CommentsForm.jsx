@@ -1,30 +1,30 @@
-import React, { useEffect, useRef, useState } from "react";
-import { submitComment } from "../services";
+import React, { useEffect, useRef, useState } from 'react'
+import { submitComment } from '../services'
 
 const CommentsForm = ({ slug }) => {
-	const [error, setError] = useState(false);
-	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+	const [error, setError] = useState(false)
+	const [showSuccessMessage, setShowSuccessMessage] = useState(false)
 
-	const commentRef = useRef();
-	const nameRef = useRef();
-	const emailRef = useRef();
-	const storeDataRef = useRef();
+	const commentRef = useRef()
+	const nameRef = useRef()
+	const emailRef = useRef()
+	const storeDataRef = useRef()
 
 	useEffect(() => {
-		nameRef.current.value = window.localStorage.getItem("name");
-		emailRef.current.value = window.localStorage.getItem("email");
-	}, []);
+		nameRef.current.value = window.localStorage.getItem('name')
+		emailRef.current.value = window.localStorage.getItem('email')
+	}, [])
 
 	const handleCommentSubmission = () => {
-		setError(false);
-		const { value: comment } = commentRef.current;
-		const { value: name } = nameRef.current;
-		const { value: email } = emailRef.current;
-		const { checked: storeData } = storeDataRef.current;
+		setError(false)
+		const { value: comment } = commentRef.current
+		const { value: name } = nameRef.current
+		const { value: email } = emailRef.current
+		const { checked: storeData } = storeDataRef.current
 
 		if (!comment || !name || !email) {
-			setError(true);
-			return;
+			setError(true)
+			return
 		}
 
 		const commentObj = {
@@ -32,24 +32,23 @@ const CommentsForm = ({ slug }) => {
 			email,
 			comment,
 			slug
-		};
+		}
 
 		if (storeData) {
-			window.localStorage.setItem("name", name);
-			window.localStorage.setItem("email", email);
+			window.localStorage.setItem('name', name)
+			window.localStorage.setItem('email', email)
 		} else {
-			window.localStorage.removeItem("name");
-			window.localStorage.removeItem("email");
+			window.localStorage.removeItem('name')
+			window.localStorage.removeItem('email')
 		}
 
 		submitComment(commentObj).then((res) => {
-			console.log(res);
-			setShowSuccessMessage(true);
+			setShowSuccessMessage(true)
 			setTimeout(() => {
-				setShowSuccessMessage(false);
-			}, 3000);
-		});
-	};
+				setShowSuccessMessage(false)
+			}, 3000)
+		})
+	}
 
 	return (
 		<div className="mb-8 rounded-lg p-8 pb-12 shadow-lg">
@@ -111,7 +110,7 @@ const CommentsForm = ({ slug }) => {
 				)}
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default CommentsForm;
+export default CommentsForm

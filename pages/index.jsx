@@ -1,8 +1,8 @@
-import { gql } from "@apollo/client";
-import Head from "next/head";
-import Image from "next/image";
-import RecentPostCard from "../components/RecentPostCard";
-import client from "../services/apollo_client";
+import { gql } from '@apollo/client'
+import Head from 'next/head'
+import Image from 'next/image'
+import RecentPostCard from '../components/RecentPostCard'
+import client from '../services/apollo_client'
 
 export async function getStaticProps() {
 	const { data } = await client.query({
@@ -25,17 +25,16 @@ export async function getStaticProps() {
 				}
 			}
 		`
-	});
+	})
 
 	return {
 		props: {
 			posts: data.posts
 		}
-	};
+	}
 }
 
 const Home = ({ posts }) => {
-	console.log(posts);
 	return (
 		<>
 			<Head>
@@ -74,7 +73,7 @@ const Home = ({ posts }) => {
 				<div className="hidden md:col-span-1 md:block lg:col-span-2"></div>
 			</div>
 		</>
-	);
-};
+	)
+}
 
-export default Home;
+export default Home

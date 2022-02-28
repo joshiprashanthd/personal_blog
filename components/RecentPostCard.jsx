@@ -1,9 +1,8 @@
-import moment from "moment";
-import Link from "next/link";
-import React from "react";
+import moment from 'moment'
+import Link from 'next/link'
+import React from 'react'
 
 const RecentPostCard = ({ post }) => {
-	console.log(post.excerpt);
 	return (
 		<Link href={`/blog/post/${post.slug}`}>
 			<div className="mb-8 flex w-full cursor-pointer flex-col rounded-lg border-2 bg-gray-50 p-4 transition duration-500 hover:shadow-lg hover:shadow-blue-200 md:basis-1/3">
@@ -30,14 +29,14 @@ const RecentPostCard = ({ post }) => {
 						<div>
 							<p className="text-sm font-semibold">{post.author?.name}</p>
 							<p className="font-mono text-xs text-gray-500">
-								{moment(post.createdAt).format("MMM DD, YYYY")}
+								{moment(post.createdAt).format('MMM DD, YYYY')}
 							</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</Link>
-	);
-};
+	)
+}
 
-export default RecentPostCard;
+export default RecentPostCard
