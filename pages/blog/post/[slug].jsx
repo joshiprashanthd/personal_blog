@@ -26,20 +26,13 @@ const PostDetails = ({ post }) => {
 	if (router.isFallback) return <div> Loading... </div>;
 
 	return (
-		<div className="container mx-auto mb-8 px-10">
+		<div className="container mx-auto mb-8">
 			<div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-				<div className="col-span-1 lg:col-span-8">
+				<div className="hidden lg:col-span-3 lg:block"></div>
+				<div className="col-span-1 lg:col-span-6">
 					<PostContent post={post} />
 				</div>
-				<div className="col-span-1 lg:col-span-4">
-					<div className="sticky top-8">
-						<PostWidget
-							categories={post.categories.map((category) => category.slug)}
-							slug={post.slug}
-						/>
-						<Categories />
-					</div>
-				</div>
+				<div className="hidden lg:col-span-3 lg:block"></div>
 			</div>
 		</div>
 	);
