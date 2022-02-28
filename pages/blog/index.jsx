@@ -1,7 +1,7 @@
-import { gql } from "@apollo/client";
-import React from "react";
-import { Categories, RecentPostCard } from "../../components";
-import client from "../../services/apollo_client";
+import { gql } from '@apollo/client'
+import React from 'react'
+import { Categories, RecentPostCard } from '../../components'
+import client from '../../services/apollo_client'
 
 export async function getStaticProps() {
 	const { data: posts } = await client.query({
@@ -25,29 +25,28 @@ export async function getStaticProps() {
 				}
 			}
 		`
-	});
+	})
 
 	return {
 		props: {
 			posts: posts.posts
 		}
-	};
+	}
 }
 
 const Blog = ({ posts }) => {
 	return (
-		<div className="grid grid-cols-12 gap-4">
-			<div className="hidden xl:col-span-3 xl:block"></div>
-			<div className="col-span-12 gap-4 px-8 md:grid md:grid-cols-2 xl:col-span-6">
+		<div className="pb-16">
+			<h1 className="mb-8 text-4xl font-bold sm:text-5xl">Blog</h1>
+			<div className="grid grid-cols-2 gap-4">
 				{posts.map((post) => (
-					<RecentPostCard post={post} />
+					<div className="col-span-2 sm:col-span-1">
+						<RecentPostCard key={post.id} post={post} />
+					</div>
 				))}
 			</div>
-			<div className="col-span-12 px-12 xl:col-span-2">
-				<Categories />
-			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default Blog;
+export default Blog
