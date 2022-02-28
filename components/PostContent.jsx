@@ -2,32 +2,33 @@ import moment from "moment";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { components } from "../utilities/react_markdown_components";
-import Image from "next/image";
 
 const PostContent = ({ post }) => {
 	return (
-		<div className="mb-8 rounded-lg pb-8 lg:p-8">
-			<h1 className="mb-8 text-5xl font-light">{post.title}</h1>
-			<div className="mb-4 flex w-full items-center justify-between">
-				<div className="flex items-center">
-					<Image
-						src={post.author.photo.url}
-						height="40px"
-						width="40px"
-						className="h-16 w-16 rounded-full"
-					/>
-					<p className="ml-2">{post.author.name}</p>
+		<div className="text-center">
+			<div className="px-8">
+				<p className="mb-4 text-gray-500">
+					Published {moment(post.createdAt).format("MMM DD, YYYY")}
+				</p>
+				<h1 className="mb-8 text-4xl font-bold">{post.title}</h1>
+				<p className="mx-auto mb-4 lg:w-2/3 lg:text-lg">{post.excerpt}</p>
+				<div className="mb-8 flex-wrap lg:items-center lg:justify-center">
+					{post.categories.map((category) => (
+						<span className="m-2 inline-block rounded-md bg-gray-50 p-2 text-sm font-medium lg:px-4 lg:py-2">
+							{category.name}
+						</span>
+					))}
 				</div>
-				<div className="">{moment(post.createdAt).format("MMMM DD, YYYY")}</div>
 			</div>
-			<div className="relative mb-6 overflow-hidden ">
+			<div className="relative mb-8 overflow-hidden">
 				<img
 					src={post.featuredImage.url}
 					alt={post.title}
-					className="h-full w-full rounded-lg object-top"
+					layout="responsive"
+					className="h-full w-full object-cover object-top"
 				/>
 			</div>
-			<div className="px-4 lg:px-0">
+			<div className="px-8 text-left lg:px-4">
 				<ReactMarkdown components={components}>{post.content}</ReactMarkdown>
 			</div>
 		</div>
