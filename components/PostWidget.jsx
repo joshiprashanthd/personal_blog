@@ -1,15 +1,14 @@
 import moment from "moment";
-import { NextPage } from "next";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { getRecentPosts, getSimilarPosts } from "../services";
 
-const PostWidget: NextPage<any> = ({ categories, slug }) => {
+const PostWidget = ({ categories, slug }) => {
 	const [relatedPosts, setRelatedPosts] = useState([]);
 
 	useEffect(() => {
 		if (slug) {
-			getSimilarPosts({ categories, slug }).then((posts: any) => {
+			getSimilarPosts({ categories, slug }).then((posts) => {
 				setRelatedPosts(posts);
 			});
 		} else {
@@ -24,7 +23,7 @@ const PostWidget: NextPage<any> = ({ categories, slug }) => {
 			<h3 className="mb-8 border-b border-gray-100 pb-4 text-xl font-semibold">
 				{slug ? "Similar Posts" : "Recent Posts"}
 			</h3>
-			{relatedPosts.map((post: any) => (
+			{relatedPosts.map((post) => (
 				<div key={post.title} className="mb-4 flex w-full items-center">
 					<div className="w-16 flex-none">
 						<img

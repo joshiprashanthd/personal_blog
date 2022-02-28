@@ -1,19 +1,14 @@
 import moment from "moment";
 import Link from "next/link";
 import React from "react";
-import { Post } from "../types";
 
-type Props = {
-	post: Post;
-};
-
-const RecentPostCard: React.ComponentType<Props> = ({ post }) => {
+const RecentPostCard = ({ post }) => {
 	console.log(post.excerpt);
 	return (
 		<Link href={`/blog/post/${post.slug}`}>
 			<div className="mb-8 flex w-full cursor-pointer flex-col rounded-lg border-2 bg-gray-50 p-4 transition duration-500 hover:shadow-lg hover:shadow-blue-200 md:basis-1/3">
 				<img
-					src={post.featuredImage?.url!}
+					src={post.featuredImage.url}
 					height="150"
 					width="150"
 					loading="lazy"
@@ -27,7 +22,7 @@ const RecentPostCard: React.ComponentType<Props> = ({ post }) => {
 					</div>
 					<div className="flex items-center">
 						<img
-							src={post.author?.photo.url!}
+							src={post.author.photo.url}
 							height="10px"
 							width="10px"
 							className="mr-4 h-10 w-10 rounded-full"

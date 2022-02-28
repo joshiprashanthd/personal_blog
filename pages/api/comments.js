@@ -1,14 +1,12 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import { GraphQLClient, gql } from "graphql-request";
 
 export default async function handler(
-	req: NextApiRequest,
-	res: NextApiResponse
+	req,
+	res
 ) {
-	console.log("req body : " + req.body);
-	const client = new GraphQLClient(process.env.GRAPHCMS_ENDPOINT!, {
+	const client = new GraphQLClient(process.env.GRAPHCMS_ENDPOINT, {
 		headers: {
-			authorization: "Bearer " + process.env.GRAPHCMS_TOKEN!
+			authorization: "Bearer " + process.env.GRAPHCMS_TOKEN
 		}
 	});
 

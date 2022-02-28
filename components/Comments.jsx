@@ -1,9 +1,8 @@
-import { parse } from "graphql";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { getComments } from "../services";
 
-const Comments = ({ slug }: { slug: string }) => {
+const Comments = ({ slug }) => {
 	const [comments, setComments] = useState([]);
 
 	useEffect(() => {
@@ -17,7 +16,7 @@ const Comments = ({ slug }: { slug: string }) => {
 					<h3 className="mb-8 border-b pb-4 text-xl font-semibold">
 						{comments.length} Comments
 					</h3>
-					{comments.map((comment: any) => (
+					{comments.map((comment) => (
 						<div className="mb-4 border-b border-gray-100 pb-4">
 							<p className="mb-4">
 								<span className="font-semibold">{comment.name}</span> /{" "}

@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { submitComment } from "../services";
 
-const CommentsForm = ({ slug }: any) => {
+const CommentsForm = ({ slug }) => {
 	const [error, setError] = useState(false);
 	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-	const commentRef = useRef<any>();
-	const nameRef = useRef<any>();
-	const emailRef = useRef<any>();
-	const storeDataRef = useRef<any>();
+	const commentRef = useRef();
+	const nameRef = useRef();
+	const emailRef = useRef();
+	const storeDataRef = useRef();
 
 	useEffect(() => {
 		nameRef.current.value = window.localStorage.getItem("name");

@@ -4,9 +4,9 @@ import ReactMarkdown from "react-markdown";
 import { components } from "../utilities/react_markdown_components";
 import Image from "next/image";
 
-const PostContent = ({ post }: { post: any }) => {
+const PostContent = ({ post }) => {
 	return (
-		<div className="mb-8 rounded-lg bg-white pb-8 lg:p-8">
+		<div className="mb-8 rounded-lg pb-8 lg:p-8">
 			<h1 className="mb-8 text-5xl font-light">{post.title}</h1>
 			<div className="mb-4 flex w-full items-center justify-between">
 				<div className="flex items-center">

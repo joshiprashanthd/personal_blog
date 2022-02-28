@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { getCategories } from "../services";
 
-const Categories: React.ComponentType = ({}) => {
+const Categories = ({}) => {
 	const [categories, setCategories] = useState([]);
 
 	useEffect(() => {
@@ -11,12 +11,12 @@ const Categories: React.ComponentType = ({}) => {
 
 	return (
 		<div className="mb-8 rounded-lg bg-white p-8 shadow-lg">
-			<h3 className="mb-8 border-b border-gray-100 pb-4 text-xl font-semibold">
+			<h2 className="mb-4 border-b border-gray-200 pb-4 text-xl font-semibold">
 				Categories
-			</h3>
-			{categories.map((category: any) => (
-				<Link href={`/categories/${category.slug}`}>
-					<span className="translate mb-2 block cursor-pointer text-lg font-medium transition duration-500 hover:translate-x-1">
+			</h2>
+			{categories.map((category) => (
+				<Link href={`/blog/category/${category.slug}`}>
+					<span className="mb-4 block cursor-pointer transition duration-500 hover:translate-x-2">
 						{category.name}
 					</span>
 				</Link>

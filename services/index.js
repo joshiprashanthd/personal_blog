@@ -25,8 +25,8 @@ export const getPosts = async () => {
 		}
 	`;
 
-	const result = await request(process.env.GRAPHCMS_ENDPOINT!, query);
-	return result.posts.map((post: any) => post);
+	const result = await request(process.env.GRAPHCMS_ENDPOINT, query);
+	return result.posts.map((post) => post);
 };
 
 export const getRecentPosts = async () => {
@@ -47,11 +47,11 @@ export const getRecentPosts = async () => {
 		}
 	`;
 
-	const result = await request(process.env.GRAPHCMS_ENDPOINT!, query);
+	const result = await request(process.env.GRAPHCMS_ENDPOINT, query);
 	return result.posts;
 };
 
-export const getSimilarPosts = async ({ slug, categories }: any) => {
+export const getSimilarPosts = async ({ slug, categories }) => {
 	const query = gql`
 		query GetSimilarPosts($slug: String!, $categories: [String!]) {
 			posts(
@@ -72,12 +72,12 @@ export const getSimilarPosts = async ({ slug, categories }: any) => {
 		}
 	`;
 
-	const result = await request(process.env.GRAPHCMS_ENDPOINT!, query, {
+	const result = await request(process.env.GRAPHCMS_ENDPOINT, query, {
 		slug,
 		categories
 	});
 
-	return result.posts.map((post: any) => post);
+	return result.posts.map((post) => post);
 };
 
 export const getCategories = async () => {
@@ -90,11 +90,11 @@ export const getCategories = async () => {
 		}
 	`;
 
-	const result = await request(process.env.GRAPHCMS_ENDPOINT!, query);
+	const result = await request(process.env.GRAPHCMS_ENDPOINT, query);
 	return result.categories;
 };
 
-export const getPostDetails = async (slug: string) => {
+export const getPostDetails = async (slug) => {
 	const query = gql`
 		query GetPostDetails($slug: String!) {
 			post(where: { slug: $slug }) {
@@ -121,13 +121,13 @@ export const getPostDetails = async (slug: string) => {
 		}
 	`;
 
-	const result = await request(process.env.GRAPHCMS_ENDPOINT!, query, {
+	const result = await request(process.env.GRAPHCMS_ENDPOINT, query, {
 		slug
 	});
 	return result.post;
 };
 
-export const submitComment = async (commentsObj: any) => {
+export const submitComment = async (commentsObj) => {
 	const result = await fetch("/api/comments", {
 		method: "POST",
 		headers: {
@@ -139,7 +139,7 @@ export const submitComment = async (commentsObj: any) => {
 	return result.json();
 };
 
-export const getComments = async (slug: string) => {
+export const getComments = async (slug) => {
 	const query = gql`
 		query GetComments($slug: String!) {
 			comments(where: { post: { slug: $slug } }) {
@@ -150,13 +150,13 @@ export const getComments = async (slug: string) => {
 		}
 	`;
 
-	const result = await request(process.env.GRAPHCMS_ENDPOINT!, query, {
+	const result = await request(process.env.GRAPHCMS_ENDPOINT, query, {
 		slug
 	});
 	return result.comments;
 };
 
-export const getCategoryPost = async (slug: string) => {
+export const getCategoryPost = async (slug) => {
 	const query = gql`
 		query GetCategoryPost($slug: String!) {
 			postsConnection(where: { categories_some: { slug: $slug } }) {
@@ -188,7 +188,7 @@ export const getCategoryPost = async (slug: string) => {
 		}
 	`;
 
-	const result = await request(process.env.GRAPHCMS_ENDPOINT!, query, { slug });
+	const result = await request(process.env.GRAPHCMS_ENDPOINT, query, { slug });
 
-	return result.postsConnection.edges.map((edge: any) => edge.node);
+	return result.postsConnection.edges.map((edge) => edge.node);
 };

@@ -3,7 +3,6 @@ import Head from "next/head";
 import Image from "next/image";
 import RecentPostCard from "../components/RecentPostCard";
 import client from "../services/apollo_client";
-import { Post } from "../types";
 
 export async function getStaticProps() {
 	const { data } = await client.query({
@@ -35,11 +34,8 @@ export async function getStaticProps() {
 	};
 }
 
-type Props = {
-	posts: [Post];
-};
 
-const Home: React.ComponentType<Props> = ({ posts }) => {
+const Home = ({ posts }) => {
 	console.log(posts);
 	return (
 		<>
@@ -66,7 +62,7 @@ const Home: React.ComponentType<Props> = ({ posts }) => {
 			<div className="px-8 md:px-0">
 				<h1 className="mb-8 text-3xl font-bold">Recent Posts</h1>
 				<div className="md:flex md:gap-4">
-					{posts.map((post: Post, index) => (
+					{posts.map((post) => (
 						<RecentPostCard post={post} />
 					))}
 				</div>
