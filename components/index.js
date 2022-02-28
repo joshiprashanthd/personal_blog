@@ -6,3 +6,4 @@ export { default as Comments } from "./Comments";
 export { default as PostContent } from "./PostContent";
 export { default as Layout } from "./Layout";
 export { default as RecentPostCard } from "./RecentPostCard";
+export { default as Footer} from "./Footer";

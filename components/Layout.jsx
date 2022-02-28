@@ -1,12 +1,15 @@
-import React from "react";
-import { Header } from ".";
+import React from 'react'
+import { Header, Footer } from '.'
 
 const Layout = ({ children }) => {
 	return (
 		<>
 			<Header />
-			<div className="mx-auto">{children}</div>
+			<main className="mx-auto flex max-w-3xl flex-col justify-center px-8">
+				{children}
+				<Footer />
+			</main>
 		</>
-	);
-};
-export default Layout;
+	)
+}
+export default Layout

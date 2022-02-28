@@ -5,14 +5,7 @@ import React from 'react'
 const RecentPostCard = ({ post }) => {
 	return (
 		<Link href={`/blog/post/${post.slug}`}>
-			<div className="mb-8 flex w-full cursor-pointer flex-col rounded-lg border-2 bg-gray-50 p-4 transition duration-500 hover:shadow-lg hover:shadow-blue-200 md:basis-1/3">
-				<img
-					src={post.featuredImage.url}
-					height="150"
-					width="150"
-					loading="lazy"
-					className="mb-4 h-36 w-full rounded-md object-cover"
-				/>
+			<div className="flex w-full flex-grow cursor-pointer flex-col rounded-lg border-2 bg-gray-50 p-4 transition duration-500 hover:shadow-lg hover:shadow-blue-200 md:basis-1/3">
 				<div className="">
 					<div className="mb-4">
 						<p className="mb-4 text-sm font-bold text-blue-600">Article</p>
