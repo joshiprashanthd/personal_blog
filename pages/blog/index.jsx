@@ -36,13 +36,14 @@ export async function getStaticProps() {
 
 const Blog = ({ posts }) => {
 	return (
-		<div className="grid grid-cols-8 gap-4">
-			<div className="col-span-8 gap-4 px-8 md:col-span-6 md:grid md:grid-cols-2">
+		<div className="grid grid-cols-12 gap-4">
+			<div className="hidden lg:col-span-3 lg:block"></div>
+			<div className="col-span-12 gap-4 px-8 lg:col-span-6 lg:grid lg:grid-cols-2">
 				{posts.map((post) => (
 					<RecentPostCard post={post} />
 				))}
 			</div>
-			<div className="col-span-8 px-12 md:col-span-2">
+			<div className="col-span-12 px-12 lg:col-span-2">
 				<Categories />
 			</div>
 		</div>
