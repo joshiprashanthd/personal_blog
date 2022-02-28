@@ -27,12 +27,12 @@ const PostDetails = ({ post }) => {
 
 	return (
 		<div className="container mx-auto mb-8">
-			<div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-				<div className="hidden lg:col-span-3 lg:block"></div>
-				<div className="col-span-1 lg:col-span-6">
+			<div className="grid grid-cols-1 gap-12 xl:grid-cols-12">
+				<div className="hidden xl:col-span-3 xl:block"></div>
+				<div className="col-span-1 xl:col-span-6">
 					<PostContent post={post} />
 				</div>
-				<div className="hidden lg:col-span-3 lg:block"></div>
+				<div className="hidden xl:col-span-3 xl:block"></div>
 			</div>
 		</div>
 	);
