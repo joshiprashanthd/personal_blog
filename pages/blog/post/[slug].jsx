@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import React from 'react'
-import { PostContent } from '../../../components'
+import { PostContent, SimilarPosts } from '../../../components'
 import { getPostDetails, getPosts } from '../../../services'
 
 export async function getStaticPaths() {
@@ -27,6 +27,7 @@ const PostDetails = ({ post }) => {
 	return (
 		<div>
 			<PostContent post={post} />
+			<SimilarPosts post={post} />
 		</div>
 	)
 }
