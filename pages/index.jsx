@@ -38,7 +38,7 @@ const Home = ({ posts }) => {
 	return (
 		<>
 			<Head>
-				<title>Jastor J - Developer</title>
+				<title>Prashant Joshi Blog</title>
 			</Head>
 			<div className="mx-auto flex max-w-3xl flex-col pb-16">
 				<div className="mb-8 flex flex-col-reverse items-center sm:flex-row sm:items-start">
