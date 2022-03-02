@@ -43,7 +43,9 @@ const Blog = ({ posts }) => {
 				<title>Blog</title>
 			</Head>
 			<div className="pb-16">
-				<h1 className="mb-8 text-4xl font-bold sm:text-5xl">Blog</h1>
+				<h1 className="mb-8 font-heading text-4xl font-bold sm:text-5xl">
+					Blog
+				</h1>
 				<div className="grid grid-cols-2 gap-4">
 					{posts.map((post) => (
 						<div className="col-span-2 sm:col-span-1">

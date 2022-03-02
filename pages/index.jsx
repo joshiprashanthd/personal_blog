@@ -43,7 +43,7 @@ const Home = ({ posts }) => {
 			<div className="mx-auto flex max-w-3xl flex-col pb-16">
 				<div className="mb-8 flex flex-col-reverse items-center sm:flex-row sm:items-start">
 					<div className="flex flex-col text-center sm:pr-16 sm:text-left">
-						<h1 className="mb-4 text-4xl font-bold md:text-5xl">
+						<h1 className="mb-4 font-heading text-4xl font-bold md:text-5xl">
 							Prashant Joshi
 						</h1>
 						<p className="font-light md:text-lg">
@@ -61,10 +61,14 @@ const Home = ({ posts }) => {
 					</div>
 				</div>
 				<div className="flex flex-col">
-					<h1 className="mb-8 text-3xl font-bold md:text-4xl">Recent Posts</h1>
+					<h1 className="mb-8 font-heading text-3xl font-bold md:text-4xl">
+						Recent Posts
+					</h1>
 					<div className="flex flex-col gap-8 sm:flex-row">
 						{posts.map((post) => (
-							<RecentPostCard post={post} />
+							<div className="basis-1/2">
+								<RecentPostCard post={post} />
+							</div>
 						))}
 					</div>
 				</div>
