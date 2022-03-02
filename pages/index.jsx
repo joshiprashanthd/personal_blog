@@ -64,7 +64,7 @@ const Home = ({ posts }) => {
 					<h1 className="mb-8 font-heading text-3xl font-bold md:text-4xl">
 						Recent Posts
 					</h1>
-					<div className="flex flex-col gap-8 sm:flex-row">
+					<div className="flex flex-col gap-4 sm:flex-row">
 						{posts.map((post) => (
 							<div className="basis-1/2">
 								<RecentPostCard post={post} />
