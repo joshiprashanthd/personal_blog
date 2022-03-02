@@ -1,6 +1,5 @@
 import { gql } from '@apollo/client'
 import Head from 'next/head'
-import Image from 'next/image'
 import RecentPostCard from '../components/RecentPostCard'
 import client from '../services/apollo_client'
 
@@ -30,7 +29,8 @@ export async function getStaticProps() {
 	return {
 		props: {
 			posts: data.posts
-		}
+		},
+		revalidate: 30
 	}
 }
 
