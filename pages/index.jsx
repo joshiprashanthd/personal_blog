@@ -3,27 +3,29 @@ import Head from 'next/head'
 import RecentPostCard from '../components/RecentPostCard'
 import client from '../services/apollo_client'
 
-export async function getStaticProps() {
-	const { data } = await client.query({
-		query: gql`
-			query GetPostDetails {
-				posts(orderBy: createdAt_ASC, last: 2) {
-					title
-					featuredImage {
-						url
-					}
-					createdAt
-					slug
-					excerpt
-					author {
-						name
-						photo {
-							url
-						}
-					}
+const recentPostsQuery = gql`
+	query GetPostDetails {
+		posts(orderBy: createdAt_ASC, last: 2) {
+			title
+			featuredImage {
+				url
+			}
+			createdAt
+			slug
+			excerpt
+			author {
+				name
+				photo {
+					url
 				}
 			}
-		`
+		}
+	}
+`
+
+export async function getStaticProps() {
+	const { data } = await client.query({
+		query: recentPostsQuery
 	})
 
 	return {
