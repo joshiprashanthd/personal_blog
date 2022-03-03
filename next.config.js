@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: true,
-  images: {
-    domains: ["media.graphcms.com", "picsum.photos"],
-  },
-  env: {
-    GRAPHCMS_ENDPOINT: process.env.GRAPHCMS_ENDPOINT,
-    GRAPHCMS_TOKEN: process.env.GRAPHCMS_TOKEN,
-  }
+	reactStrictMode: true,
+	images: {
+		domains: ['media.graphcms.com', 'picsum.photos']
+	},
+	env: {
+		GRAPHCMS_ENDPOINT: process.env.GRAPHCMS_ENDPOINT,
+		GRAPHCMS_TOKEN: process.env.GRAPHCMS_TOKEN,
+		GITHUB_ACCESS_TOKEN: process.env.GITHUB_ACCESS_TOKEN
+	}
 }
