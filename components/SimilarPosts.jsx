@@ -38,16 +38,18 @@ const SimilarPosts = ({ post }) => {
 	if (error) return <div>Error!</div>
 
 	return (
-		<div className="pb-16">
-			<h2 className="md:text-4x mb-8 text-3xl font-bold">
-				You might also like...
-			</h2>
-			<div className="flex flex-col gap-4">
-				{data.posts.map((post) => (
-					<RecentPostCard post={post} />
-				))}
+		data.posts.length > 0 && (
+			<div className="pb-16">
+				<h2 className="md:text-4x mb-8 text-3xl font-bold">
+					You might also like...
+				</h2>
+				<div className="flex flex-col gap-4">
+					{data.posts.map((post) => (
+						<RecentPostCard post={post} />
+					))}
+				</div>
 			</div>
-		</div>
+		)
 	)
 }
 
