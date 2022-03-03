@@ -7,7 +7,7 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
-				heading: ['Poppins', 'sans-serif'],
+				heading: ['Inter', 'sans-serif'],
 				mono: ['monospace']
 			}
 		}
