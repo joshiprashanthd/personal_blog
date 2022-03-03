@@ -21,7 +21,7 @@ const RecentPostCard = ({ post }) => {
 						/>
 						<div>
 							<p className="text-sm font-semibold">{post.author?.name}</p>
-							<p className="font-mono text-xs text-gray-500">
+							<p className="text-xs text-gray-500">
 								{moment(post.createdAt).format('MMM DD, YYYY')}
 							</p>
 						</div>
