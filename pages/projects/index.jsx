@@ -22,7 +22,6 @@ const data = {
 				description:
 					'Created games like Game Of Life and The Breakout and A-Star Shortest Path Algorithm Simulation.',
 				url: 'https://github.com/joshiprashanthd/pygame-projects',
-				stargazerCount: 6,
 				repositoryTopics: {
 					nodes: [
 						{ topic: { name: 'pygame' } },
@@ -37,7 +36,6 @@ const data = {
 				description:
 					'Implementation of 16 most used graph algorithms from scratch',
 				url: 'https://github.com/joshiprashanthd/algorithms',
-				stargazerCount: 6,
 				repositoryTopics: {
 					nodes: [
 						{ topic: { name: 'algorithm' } },
@@ -51,7 +49,6 @@ const data = {
 				description:
 					'Implementation of Keras like deep learning library from scratch',
 				url: 'https://github.com/joshiprashanthd/neural_network',
-				stargazerCount: 6,
 				repositoryTopics: {
 					nodes: [
 						{ topic: { name: 'deep-learning' } },
@@ -65,7 +62,6 @@ const data = {
 				description:
 					'Fully functional Task Management App with local storage and notifications support.',
 				url: 'https://github.com/joshiprashanthd/flutter-task-management-app',
-				stargazerCount: 4,
 				repositoryTopics: {
 					nodes: [
 						{ topic: { name: 'flutter' } },
@@ -77,9 +73,8 @@ const data = {
 			{
 				name: 'gans',
 				description:
-					'Implemented various research papers of topic Generative Adversarial Networks using Tensorflow',
+					'Implemented various research papers related to Generative Adversarial Networks using Tensorflow',
 				url: 'https://github.com/joshiprashanthd/gans',
-				stargazerCount: 0,
 				repositoryTopics: {
 					nodes: [
 						{ topic: { name: 'tensorflow' } },
@@ -164,7 +159,11 @@ const Projects = ({ user }) => {
 				<h1 className="mb-8 font-heading text-4xl font-bold md:text-5xl">
 					Projects
 				</h1>
-				<div className="mb-8 flex w-full flex-grow cursor-pointer flex-col rounded-lg border-2 bg-gray-50 p-4 transition duration-500 hover:shadow-lg hover:shadow-blue-200">
+				<a
+					href="https://github.com/joshiprashanthd"
+					target="_blank"
+					className="mb-8 flex w-full flex-grow cursor-pointer flex-col rounded-lg border-2 bg-gray-50 p-4 transition duration-500 hover:shadow-lg hover:shadow-blue-200"
+				>
 					<div className="flex flex-col items-start sm:flex-row sm:gap-4">
 						<div className="mb-4">
 							<img
@@ -190,7 +189,7 @@ const Projects = ({ user }) => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</a>
 				<h1 className="mb-8 font-heading text-3xl font-bold md:text-4xl">
 					Repositories
 				</h1>
@@ -202,23 +201,7 @@ const Projects = ({ user }) => {
 							key={repo.name}
 						>
 							<div className="flex w-full flex-grow cursor-pointer flex-col rounded-lg border-2 bg-gray-50 p-4 transition duration-500 hover:shadow-lg hover:shadow-blue-200">
-								<div className="flex items-center justify-start">
-									<h2 className="mb-1 grow text-xl font-medium">{repo.name}</h2>
-									<span className="flex items-center text-sm font-bold text-gray-600">
-										<svg
-											className="mr-1 inline h-5 w-5"
-											fill="currentColor"
-											viewBox="0 0 20 20"
-										>
-											<path
-												fillRule="evenodd"
-												d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-												clipRule="evenodd"
-											/>
-										</svg>
-										{repo.stargazerCount}
-									</span>
-								</div>
+								<h2 className="mb-1 grow text-xl font-medium">{repo.name}</h2>
 								<span className="mb-2 block text-sm font-semibold text-blue-500">
 									<span className="font-normal text-gray-500">written in </span>
 									{repo.primaryLanguage.name}
