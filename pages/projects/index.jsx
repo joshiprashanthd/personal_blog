@@ -196,7 +196,11 @@ const Projects = ({ user }) => {
 				</h1>
 				<div className="grid grid-cols-2 gap-4">
 					{user.repositories.nodes.map((repo) => (
-						<div className="col-span-2 sm:col-span-1" key={repo.name}>
+						<a
+							href={repo.url}
+							className="col-span-2 sm:col-span-1"
+							key={repo.name}
+						>
 							<div className="flex w-full flex-grow cursor-pointer flex-col rounded-lg border-2 bg-gray-50 p-4 transition duration-500 hover:shadow-lg hover:shadow-blue-200">
 								<div className="flex items-center justify-start">
 									<h2 className="mb-1 grow text-xl font-medium">{repo.name}</h2>
@@ -228,7 +232,7 @@ const Projects = ({ user }) => {
 									))}
 								</div>
 							</div>
-						</div>
+						</a>
 					))}
 				</div>
 			</div>
