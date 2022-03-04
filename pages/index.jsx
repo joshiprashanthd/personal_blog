@@ -43,8 +43,8 @@ const Home = ({ posts }) => {
 				<title>Jastor J - Developer</title>
 			</Head>
 			<div className="mx-auto flex max-w-3xl flex-col pb-16">
-				<div className="mb-8 flex flex-col-reverse items-center sm:flex-row sm:items-start">
-					<div className="flex flex-col text-center sm:pr-16 sm:text-left">
+				<div className="mb-8 flex flex-col-reverse items-start sm:flex-row">
+					<div className="flex flex-col text-left sm:pr-16">
 						<h1 className="mb-4 font-heading text-4xl font-bold md:text-5xl">
 							Prashant Joshi
 						</h1>
