@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 import Head from 'next/head'
-import RecentPostCard from '../components/RecentPostCard'
+import { PostCard } from '../components'
 import client from '../services/apollo_client'
 
 const recentPostsQuery = gql`
@@ -69,7 +69,7 @@ const Home = ({ posts }) => {
 					<div className="flex flex-col gap-4 sm:flex-row">
 						{posts.map((post) => (
 							<div className="basis-1/2">
-								<RecentPostCard post={post} />
+								<PostCard post={post} />
 							</div>
 						))}
 					</div>

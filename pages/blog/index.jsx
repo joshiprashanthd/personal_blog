@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 import Head from 'next/head'
 import React from 'react'
-import { RecentPostCard } from '../../components'
+import { PostCard } from '../../components'
 import client from '../../services/apollo_client'
 
 export async function getStaticProps() {
@@ -49,7 +49,7 @@ const Blog = ({ posts }) => {
 				<div className="grid grid-cols-2 gap-4">
 					{posts.map((post) => (
 						<div className="col-span-2 sm:col-span-1">
-							<RecentPostCard key={post.id} post={post} />
+							<PostCard key={post.id} post={post} />
 						</div>
 					))}
 				</div>
