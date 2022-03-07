@@ -2,7 +2,7 @@ import moment from 'moment'
 import Link from 'next/link'
 import React from 'react'
 
-const RecentPostCard = ({ post }) => {
+const PostCard = ({ post }) => {
 	return (
 		<Link href={`/blog/post/${post.slug}`}>
 			<div className="flex w-full flex-grow cursor-pointer flex-col rounded-lg border-2 bg-gray-50 p-4 transition duration-500 hover:shadow-lg hover:shadow-blue-200 md:basis-1/3">
@@ -30,4 +30,4 @@ const RecentPostCard = ({ post }) => {
 	)
 }
 
-export default RecentPostCard
+export default PostCard
