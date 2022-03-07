@@ -37,25 +37,25 @@ const PostContent = ({ post }) => {
 						h1: (props) => (
 							<h1
 								{...props}
-								className="mb-4 font-heading text-4xl font-black"
+								className="mb-4 font-heading text-3xl font-black"
 							/>
 						),
 						h2: (props) => (
-							<h2 {...props} className="mb-4 font-heading text-3xl font-bold" />
+							<h2 {...props} className="mb-4 font-heading text-2xl font-bold" />
 						),
 						h3: (props) => (
 							<h3
 								{...props}
-								className="mb-4 font-heading text-2xl font-semibold"
+								className="mb-4 font-heading text-xl font-semibold"
 							/>
 						),
-						p: (props) => <p {...props} className="mb-4 text-lg" />,
+						p: (props) => <p {...props} className="mb-4 leading-7" />,
 						ul: (props) => <ul {...props} className="mb-4 list-disc pl-8" />,
-						li: (props) => <li {...props} className="mb-2 text-lg" />,
+						li: (props) => <li {...props} className="mb-2" />,
 						code: ({ inline, language, children }) => {
 							if (inline) {
 								return (
-									<code className="rounded-md border border-gray-300 px-1 font-mono text-lg shadow-sm">
+									<code className="rounded-md border border-gray-300 px-1 font-mono shadow-sm">
 										{children}
 									</code>
 								)
