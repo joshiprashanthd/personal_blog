@@ -33,9 +33,19 @@ const PostContent = ({ post }) => {
 								className="mb-4 font-heading text-xl font-semibold"
 							/>
 						),
-						p: (props) => <p {...props} className="mb-4 leading-7" />,
+						p: (props) => (
+							<p
+								{...props}
+								className="mb-4 font-serif text-lg leading-8 tracking-wide"
+							/>
+						),
 						ul: (props) => <ul {...props} className="mb-4 list-disc pl-8" />,
-						li: (props) => <li {...props} className="mb-2" />,
+						li: (props) => (
+							<li
+								{...props}
+								className="mb-2 font-serif text-lg leading-8 tracking-wide"
+							/>
+						),
 						code: ({ inline, language, children }) => {
 							if (inline) {
 								return (
