@@ -4,7 +4,7 @@ import { Subheading2 } from './style'
 const GithubRepoCard = ({ repo }) => {
 	return (
 		<a href={repo.url} className="col-span-2 sm:col-span-1" key={repo.name}>
-			<div className="flex w-full flex-grow cursor-pointer flex-col rounded-lg border-2 bg-gray-50 p-4 transition duration-500 hover:shadow-lg hover:shadow-blue-200">
+			<div className="cursor-pointer rounded-lg border-2 bg-gray-50 p-4 transition duration-500 hover:shadow-lg hover:shadow-blue-200">
 				<Subheading2 style="mb-2">{repo.name}</Subheading2>
 				<span className="mb-2 block text-sm font-semibold text-blue-500">
 					<span className="font-normal text-gray-500">written in </span>
