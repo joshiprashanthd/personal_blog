@@ -1,0 +1,5 @@
+export { default as Heading } from './Heading'
+export { default as Subheading } from './Subheading'
+export { default as Subheading2 } from './Subheading2'
+export { default as Subtitle } from './Subtitle'
+export { default as Subtitle2 } from './Subtitle2'
