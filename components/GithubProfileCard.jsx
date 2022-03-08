@@ -1,4 +1,5 @@
 import React from 'react'
+import { Subheading2, Subtitle2 } from './style'
 
 const GithubProfileCard = ({ user }) => {
 	return (
@@ -18,11 +19,11 @@ const GithubProfileCard = ({ user }) => {
 				</div>
 				<div>
 					<div className="mb-2">
-						<h2 className="text-2xl font-semibold">{user.name}</h2>
+						<Subheading2>{user.name}</Subheading2>
 						<p className="font-semibold text-blue-500">{user.login}</p>
 					</div>
-					<span className="mb-2 block">{user.bio}</span>
-					<div className="">
+					<Subtitle2 style="mb-2">{user.bio}</Subtitle2>
+					<div>
 						<span className="mr-4 text-sm font-bold">
 							Followers {user.followers.totalCount}
 						</span>

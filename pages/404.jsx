@@ -1,12 +1,11 @@
 import React from 'react'
+import { Heading, Subtitle } from '../components/style'
 
 const ErrorPage = () => {
 	return (
-		<div className="flex  flex-col items-center justify-center pb-16">
-			<h1 className="mb-4 text-4xl font-bold md:text-5xl">
-				Still in development...
-			</h1>
-			<p>Don't be curious about this...</p>
+		<div className="flex flex-col justify-center sm:items-center">
+			<Heading style="mb-4">Still in development...</Heading>
+			<Subtitle>Don't be curious about this...</Subtitle>
 		</div>
 	)
 }

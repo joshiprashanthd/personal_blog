@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client'
 import Head from 'next/head'
 import { PostCard } from '../components'
+import { Heading, Subheading, Subtitle } from '../components/style'
 import client from '../services/apollo_client'
 
 const recentPostsQuery = gql`
@@ -42,16 +43,14 @@ const Home = ({ posts }) => {
 			<Head>
 				<title>Jastor J - Developer</title>
 			</Head>
-			<div className="mx-auto flex max-w-3xl flex-col pb-16">
+			<div className="mx-auto flex max-w-3xl flex-col">
 				<div className="mb-8 flex flex-col-reverse items-start sm:flex-row">
 					<div className="flex flex-col text-left sm:pr-16">
-						<h1 className="mb-4 font-heading text-4xl font-bold md:text-5xl">
-							Prashant Joshi
-						</h1>
-						<p className="font-light md:text-lg">
+						<Heading style="mb-4">Prashant Joshi</Heading>
+						<Subtitle>
 							Part Time Developer. Part Time Reader. Love to explore new
 							technology. I am a self taught developer and a self taught reader.
-						</p>
+						</Subtitle>
 					</div>
 					<div>
 						<img
@@ -63,9 +62,7 @@ const Home = ({ posts }) => {
 					</div>
 				</div>
 				<div className="flex flex-col">
-					<h1 className="mb-8 font-heading text-3xl font-bold md:text-4xl">
-						Recent Posts
-					</h1>
+					<Subheading style="mb-8">Recent Posts</Subheading>
 					<div className="flex flex-col gap-4 sm:flex-row">
 						{posts.map((post) => (
 							<div className="basis-1/2">
