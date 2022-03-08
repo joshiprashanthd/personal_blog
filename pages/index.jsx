@@ -48,8 +48,8 @@ const Home = ({ posts }) => {
 					<div className="flex flex-col text-left sm:pr-16">
 						<Heading style="mb-4">Prashant Joshi</Heading>
 						<Subtitle>
-							Part Time Developer. Part Time Reader. Love to explore new
-							technology. I am a self taught developer and a self taught reader.
+							I am a self-taught developer. Passionate about machine learning
+							and web development.
 						</Subtitle>
 					</div>
 					<div>
