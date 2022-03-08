@@ -1,5 +1,5 @@
 import React from 'react'
-import { Subheading2 } from './style'
+import { Subheading2, Subtitle2 } from './style'
 
 const GithubRepoCard = ({ repo }) => {
 	return (
@@ -10,7 +10,7 @@ const GithubRepoCard = ({ repo }) => {
 					<span className="font-normal text-gray-500">written in </span>
 					{repo.primaryLanguage.name}
 				</span>
-				<p className="mb-2">{repo.description}</p>
+				<Subtitle2 style="mb-4">{repo.description}</Subtitle2>
 				<div className="mb-2 flex flex-wrap gap-2">
 					{repo.repositoryTopics.nodes.map((topic) => (
 						<span className="inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-500">
