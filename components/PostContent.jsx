@@ -39,7 +39,7 @@ const PostContent = ({ post }) => {
 								className="mb-4 font-serif text-lg leading-8 tracking-wide"
 							/>
 						),
-						ul: (props) => <ul {...props} className="mb-4 list-disc pl-8" />,
+						ul: (props) => <ul className="mb-4 list-disc pl-8" />,
 						li: (props) => (
 							<li
 								{...props}
