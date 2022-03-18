@@ -64,8 +64,9 @@ export async function getStaticProps({ params }) {
 	return {
 		props: {
 			posts: data.posts,
-			category: params.slug
-		}
+			category: `${params.slug[0].toUpperCase()}${params.slug.slice(1)}`
+		},
+		revalidate: 60 * 60 * 6
 	}
 }
 
@@ -75,14 +76,10 @@ const Category = ({ posts, category }) => {
 	return (
 		<>
 			<Head>
-				<title>
-					Category: {`${category[0].toUpperCase()}${category.slice(1)}`}
-				</title>
+				<title>Category: {category}</title>
 			</Head>
 			<div>
-				<Heading style="mb-8">
-					Category: {`${category[0].toUpperCase()}${category.slice(1)}`}
-				</Heading>
+				<Heading style="mb-8">Category: {category}</Heading>
 				<div className="grid grid-cols-2 gap-4">
 					{posts.map((post) => (
 						<div className="col-span-2 sm:col-span-1">
