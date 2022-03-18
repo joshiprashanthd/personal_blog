@@ -1,4 +1,3 @@
-import moment from 'moment'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import SyntaxHighlighter from 'react-syntax-highlighter'
@@ -36,14 +35,14 @@ const PostContent = ({ post }) => {
 						p: (props) => (
 							<p
 								{...props}
-								className="mb-4 font-serif text-lg leading-8 tracking-wide"
+								className="mb-4 font-serif text-base leading-8 tracking-wide"
 							/>
 						),
-						ul: (props) => <ul className="mb-4 list-disc pl-8" />,
+						ul: (props) => <ul {...props} className="mb-4 list-disc pl-8" />,
 						li: (props) => (
 							<li
 								{...props}
-								className="mb-2 font-serif text-lg leading-8 tracking-wide"
+								className="mb-2 font-serif text-base leading-8 tracking-wide"
 							/>
 						),
 						code: ({ inline, language, children }) => {
