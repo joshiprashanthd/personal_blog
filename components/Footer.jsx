@@ -12,10 +12,8 @@ const query = gql`
 `
 
 const Footer = () => {
-	const { loading, error, data } = useQuery(query)
+	const { data } = useQuery(query)
 
-	if (loading) return <p>Loading...</p>
-	if (error) return <p>Error :(</p>
 	return (
 		<div className="border-t border-gray-200 py-16">
 			<div className="flex flex-col gap-12 sm:flex-row">
@@ -39,21 +37,23 @@ const Footer = () => {
 						</p>
 					</Link>
 				</div>
-				<div className="flex flex-col gap-4">
-					<span className="block text-sm font-semibold text-gray-600">
-						Categories
-					</span>
-					{data.categories.map((category) => (
-						<Link href={`/blog/category/${category.slug}`}>
-							<p
-								key={category.slug}
-								className="cursor-pointer  text-gray-500 hover:text-gray-700"
-							>
-								{category.name}
-							</p>
-						</Link>
-					))}
-				</div>
+				{data && (
+					<div className="flex flex-col gap-4">
+						<span className="block text-sm font-semibold text-gray-600">
+							Categories
+						</span>
+						{data.categories.map((category) => (
+							<Link href={`/blog/category/${category.slug}`}>
+								<p
+									key={category.slug}
+									className="cursor-pointer  text-gray-500 hover:text-gray-700"
+								>
+									{category.name}
+								</p>
+							</Link>
+						))}
+					</div>
+				)}
 				<div className="flex flex-col gap-4">
 					<span className="block text-sm font-semibold text-gray-600">
 						Connect
