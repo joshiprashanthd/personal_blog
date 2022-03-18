@@ -90,8 +90,7 @@ export async function getStaticProps() {
 	return {
 		props: {
 			user: data
-		},
-		revalidate: 60 * 60 * 24
+		}
 	}
 }
 
