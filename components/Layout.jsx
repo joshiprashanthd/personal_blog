@@ -1,15 +1,16 @@
 import React from 'react'
 import { Header, Footer } from '.'
+import { Container, Box } from '@chakra-ui/react'
 
 const Layout = ({ children }) => {
 	return (
-		<>
-			<Header />
-			<main className="mx-auto flex max-w-3xl flex-col justify-center px-8 sm:px-6">
-				<div className="pb-16">{children}</div>
+		<Container maxWidth="full" backgroundColor="gray.100">
+			<Container maxWidth="container.md" paddingX={['1rem', '2rem']}>
+				<Header />
+				{children}
 				<Footer />
-			</main>
-		</>
+			</Container>
+		</Container>
 	)
 }
 export default Layout
