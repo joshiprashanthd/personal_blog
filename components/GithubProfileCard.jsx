@@ -1,12 +1,29 @@
 import React from 'react'
-import { Subheading2, Subtitle2 } from './style'
+import { Box, useColorModeValue, Heading, Text } from '@chakra-ui/react'
 
 const GithubProfileCard = ({ user }) => {
+	const bgColor = useColorModeValue('gray.50', 'gray.900')
+	const borderColor = useColorModeValue('gray.200', 'gray.700')
+	const subheadingColor = useColorModeValue('gray.600', 'gray.400')
+
 	return (
-		<a
+		<Box
 			href="https://github.com/joshiprashanthd"
 			target="_blank"
-			className="mb-8 flex w-full flex-grow cursor-pointer flex-col rounded-lg border-2 bg-gray-50 p-4 transition duration-500 hover:shadow-lg hover:shadow-blue-200"
+			flexGrow={1}
+			mb={8}
+			w="full"
+			cursor="pointer"
+			rounded="lg"
+			borderWidth="1px"
+			borderColor={borderColor}
+			backgroundColor={bgColor}
+			p={4}
+			transitionDuration="300ms"
+			_hover={{
+				shadow: 'lg',
+				transform: 'translateY(-1px)'
+			}}
 		>
 			<div className="flex flex-col items-start sm:flex-row sm:gap-4">
 				<div className="mb-4">
@@ -19,21 +36,17 @@ const GithubProfileCard = ({ user }) => {
 				</div>
 				<div>
 					<div className="mb-2">
-						<Subheading2>{user.name}</Subheading2>
-						<p className="font-semibold text-blue-500">{user.login}</p>
+						<Heading fontSize="2xl">{user.name}</Heading>
+						<Text color="blue.400" fontWeight="semibold">
+							{user.login}
+						</Text>
 					</div>
-					<Subtitle2 style="mb-2">{user.bio}</Subtitle2>
-					<div>
-						<span className="mr-4 text-sm font-bold">
-							Followers {user.followers.totalCount}
-						</span>
-						<span className="text-sm font-bold">
-							Repositories {user.repositories.totalCount}
-						</span>
-					</div>
+					<Text mb={2} color={subheadingColor}>
+						{user.bio}
+					</Text>
 				</div>
 			</div>
-		</a>
+		</Box>
 	)
 }
 

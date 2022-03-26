@@ -2,7 +2,7 @@ import { gql } from '@apollo/client'
 import Head from 'next/head'
 import React from 'react'
 import { PostCard } from '../../components'
-import { Heading } from '../../components/style'
+import { Heading, Grid, GridItem } from '@chakra-ui/react'
 import client from '../../services/apollo_client'
 
 export async function getStaticProps() {
@@ -44,14 +44,16 @@ const Blog = ({ posts }) => {
 				<title>Blog</title>
 			</Head>
 			<div>
-				<Heading style="mb-8">Blog</Heading>
-				<div className="grid grid-cols-2 gap-4">
+				<Heading mb={8} fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }}>
+					Blog
+				</Heading>
+				<Grid templateColumns="repeat(2, 1fr)" gap={4}>
 					{posts.map((post) => (
-						<div className="col-span-2 sm:col-span-1">
+						<GridItem colSpan={{ base: 2, md: 1 }}>
 							<PostCard key={post.id} post={post} />
-						</div>
+						</GridItem>
 					))}
-				</div>
+				</Grid>
 			</div>
 		</>
 	)

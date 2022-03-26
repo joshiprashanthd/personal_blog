@@ -1,7 +1,14 @@
 import { gql } from '@apollo/client'
 import Head from 'next/head'
 import { PostCard } from '../components'
-import { Heading, Subheading, Subtitle } from '../components/style'
+import {
+	Flex,
+	Heading,
+	Text,
+	useColorModeValue,
+	Box,
+	Image
+} from '@chakra-ui/react'
 import client from '../services/apollo_client'
 
 const recentPostsQuery = gql`
@@ -38,40 +45,55 @@ export async function getStaticProps() {
 }
 
 const Home = ({ posts }) => {
+	const subheadingColor = useColorModeValue('gray.600', 'gray.500')
+
 	return (
 		<>
 			<Head>
 				<title>Jastor J - Developer</title>
 			</Head>
-			<div className="mx-auto flex max-w-3xl flex-col">
-				<div className="mb-8 flex flex-col-reverse items-start sm:flex-row">
-					<div className="flex flex-col text-left sm:pr-16">
-						<Heading style="mb-4">Prashant Joshi</Heading>
-						<Subtitle>
+			<Box>
+				<Flex
+					direction={{ base: 'column-reverse', sm: 'row' }}
+					mb={8}
+					align="start"
+				>
+					<Flex flexDirection="column" pr={{ base: null, sm: 16 }}>
+						<Heading fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }} mb={2}>
+							Prashant Joshi
+						</Heading>
+						<Text color={subheadingColor}>
 							I am a self-taught developer. Passionate about machine learning
 							and web development.
-						</Subtitle>
-					</div>
-					<div>
-						<img
+						</Text>
+					</Flex>
+					<Box>
+						<Image
 							src="https://picsum.photos/200/300"
 							height={128}
 							width={128}
-							className="mx-auto mb-8 max-h-[100px] max-w-[100px] rounded-full object-cover sm:mb-0 sm:max-h-[128px] sm:max-w-[128px]"
+							rounded="full"
+							objectFit="cover"
+							alt="Prashant Joshi"
+							maxH={{ base: '80px', sm: '100px', md: '128px' }}
+							maxW={{ base: '80px', sm: '100px', md: '128px' }}
+							mb={{ base: 4, sm: null }}
 						/>
-					</div>
-				</div>
-				<div className="flex flex-col">
-					<Subheading style="mb-8">Recent Posts</Subheading>
-					<div className="flex flex-col gap-4 sm:flex-row">
+					</Box>
+				</Flex>
+				<Box>
+					<Heading mb={8} fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
+						Recent Posts
+					</Heading>
+					<Flex flexDirection={{ base: 'column', sm: 'row' }} gap={4}>
 						{posts.map((post) => (
-							<div className="basis-1/2">
+							<Box flexBasis={{ base: '100%', md: '50%' }}>
 								<PostCard post={post} />
-							</div>
+							</Box>
 						))}
-					</div>
-				</div>
-			</div>
+					</Flex>
+				</Box>
+			</Box>
 		</>
 	)
 }

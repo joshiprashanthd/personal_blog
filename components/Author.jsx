@@ -1,24 +1,24 @@
 import React from 'react'
 import moment from 'moment'
+import { Text, Box, Flex, Image, useColorModeValue } from '@chakra-ui/react'
 
 const Author = ({ author, date }) => {
+	const dateColor = useColorModeValue('gray.600', 'gray.500')
+
 	return (
-		<div className="flex items-center">
-			<img
-				src={author.photo.url}
-				height="10px"
-				width="10px"
-				className="mr-4 h-10 w-10 rounded-full"
-			/>
-			<div>
-				<p className="text-sm font-semibold">{author.name}</p>
+		<Flex align="center">
+			<Image src={author.photo.url} h={10} w={10} rounded="full" mr={4} />
+			<Box>
+				<Text fontSize={{ base: 'xs', sm: 'sm' }} fontWeight="semibold">
+					{author.name}
+				</Text>
 				{date && (
-					<p className="text-xs text-gray-500">
+					<Text fontSize={{ base: 'xs', sm: 'sm' }} color={dateColor}>
 						{moment(date).format('MMM DD, YYYY')}
-					</p>
+					</Text>
 				)}
-			</div>
-		</div>
+			</Box>
+		</Flex>
 	)
 }
 

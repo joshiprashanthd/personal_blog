@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import GithubProfileCard from '../../components/GithubProfileCard'
 import GithubRepoCard from '../../components/GithubRepoCard'
+import { Box, Grid, Heading, GridItem } from '@chakra-ui/react'
 
 const data = {
 	bio: 'Deep Learning and Algorithms Enthusiast.\r\nLove to create and learn new things.',
@@ -100,20 +101,22 @@ const Projects = ({ user }) => {
 			<Head>
 				<title>Projects</title>
 			</Head>
-			<div>
-				<h1 className="mb-8 font-heading text-4xl font-bold md:text-5xl">
+			<Box>
+				<Heading fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }} mb={8}>
 					Projects
-				</h1>
+				</Heading>
 				<GithubProfileCard user={user} />
-				<h1 className="mb-8 font-heading text-3xl font-bold md:text-4xl">
+				<Heading mb={8} fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
 					Repositories
-				</h1>
-				<div className="grid grid-cols-2 gap-4">
+				</Heading>
+				<Grid templateColumns="repeat(2, 1fr)" gap={4}>
 					{user.repositories.nodes.map((repo) => (
-						<GithubRepoCard repo={repo} />
+						<GridItem colSpan={{ base: 2, md: 1 }}>
+							<GithubRepoCard repo={repo} />
+						</GridItem>
 					))}
-				</div>
-			</div>
+				</Grid>
+			</Box>
 		</>
 	)
 }

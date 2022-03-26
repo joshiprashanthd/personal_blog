@@ -1,25 +1,60 @@
+import {
+	useColorModeValue,
+	Box,
+	GridItem,
+	Heading,
+	Text,
+	Flex
+} from '@chakra-ui/react'
 import React from 'react'
-import { Subheading2, Subtitle2 } from './style'
 
 const GithubRepoCard = ({ repo }) => {
+	const bgColor = useColorModeValue('gray.50', 'gray.900')
+	const borderColor = useColorModeValue('gray.200', 'gray.700')
+	const subheadingColor = useColorModeValue('gray.600', 'gray.400')
+	const topicBgColor = useColorModeValue('blue.50', 'blue.900')
+
 	return (
-		<a href={repo.url} className="col-span-2 sm:col-span-1" key={repo.name}>
-			<div className="cursor-pointer rounded-lg border-2 bg-gray-50 p-4 transition duration-500 hover:shadow-lg hover:shadow-blue-200">
-				<Subheading2 style="mb-2">{repo.name}</Subheading2>
-				<span className="mb-2 block text-sm font-semibold text-blue-500">
-					<span className="font-normal text-gray-500">written in </span>
+		<Box
+			as="a"
+			display="block"
+			href={repo.url}
+			key={repo.name}
+			target="_blank"
+			p={4}
+			cursor="pointer"
+			rounded="lg"
+			borderWidth={2}
+			borderColor={borderColor}
+			backgroundColor={bgColor}
+			transitionDuration="300ms"
+			_hover={{
+				shadow: 'lg',
+				transform: 'translateY(-1px)'
+			}}
+		>
+			<Heading mb={2} fontSize="xl">
+				{repo.name}
+			</Heading>
+			<Text mb={2} fontSize="sm" color={subheadingColor}>
+				written in{' '}
+				<Text as="span" color="blue.400" fontWeight="semibold">
 					{repo.primaryLanguage.name}
-				</span>
-				<Subtitle2 style="mb-4">{repo.description}</Subtitle2>
-				<div className="mb-2 flex flex-wrap gap-2">
-					{repo.repositoryTopics.nodes.map((topic) => (
-						<span className="inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-500">
+				</Text>
+			</Text>
+			<Text mb={4} color={subheadingColor}>
+				{repo.description}
+			</Text>
+			<Flex mb={2} gap={2} flexWrap>
+				{repo.repositoryTopics.nodes.map((topic) => (
+					<Box bg={topicBgColor} py={1} px={2} rounded="full">
+						<Text color="blue.300" fontWeight="semibold" fontSize="sm">
 							{topic.topic.name}
-						</span>
-					))}
-				</div>
-			</div>
-		</a>
+						</Text>
+					</Box>
+				))}
+			</Flex>
+		</Box>
 	)
 }
 
