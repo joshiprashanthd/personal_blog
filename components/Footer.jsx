@@ -41,7 +41,7 @@ const Footer = () => {
 
 	return (
 		<Flex
-			paddingY={16}
+			paddingY={8}
 			columnGap={12}
 			rowGap={8}
 			flexDirection={['column', 'row']}
