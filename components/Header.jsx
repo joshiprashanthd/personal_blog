@@ -30,7 +30,7 @@ const Header = () => {
 	const inactiveTabColor = useColorModeValue('gray.500', 'gray.400')
 	const iconColor = useColorModeValue('gray.700', 'gray.200')
 	const iconButtonColor = useColorModeValue('gray.200', 'gray.700')
-	const bgColor = useColorModeValue('gray.50', 'gray.900')
+	const bgColor = useColorModeValue('gray.100', 'gray.800')
 
 	const routes = [
 		{
