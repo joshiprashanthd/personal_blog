@@ -1,7 +1,11 @@
+import { useColorMode } from '@chakra-ui/react'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import SyntaxHighlighter from 'react-syntax-highlighter'
-import { docco } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import {
+	atomOneLight,
+	atomOneDark
+} from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 
 const PostContent = ({ post }) => {
 	return (
@@ -33,19 +37,15 @@ const PostContent = ({ post }) => {
 							/>
 						),
 						p: (props) => (
-							<p
-								{...props}
-								className="mb-4 font-serif text-base leading-8 tracking-wide"
-							/>
+							<p {...props} className="mb-4 font-sans text-base leading-8 " />
 						),
 						ul: (props) => <ul {...props} className="mb-4 list-disc pl-8" />,
 						li: (props) => (
-							<li
-								{...props}
-								className="mb-2 font-serif text-base leading-8 tracking-wide"
-							/>
+							<li {...props} className="mb-2 text-base leading-8 " />
 						),
 						code: ({ inline, language, children }) => {
+							const { colorMode } = useColorMode()
+
 							if (inline) {
 								return (
 									<code className="rounded-md border border-gray-300 px-1 font-mono shadow-sm">
@@ -58,7 +58,7 @@ const PostContent = ({ post }) => {
 								<SyntaxHighlighter
 									language={language}
 									children={children}
-									style={docco}
+									style={colorMode == 'dark' ? atomOneDark : atomOneLight}
 									showLineNumbers={true}
 									lineNumberStyle={{
 										color: '#999'
@@ -66,10 +66,12 @@ const PostContent = ({ post }) => {
 									customStyle={{
 										padding: '1rem',
 										borderRadius: '0.5rem',
-										fontSize: '1rem',
+										fontSize: '0.9rem',
 										lineHeight: '1.5rem',
-										backgroundColor: 'rgb(243 244 246)',
-										border: '1px solid rgb(209 213 219)',
+										backgroundColor:
+											colorMode == 'dark'
+												? 'rgb(45, 55, 72)'
+												: 'rgb(243, 244, 246)',
 										marginBottom: '1rem'
 									}}
 								/>
