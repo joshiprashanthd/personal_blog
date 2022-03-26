@@ -37,18 +37,18 @@ const PostContent = ({ post }) => {
 							/>
 						),
 						p: (props) => (
-							<p {...props} className="mb-4 font-sans text-base leading-8 " />
+							<p {...props} className="mb-4 font-sans text-base leading-8" />
 						),
 						ul: (props) => <ul {...props} className="mb-4 list-disc pl-8" />,
 						li: (props) => (
-							<li {...props} className="mb-2 text-base leading-8 " />
+							<li {...props} className="mb-2 text-base leading-8" />
 						),
 						code: ({ inline, language, children }) => {
 							const { colorMode } = useColorMode()
 
 							if (inline) {
 								return (
-									<code className="rounded-md border border-gray-300 px-1 font-mono shadow-sm">
+									<code className="rounded-md px-1 font-mono shadow-sm">
 										{children}
 									</code>
 								)
