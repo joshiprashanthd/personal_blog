@@ -1,9 +1,11 @@
-import { useRouter } from 'next/router'
 import React from 'react'
+
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { gql } from '@apollo/client'
+import { Text, Heading, Flex, Box, useColorModeValue } from '@chakra-ui/react'
+
 import client from '../../../services/apollo_client'
-import { Heading, Subtitle } from '../../../components/style'
 import { Author, PostContent, SimilarPosts } from '../../../components'
 
 const allPostsQuery = gql`
@@ -87,28 +89,36 @@ const PostDetails = ({ post }) => {
 	const router = useRouter()
 	if (router.isFallback) return <div> Loading... </div>
 
+	const subheadingColor = useColorModeValue('gray.600', 'gray.400')
+	const topicBgColor = useColorModeValue('blue.50', 'blue.900')
+
 	return (
 		<>
 			<Head>
 				<title>{post.title}</title>
 			</Head>
-			<div>
-				<div>
+			<Box>
+				<Box>
 					<Author author={post.author} date={post.createdAt} />
-					<span className="mb-4 block"></span>
-					<Heading style="mb-4">{post.title}</Heading>
-					<Subtitle style="mb-4">{post.excerpt}</Subtitle>
-					<div className="mb-8 flex-wrap gap-2 lg:items-center lg:justify-center">
+					<Heading my={4} fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }}>
+						{post.title}
+					</Heading>
+					<Text mb={4} color={subheadingColor}>
+						{post.excerpt}
+					</Text>
+					<Flex flexWrap mb={8} gap={2}>
 						{post.categories.map((category) => (
-							<span className="inline-block rounded-md bg-blue-100 p-2 text-sm font-medium text-blue-500">
-								{category.name}
-							</span>
+							<Box bg={topicBgColor} py={1} px={2} rounded="full">
+								<Text color="blue.300" fontWeight="semibold" fontSize="sm">
+									{category.name}
+								</Text>
+							</Box>
 						))}
-					</div>
-				</div>
+					</Flex>
+				</Box>
 				<PostContent post={post} />
 				<SimilarPosts post={post} />
-			</div>
+			</Box>
 		</>
 	)
 }
