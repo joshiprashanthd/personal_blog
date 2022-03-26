@@ -40,7 +40,12 @@ const Footer = () => {
 	const { data } = useQuery(query)
 
 	return (
-		<Flex paddingY={16} gap={12} flexDirection={['column', 'row']}>
+		<Flex
+			paddingY={16}
+			columnGap={12}
+			rowGap={8}
+			flexDirection={['column', 'row']}
+		>
 			<Flex flexDirection="column" gap={4}>
 				<Label fontSize="sm" fontWeight="semibold" color="gray.600">
 					Explore
