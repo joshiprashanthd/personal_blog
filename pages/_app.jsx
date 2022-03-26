@@ -3,7 +3,10 @@ import { Layout } from '../components'
 import { ApolloProvider } from '@apollo/client'
 import NextNProgress from 'nextjs-progressbar'
 import client from '../services/apollo_client'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import config from '../theme'
+
+const theme = extendTheme(config)
 
 function MyApp({ Component, pageProps }) {
 	return (
@@ -19,7 +22,7 @@ function MyApp({ Component, pageProps }) {
 					trickleSpeed: 200
 				}}
 			/>
-			<ChakraProvider>
+			<ChakraProvider theme={theme}>
 				<ApolloProvider client={client}>
 					<Layout>
 						<Component {...pageProps} />
