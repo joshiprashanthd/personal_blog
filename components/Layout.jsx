@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
 		>
 			<Container maxWidth="container.md">
 				<Header />
-				<Box paddingBottom="16">{children}</Box>
+				<Box pb={8}>{children}</Box>
 				<Divider />
 				<Footer />
 			</Container>
