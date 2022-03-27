@@ -14,7 +14,7 @@ const query = gql`
 
 const NewLink = ({ ...props }) => {
 	const color = useColorModeValue('gray.600', 'gray.500')
-	const hoverColor = useColorModeValue('gray.400', 'gray.300')
+	const hoverColor = useColorModeValue('gray.800', 'gray.300')
 	return (
 		<Link
 			as="a"
