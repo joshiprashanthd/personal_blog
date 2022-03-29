@@ -85,7 +85,7 @@ const Header = () => {
 						/>
 						<DrawerBody textAlign="center">
 							{routes.map((route) => (
-								<NextLink href={route.href}>
+								<NextLink href={route.href} key={route.href}>
 									<Text display="block" fontSize="lg" onClick={onClose} mb={8}>
 										{route.name}
 									</Text>
