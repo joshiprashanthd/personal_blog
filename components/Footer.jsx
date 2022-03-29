@@ -66,7 +66,10 @@ const Footer = () => {
 						Categories
 					</Label>
 					{data.categories.map((category) => (
-						<NextLink href={`/blog/category/${category.slug}`} passHref>
+						<NextLink
+							href={`/blog/category/${category.slug}`}
+							key={category.slug}
+						>
 							<NewLink key={category.slug}>{category.name}</NewLink>
 						</NextLink>
 					))}
