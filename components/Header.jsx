@@ -56,8 +56,7 @@ const Header = () => {
 							<Button
 								bg="transparent"
 								color={path === route.href ? activeTabColor : inactiveTabColor}
-								px={4}
-								py={2}
+								rounded="lg"
 							>
 								{route.name}
 							</Button>
