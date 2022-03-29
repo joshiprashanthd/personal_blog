@@ -1,12 +1,12 @@
 import React from 'react'
-import { Heading, Subtitle } from '../components/style'
+import { Heading, Stack, Text } from '@chakra-ui/react'
 
 const ErrorPage = () => {
 	return (
-		<div className="flex flex-col justify-center sm:items-center">
-			<Heading style="mb-4">Still in development...</Heading>
-			<Subtitle>Don't be curious about this...</Subtitle>
-		</div>
+		<Stack as="main" m="auto">
+			<Heading mb={4}>Still in development...</Heading>
+			<Text>Don't be curious about this...</Text>
+		</Stack>
 	)
 }
 
