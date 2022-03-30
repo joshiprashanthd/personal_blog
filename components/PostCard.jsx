@@ -1,6 +1,5 @@
 import NextLink from 'next/link'
 import React from 'react'
-import Author from '../components/Author'
 import { Box, Flex, Heading, Text, useColorModeValue } from '@chakra-ui/react'
 
 const PostCard = ({ post }) => {
@@ -38,7 +37,6 @@ const PostCard = ({ post }) => {
 						{post.excerpt}
 					</Text>
 				</Box>
-				<Author author={post.author} date={post.createdAt} />
 			</Flex>
 		</NextLink>
 	)
