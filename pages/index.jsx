@@ -87,7 +87,7 @@ const Home = ({ posts }) => {
 					</Heading>
 					<Flex flexDirection={{ base: 'column', sm: 'row' }} gap={4}>
 						{posts.map((post) => (
-							<Box flexBasis={{ base: '100%', md: '50%' }}>
+							<Box flexBasis={{ base: '100%', md: '50%' }} key={post.slug}>
 								<PostCard post={post} key={post.slug} />
 							</Box>
 						))}
