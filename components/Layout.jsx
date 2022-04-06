@@ -4,11 +4,11 @@ import { Container, Box, useColorModeValue, Divider } from '@chakra-ui/react'
 
 const Layout = ({ children }) => {
 	const bgColor = useColorModeValue('gray.100', 'gray.800')
-	const borderBottomColor = useColorModeValue('gray.200', 'gray.700')
 
 	return (
 		<Container
 			maxWidth="full"
+			minHeight="100vh"
 			backgroundColor={bgColor}
 			transitionProperty="all"
 			transitionDuration="300ms"
