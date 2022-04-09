@@ -21,7 +21,7 @@ export default {
 	h6: (props) => (
 		<Heading as="h6" fontSize={['xs', 'sm', 'md']} mb={4} {...props} />
 	),
-	p: (props) => <Text as="p" mb={4} {...props} lineHeight="7" />,
+	p: (props) => <Text as="p" mb={4} {...props} lineHeight="8" />,
 	ul: (props) => (
 		<Box as="ul" mb={4} {...props} listStylePosition="inside" pl={4} />
 	),
@@ -50,11 +50,10 @@ export default {
 
 		if (!props.className) {
 			return (
-				<Box
+				<Text
 					as="span"
-					display="inline-block"
 					children={props.children}
-					rounded="lg"
+					rounded="md"
 					color={inlineCodeColor}
 					bg={inlineCodeBgColor}
 					px={1}
