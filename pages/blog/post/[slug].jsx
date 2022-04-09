@@ -74,6 +74,7 @@ const PostDetails = ({ frontmatter, source, similarPosts }) => {
 						_hover={{
 							color: linkHoverColor
 						}}
+						width="min-content"
 					>
 						{frontmatter.category}
 					</Text>
