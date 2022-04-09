@@ -46,9 +46,14 @@ export const getPostsByCategory = (category, limit) => {
 	const mdxPosts = mdxPaths.map((mdxPath) => getMDXData(mdxPath))
 
 	return mdxPosts
-		.filter((mdxPost) => mdxPost.category === category)
+		.filter(
+			(mdxPost) => mdxPost.frontmatter.category.toLowerCase() === category
+		)
 		.sort((a, b) =>
-			compareAsc(new Date(b.frontpublishedAt), new Date(a.publishedAt))
+			compareAsc(
+				new Date(b.frontmatter.publishedAt),
+				new Date(a.frontmatter.publishedAt)
+			)
 		)
 		.slice(0, limit)
 }
