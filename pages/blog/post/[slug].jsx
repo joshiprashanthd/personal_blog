@@ -30,7 +30,6 @@ export async function getStaticProps({ params }) {
 			remarkPlugins: [remarkGfm, remarkMath]
 		}
 	})
-	console.log(source)
 	return {
 		props: {
 			frontmatter: source.frontmatter,
