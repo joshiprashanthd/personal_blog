@@ -48,15 +48,12 @@ export const getPostsByCategory = (category, limit) => {
 }
 
 export const getCategories = (mdxPaths) => {
-	const mdxPosts = mdxPaths.map((mdxPath) => {
+	const categories = mdxPaths.map((mdxPath) => {
 		const mdxRawContent = getMDXRawContent(mdxPath)
 		const mdxMatter = matter(mdxRawContent)
-		return {
-			frontmatter: mdxMatter.data,
-			body: mdxMatter.content
-		}
+		return mdxMatter.data.category
 	})
-	return [...new Set(mdxPosts.map((mdxPost) => mdxPost.category))]
+	return [...new Set(categories)]
 }
 
 // path contains slug
