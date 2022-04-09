@@ -1,39 +1,15 @@
-import { gql } from '@apollo/client'
 import Head from 'next/head'
 import React from 'react'
 import { PostCard } from '../../components'
 import { Heading, Grid, GridItem } from '@chakra-ui/react'
-import client from '../../services/apollo_client'
+import { getPosts } from '../../helpers/utilities'
 
 export async function getStaticProps() {
-	const { data: posts } = await client.query({
-		query: gql`
-			query GetAllPosts {
-				posts {
-					id
-					title
-					featuredImage {
-						url
-					}
-					excerpt
-					createdAt
-					slug
-					author {
-						name
-						photo {
-							url
-						}
-					}
-				}
-			}
-		`
-	})
-
+	const posts = getPosts()
 	return {
 		props: {
-			posts: posts.posts
-		},
-		revalidate: 60 * 60 * 6
+			posts
+		}
 	}
 }
 
@@ -50,7 +26,7 @@ const Blog = ({ posts }) => {
 				<Grid templateColumns="repeat(2, 1fr)" gap={4}>
 					{posts.map((post) => (
 						<GridItem colSpan={{ base: 2, md: 1 }}>
-							<PostCard key={post.id} post={post} />
+							<PostCard key={post.id} post={post.frontmatter} />
 						</GridItem>
 					))}
 				</Grid>
