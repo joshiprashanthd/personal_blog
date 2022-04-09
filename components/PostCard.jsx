@@ -48,7 +48,7 @@ const PostCard = ({ post }) => {
 							fontSize={{ base: 'smaller', sm: 'small' }}
 							color={subheadingColor}
 						>
-							{format(new Date(post.publishedAt), 'MMMM dd, yyyy')}
+							{format(new Date(post.publishedAt), 'MMM d, yyyy')}
 						</Text>
 						<Text
 							fontSize={{ base: 'smaller', sm: 'small' }}
