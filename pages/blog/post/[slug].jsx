@@ -2,7 +2,14 @@ import React from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { Text, Heading, Box, useColorModeValue } from '@chakra-ui/react'
+import {
+	Text,
+	Heading,
+	Box,
+	useColorModeValue,
+	Stack,
+	Flex
+} from '@chakra-ui/react'
 import { serialize } from 'next-mdx-remote/serialize'
 import {
 	getSimilarPosts,
@@ -15,6 +22,7 @@ import { format } from 'date-fns'
 import Tex from '@matejmazur/react-katex'
 import remarkMath from 'remark-math'
 import { SimilarPosts } from '../../../components'
+import readingTime from 'reading-time'
 
 export async function getStaticPaths() {
 	const paths = (await getMDXPaths('data/blog')).map((path) => ({
@@ -38,7 +46,10 @@ export async function getStaticProps({ params }) {
 	const similarPosts = await getSimilarPosts(params.slug)
 	return {
 		props: {
-			frontmatter: source.frontmatter,
+			frontmatter: {
+				...source.frontmatter,
+				readingTime: readingTime(content).text
+			},
 			source: source.compiledSource,
 			similarPosts
 		}
@@ -50,35 +61,28 @@ const PostDetails = ({ frontmatter, source, similarPosts }) => {
 	if (router.isFallback) return <div> Loading... </div>
 
 	const subheadingColor = useColorModeValue('gray.600', 'gray.400')
-	const topicBgColor = useColorModeValue('blue.100', 'blue.900')
-	const topicColor = useColorModeValue('blue.800', 'blue.200')
 
 	return (
 		<>
 			<Head>
 				<title>{frontmatter.title}</title>
 			</Head>
-			<Box>
-				<Box>
-					<Heading mb={1} fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }}>
-						{frontmatter.title}
-					</Heading>
-					<Text mb={4} color={subheadingColor}>
+			<Stack mb={16}>
+				<Text color="blue.400" mb={2} fontWeight="bold">
+					{frontmatter.category}
+				</Text>
+				<Heading fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }}>
+					{frontmatter.title}
+				</Heading>
+				<Flex mb={8}>
+					<Text color={subheadingColor} mr={2}>
 						{format(new Date(frontmatter.publishedAt), 'MMMM dd, yyyy')}
 					</Text>
-					<Box
-						bg={topicBgColor}
-						py={1}
-						px={4}
-						rounded="full"
-						width="min-content"
-						mb={8}
-					>
-						<Text color={topicColor} fontWeight="semibold" fontSize="sm">
-							{frontmatter.category}
-						</Text>
-					</Box>
-				</Box>
+					{' • '}
+					<Text color={subheadingColor} ml={2}>
+						{frontmatter.readingTime}
+					</Text>
+				</Flex>
 				<MDXRemote
 					compiledSource={source}
 					components={{
@@ -162,7 +166,7 @@ const PostDetails = ({ frontmatter, source, similarPosts }) => {
 						NextImage: (props) => <Image {...props} />
 					}}
 				/>
-			</Box>
+			</Stack>
 			<SimilarPosts posts={similarPosts} />
 		</>
 	)
