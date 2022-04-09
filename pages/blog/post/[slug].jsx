@@ -2,85 +2,79 @@ import React from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { Text, Heading, Flex, Box, useColorModeValue } from '@chakra-ui/react'
-
-import Tex from '@matejmazur/react-katex'
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-
-import { MDXRemote } from 'next-mdx-remote'
+import { Text, Heading, Box, useColorModeValue } from '@chakra-ui/react'
 import { serialize } from 'next-mdx-remote/serialize'
-
-import rehypeHighlight from 'rehype-highlight'
+import { getMDXPaths, getMDXRawContent } from '../../../services/mdx_functions'
+import { MDXRemote } from 'next-mdx-remote'
 import remarkGfm from 'remark-gfm'
+import { format } from 'date-fns'
+import Tex from '@matejmazur/react-katex'
+import remarkMath from 'remark-math'
 
 export async function getStaticPaths() {
-	const posts = await fs.readdirSync(path.join('data', 'posts'))
+	const paths = (await getMDXPaths('data/blog')).map((path) => ({
+		params: { slug: path.replace('.mdx', '') }
+	}))
 
 	return {
-		paths: posts.map((post) => ({
-			params: { slug: post.replace(/\.mdx/, '') }
-		})),
+		paths,
 		fallback: false
 	}
 }
 
 export async function getStaticProps({ params }) {
-	const source = fs.readFileSync(
-		path.join('data', 'posts', `${params.slug}.mdx`),
-		'utf8'
-	)
-
-	const { data, content } = matter(source)
-
-	const mdxSource = await serialize(content, {
+	const content = await getMDXRawContent(`data/blog/${params.slug}.mdx`)
+	const source = await serialize(content, {
+		parseFrontmatter: true,
 		mdxOptions: {
-			rehypePlugins: [rehypeHighlight],
-			remarkPlugins: [remarkGfm]
+			remarkPlugins: [remarkGfm, remarkMath]
 		}
 	})
-
+	console.log(source)
 	return {
 		props: {
-			source: mdxSource,
-			data
+			frontmatter: source.frontmatter,
+			source: source.compiledSource
 		}
 	}
 }
 
-const PostDetails = ({ source, data }) => {
+const PostDetails = ({ frontmatter, source }) => {
 	const router = useRouter()
 	if (router.isFallback) return <div> Loading... </div>
 
 	const subheadingColor = useColorModeValue('gray.600', 'gray.400')
-	const topicBgColor = useColorModeValue('blue.50', 'blue.900')
+	const topicBgColor = useColorModeValue('blue.100', 'blue.900')
+	const topicColor = useColorModeValue('blue.800', 'blue.200')
 
 	return (
 		<>
 			<Head>
-				<title>{data.title}</title>
+				<title>{frontmatter.title}</title>
 			</Head>
 			<Box>
 				<Box>
 					<Heading mb={1} fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }}>
-						{data.title}
+						{frontmatter.title}
 					</Heading>
 					<Text mb={4} color={subheadingColor}>
-						{data.excerpt}
+						{format(new Date(frontmatter.publishedAt), 'MMMM dd, yyyy')}
 					</Text>
-					<Flex flexWrap mb={8} gap={2}>
-						{data.tag.map((category) => (
-							<Box bg={topicBgColor} py={1} px={2} rounded="full">
-								<Text color="blue.300" fontWeight="semibold" fontSize="sm">
-									{category}
-								</Text>
-							</Box>
-						))}
-					</Flex>
+					<Box
+						bg={topicBgColor}
+						py={1}
+						px={4}
+						rounded="full"
+						width="min-content"
+						mb={8}
+					>
+						<Text color={topicColor} fontWeight="semibold" fontSize="sm">
+							{frontmatter.category}
+						</Text>
+					</Box>
 				</Box>
 				<MDXRemote
-					{...source}
+					compiledSource={source}
 					components={{
 						h1: (props) => <Heading as="h1" size="xl" mb={4} {...props} />,
 						h2: (props) => <Heading as="h2" size="lg" mb={4} {...props} />,
@@ -121,7 +115,6 @@ const PostDetails = ({ source, data }) => {
 								import('katex/dist/katex.min.css')
 								return <Tex math={props.children} />
 							}
-
 							return <span {...props} />
 						},
 						code: (props) => {
@@ -151,7 +144,8 @@ const PostDetails = ({ source, data }) => {
 									as="pre"
 									{...props}
 									rounded="lg"
-									bg="gray.900"
+									bg={inlineCodeBgColor}
+									color={inlineCodeColor}
 									p={4}
 									mb={4}
 									fontSize="md"
