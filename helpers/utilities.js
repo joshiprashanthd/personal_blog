@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import * as matter from 'gray-matter'
 import readingTime from 'reading-time'
+import compareAsc from 'date-fns/compareAsc'
 
 export const getMDXPaths = (dirPath) => {
 	const filePaths = fs.readdirSync(dirPath)
@@ -33,7 +34,11 @@ export const getMDXData = (mdxPath) => {
 export const getRecentPosts = (limit) => {
 	const mdxPaths = getMDXPathsRecursive('data/blog')
 	const mdxPosts = mdxPaths.map((mdxPath) => getMDXData(mdxPath))
-	return mdxPosts.sort((a, b) => b.publishedAt - a.publishedAt).slice(0, limit)
+	return mdxPosts
+		.sort((a, b) =>
+			compareAsc(new Date(b.publishedAt), new Date(a.publishedAt))
+		)
+		.slice(0, limit)
 }
 
 export const getPostsByCategory = (category, limit) => {
@@ -42,7 +47,9 @@ export const getPostsByCategory = (category, limit) => {
 
 	return mdxPosts
 		.filter((mdxPost) => mdxPost.category === category)
-		.sort((a, b) => b.publishedAt - a.publishedAt)
+		.sort((a, b) =>
+			compareAsc(new Date(b.frontpublishedAt), new Date(a.publishedAt))
+		)
 		.slice(0, limit)
 }
 
@@ -56,7 +63,19 @@ export const getCategories = () => {
 	return [...new Set(categories)]
 }
 
-// path contains slug
+export const getPosts = (limit) => {
+	const mdxPaths = getMDXPathsRecursive('data/blog')
+	const mdxPosts = mdxPaths.map((mdxPath) => getMDXData(mdxPath))
+	return mdxPosts
+		.sort((a, b) =>
+			compareAsc(
+				new Date(b.frontmatter.publishedAt),
+				new Date(a.frontmatter.publishedAt)
+			)
+		)
+		.slice(0, limit)
+}
+
 export const getPostBySlug = (slug) => {
 	const mdxPaths = getMDXPathsRecursive('data/blog')
 	const paths = mdxPaths.filter((mdxPath) => mdxPath.includes(slug))
@@ -101,6 +120,11 @@ export const getSimilarPosts = (slug) => {
 				mdxPost.frontmatter.category === category &&
 				mdxPost.frontmatter.title != title
 		)
-		.sort((a, b) => b.frontmatter.publishedAt - a.frontmatter.publishedAt)
+		.sort((a, b) =>
+			compareAsc(
+				new Date(b.frontmatter.publishedAt),
+				new Date(a.frontmatter.publishedAt)
+			)
+		)
 		.slice(0, 3)
 }
