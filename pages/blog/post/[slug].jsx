@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
 import { Text, Heading, useColorModeValue, Stack, Flex } from '@chakra-ui/react'
@@ -57,6 +58,7 @@ const PostDetails = ({ frontmatter, source, similarPosts }) => {
 	if (router.isFallback) return <div> Loading... </div>
 
 	const subheadingColor = useColorModeValue('gray.600', 'gray.400')
+	const linkHoverColor = useColorModeValue('blue.600', 'blue.200')
 
 	return (
 		<>
@@ -64,13 +66,22 @@ const PostDetails = ({ frontmatter, source, similarPosts }) => {
 				<title>{frontmatter.title}</title>
 			</Head>
 			<Stack mb={16}>
-				<Text color="blue.400" mb={2} fontWeight="bold">
-					{frontmatter.category}
-				</Text>
+				<NextLink href={`/blog/category/${frontmatter.category.toLowerCase()}`}>
+					<Text
+						color="blue.400"
+						fontWeight="bold"
+						cursor="pointer"
+						_hover={{
+							color: linkHoverColor
+						}}
+					>
+						{frontmatter.category}
+					</Text>
+				</NextLink>
 				<Heading fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }}>
 					{frontmatter.title}
 				</Heading>
-				<Flex mb={8}>
+				<Flex pb={8}>
 					<Text color={subheadingColor} mr={2}>
 						{format(new Date(frontmatter.publishedAt), 'MMM d, yyyy')}
 					</Text>
