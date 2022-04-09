@@ -1,5 +1,13 @@
 import React from 'react'
-import { Box, useColorModeValue, Heading, Text } from '@chakra-ui/react'
+import {
+	Stack,
+	Flex,
+	Box,
+	useColorModeValue,
+	Heading,
+	Text,
+	Image
+} from '@chakra-ui/react'
 
 const GithubProfileCard = ({ user }) => {
 	const bgColor = useColorModeValue('gray.50', 'gray.900')
@@ -25,27 +33,29 @@ const GithubProfileCard = ({ user }) => {
 				transform: 'translateY(-1px)'
 			}}
 		>
-			<div className="flex flex-col items-start sm:flex-row sm:gap-4">
-				<div className="mb-4">
-					<img
+			<Flex flexDirection={['column', 'row']}>
+				<Box className="mb-4">
+					<Image
 						src={user.avatarUrl}
-						height="10px"
-						width="10px"
-						className="mr-4 h-[80px] w-[80px] rounded-full"
+						height="80px"
+						width="80px"
+						rounded="full"
+						mb={[4, 0]}
+						mr={4}
 					/>
-				</div>
-				<div>
-					<div className="mb-2">
-						<Heading fontSize="2xl">{user.name}</Heading>
+				</Box>
+				<Stack>
+					<Stack mb={1}>
+						<Heading fontSize="2xl" mb={-1}>
+							{user.name}
+						</Heading>
 						<Text color="blue.400" fontWeight="semibold">
 							{user.login}
 						</Text>
-					</div>
-					<Text mb={2} color={subheadingColor}>
-						{user.bio}
-					</Text>
-				</div>
-			</div>
+					</Stack>
+					<Text color={subheadingColor}>{user.bio}</Text>
+				</Stack>
+			</Flex>
 		</Box>
 	)
 }
