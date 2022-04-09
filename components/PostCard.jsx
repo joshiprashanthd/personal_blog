@@ -1,6 +1,7 @@
 import NextLink from 'next/link'
 import React from 'react'
-import { Box, Flex, Heading, Text, useColorModeValue } from '@chakra-ui/react'
+import { Flex, Heading, Stack, Text, useColorModeValue } from '@chakra-ui/react'
+import { format } from 'date-fns'
 
 const PostCard = ({ post }) => {
 	const bgColor = useColorModeValue('gray.50', 'gray.900')
@@ -26,17 +27,37 @@ const PostCard = ({ post }) => {
 					transform: 'translateY(-1px)'
 				}}
 			>
-				<Box mb={4}>
-					<Text mb={4} fontSize="sm" fontWeight="bold" color="blue.500">
-						Article
+				<Stack>
+					<Text
+						color="blue.400"
+						fontWeight="bold"
+						fontSize={{ base: 'smaller', sm: 'small' }}
+					>
+						{post.category}
 					</Text>
-					<Heading fontSize={{ base: 'xl', sm: '2xl' }} mb={2}>
-						{post.title}
-					</Heading>
-					<Text fontSize={{ base: 'sm', sm: 'medium' }} color={subheadingColor}>
-						{post.excerpt}
+					<Heading fontSize={{ base: 'xl', sm: '2xl' }}>{post.title}</Heading>
+					<Text
+						fontSize={{ base: 'sm', sm: 'medium' }}
+						color={subheadingColor}
+						mb={2}
+					>
+						{post.summary}
 					</Text>
-				</Box>
+					<Flex justify="space-between">
+						<Text
+							fontSize={{ base: 'smaller', sm: 'small' }}
+							color={subheadingColor}
+						>
+							{format(new Date(post.publishedAt), 'MMMM dd, yyyy')}
+						</Text>
+						<Text
+							fontSize={{ base: 'smaller', sm: 'small' }}
+							color={subheadingColor}
+						>
+							{post.readingTime.text}
+						</Text>
+					</Flex>
+				</Stack>
 			</Flex>
 		</NextLink>
 	)
