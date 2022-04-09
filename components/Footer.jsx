@@ -1,16 +1,6 @@
-import { gql, useQuery } from '@apollo/client'
 import { Link, Flex, Text, useColorModeValue } from '@chakra-ui/react'
 import React from 'react'
 import NextLink from 'next/link'
-
-const query = gql`
-	query GetCategories {
-		categories {
-			name
-			slug
-		}
-	}
-`
 
 const NewLink = ({ ...props }) => {
 	const color = useColorModeValue('gray.600', 'gray.500')
@@ -37,8 +27,6 @@ const Label = ({ ...props }) => {
 }
 
 const Footer = () => {
-	const { data } = useQuery(query)
-
 	return (
 		<Flex
 			paddingY={8}
@@ -60,21 +48,6 @@ const Footer = () => {
 					<NewLink>Blog</NewLink>
 				</NextLink>
 			</Flex>
-			{data && (
-				<Flex flexDirection="column" gap={4}>
-					<Label fontSize="sm" fontWeight="semibold" color="gray.600">
-						Categories
-					</Label>
-					{data.categories.map((category) => (
-						<NextLink
-							href={`/blog/category/${category.slug}`}
-							key={category.slug}
-						>
-							<NewLink key={category.slug}>{category.name}</NewLink>
-						</NextLink>
-					))}
-				</Flex>
-			)}
 			<Flex flexDirection="column" gap={4}>
 				<Label fontSize="sm" fontWeight="semibold" color="gray.600">
 					Connect
