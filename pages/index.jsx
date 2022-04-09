@@ -10,7 +10,7 @@ import {
 	Grid,
 	GridItem
 } from '@chakra-ui/react'
-import { getRecentPosts } from '../services/mdx_functions'
+import { getRecentPosts } from '../helpers/utilities'
 
 export async function getStaticProps() {
 	const recentPosts = getRecentPosts(4)

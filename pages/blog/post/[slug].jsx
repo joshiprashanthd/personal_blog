@@ -8,7 +8,7 @@ import {
 	getSimilarPosts,
 	getMDXPaths,
 	getMDXRawContent
-} from '../../../services/mdx_functions'
+} from '../../../helpers/utilities'
 import { MDXRemote } from 'next-mdx-remote'
 import remarkGfm from 'remark-gfm'
 import { format } from 'date-fns'
