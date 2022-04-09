@@ -65,7 +65,7 @@ const PostDetails = ({ frontmatter, source, similarPosts }) => {
 			<Head>
 				<title>{frontmatter.title}</title>
 			</Head>
-			<Stack mb={16}>
+			<Stack>
 				<NextLink href={`/blog/category/${frontmatter.category.toLowerCase()}`}>
 					<Text
 						color="blue.400"
@@ -91,8 +91,8 @@ const PostDetails = ({ frontmatter, source, similarPosts }) => {
 						{frontmatter.readingTime}
 					</Text>
 				</Flex>
-				<MDXRemote compiledSource={source} components={MDXComponents} />
 			</Stack>
+			<MDXRemote compiledSource={source} components={MDXComponents} />
 			<SimilarPosts posts={similarPosts} />
 		</>
 	)
