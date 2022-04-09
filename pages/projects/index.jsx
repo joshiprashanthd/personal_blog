@@ -111,7 +111,7 @@ const Projects = ({ user }) => {
 				</Heading>
 				<Grid templateColumns="repeat(2, 1fr)" gap={4}>
 					{user.repositories.nodes.map((repo) => (
-						<GridItem colSpan={{ base: 2, md: 1 }}>
+						<GridItem colSpan={{ base: 2, md: 1 }} key={repo.name}>
 							<GithubRepoCard repo={repo} />
 						</GridItem>
 					))}
