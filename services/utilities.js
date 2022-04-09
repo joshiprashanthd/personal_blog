@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import * as matter from 'gray-matter'
+import readingTime from 'reading-time'
 
 export const getMDXPaths = (dirPath) => {
 	const filePaths = fs.readdirSync(dirPath)
@@ -19,35 +20,34 @@ export const getMDXPathsRecursive = (dirPath) => {
 
 export const getMDXRawContent = (mdxPath) => fs.readFileSync(mdxPath, 'utf8')
 
-export const getRecentPosts = (mdxPaths, limit) => {
-	const mdxPosts = mdxPaths.map((mdxPath) => {
-		const mdxRawContent = getMDXRawContent(mdxPath)
-		const mdxMatter = matter(mdxRawContent)
-		return {
-			frontmatter: mdxMatter.data,
-			body: mdxMatter.content
-		}
-	})
+export const getMDXData = (mdxPath) => {
+	const rawContent = getMDXRawContent(mdxPath)
+	const { data, content } = matter(rawContent)
+	const time = readingTime(content)
+	return {
+		frontmatter: { ...data, readingTime: time },
+		content
+	}
+}
+
+export const getRecentPosts = (limit) => {
+	const mdxPaths = getMDXPathsRecursive('data/blog')
+	const mdxPosts = mdxPaths.map((mdxPath) => getMDXData(mdxPath))
 	return mdxPosts.sort((a, b) => b.publishedAt - a.publishedAt).slice(0, limit)
 }
 
 export const getPostsByCategory = (category, limit) => {
 	const mdxPaths = getMDXPathsRecursive('data/blog')
-	const mdxPosts = mdxPaths.map((mdxPath) => {
-		const mdxRawContent = getMDXRawContent(mdxPath)
-		const mdxMatter = matter(mdxRawContent)
-		return {
-			frontmatter: mdxMatter.data,
-			body: mdxMatter.content
-		}
-	})
+	const mdxPosts = mdxPaths.map((mdxPath) => getMDXData(mdxPath))
+
 	return mdxPosts
 		.filter((mdxPost) => mdxPost.category === category)
 		.sort((a, b) => b.publishedAt - a.publishedAt)
 		.slice(0, limit)
 }
 
-export const getCategories = (mdxPaths) => {
+export const getCategories = () => {
+	const mdxPaths = getMDXPathsRecursive('data/blog')
 	const categories = mdxPaths.map((mdxPath) => {
 		const mdxRawContent = getMDXRawContent(mdxPath)
 		const mdxMatter = matter(mdxRawContent)
@@ -57,29 +57,18 @@ export const getCategories = (mdxPaths) => {
 }
 
 // path contains slug
-export const getPostBySlug = (slug, mdxPaths) => {
+export const getPostBySlug = (slug) => {
+	const mdxPaths = getMDXPathsRecursive('data/blog')
 	const paths = mdxPaths.filter((mdxPath) => mdxPath.includes(slug))
-	if (paths.length === 0) {
-		return null
-	}
+	if (paths.length === 0) return null
 	const mdxPath = paths[0]
-	const mdxRawContent = getMDXRawContent(mdxPath)
-	const mdxMatter = matter(mdxRawContent)
-	return {
-		frontmatter: mdxMatter.data,
-		body: mdxMatter.content
-	}
+	return getMDXData(mdxPath)
 }
 
-export const searchPosts = (query, mdxPaths) => {
-	const mdxPosts = mdxPaths.map((mdxPath) => {
-		const mdxRawContent = getMDXRawContent(mdxPath)
-		const mdxMatter = matter(mdxRawContent)
-		return {
-			frontmatter: mdxMatter.data,
-			body: mdxMatter.content
-		}
-	})
+export const searchPosts = (query) => {
+	const mdxPaths = getMDXPathsRecursive('data/blog')
+	const mdxPosts = mdxPaths.map((mdxPath) => getMDXData(mdxPath))
+
 	return mdxPosts.filter((mdxPost) => {
 		const {
 			frontmatter: { title, summary },
@@ -91,4 +80,27 @@ export const searchPosts = (query, mdxPaths) => {
 			body.toLowerCase().includes(query.toLowerCase())
 		)
 	})
+}
+
+export const getSimilarPosts = (slug) => {
+	const mdxPaths = getMDXPathsRecursive('data/blog')
+	const mdxPost = getPostBySlug(slug)
+
+	if (!mdxPost) {
+		return []
+	}
+
+	const {
+		frontmatter: { category, title }
+	} = mdxPost
+
+	const mdxPosts = mdxPaths.map((mdxPath) => getMDXData(mdxPath))
+	return mdxPosts
+		.filter(
+			(mdxPost) =>
+				mdxPost.frontmatter.category === category &&
+				mdxPost.frontmatter.title != title
+		)
+		.sort((a, b) => b.frontmatter.publishedAt - a.frontmatter.publishedAt)
+		.slice(0, 3)
 }
