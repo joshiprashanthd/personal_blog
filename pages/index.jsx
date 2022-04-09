@@ -1,4 +1,3 @@
-import { gql } from '@apollo/client'
 import Head from 'next/head'
 import { PostCard } from '../components'
 import {
@@ -7,38 +6,17 @@ import {
 	Text,
 	useColorModeValue,
 	Box,
-	Image
+	Image,
+	Grid,
+	GridItem
 } from '@chakra-ui/react'
-import client from '../services/apollo_client'
-
-const recentPostsQuery = gql`
-	query GetPostDetails {
-		posts(orderBy: createdAt_ASC, last: 2) {
-			title
-			featuredImage {
-				url
-			}
-			createdAt
-			slug
-			excerpt
-			author {
-				name
-				photo {
-					url
-				}
-			}
-		}
-	}
-`
+import { getRecentPosts } from '../services/mdx_functions'
 
 export async function getStaticProps() {
-	const { data } = await client.query({
-		query: recentPostsQuery
-	})
-
+	const recentPosts = getRecentPosts(4)
 	return {
 		props: {
-			posts: data.posts
+			posts: recentPosts
 		},
 		revalidate: 60 * 60 * 6
 	}
@@ -85,13 +63,13 @@ const Home = ({ posts }) => {
 					<Heading mb={8} fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
 						Recent Posts
 					</Heading>
-					<Flex flexDirection={{ base: 'column', sm: 'row' }} gap={4}>
+					<Grid templateColumns="repeat(2, 1fr)" gap={4}>
 						{posts.map((post) => (
-							<Box flexBasis={{ base: '100%', md: '50%' }} key={post.slug}>
-								<PostCard post={post} key={post.slug} />
-							</Box>
+							<GridItem colSpan={{ base: 2, md: 1 }}>
+								<PostCard key={post.title} post={post.frontmatter} />
+							</GridItem>
 						))}
-					</Flex>
+					</Grid>
 				</Box>
 			</Box>
 		</>
