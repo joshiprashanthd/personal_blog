@@ -4,12 +4,17 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Text, Heading, Box, useColorModeValue } from '@chakra-ui/react'
 import { serialize } from 'next-mdx-remote/serialize'
-import { getMDXPaths, getMDXRawContent } from '../../../services/mdx_functions'
+import {
+	getSimilarPosts,
+	getMDXPaths,
+	getMDXRawContent
+} from '../../../services/mdx_functions'
 import { MDXRemote } from 'next-mdx-remote'
 import remarkGfm from 'remark-gfm'
 import { format } from 'date-fns'
 import Tex from '@matejmazur/react-katex'
 import remarkMath from 'remark-math'
+import { SimilarPosts } from '../../../components'
 
 export async function getStaticPaths() {
 	const paths = (await getMDXPaths('data/blog')).map((path) => ({
@@ -30,15 +35,17 @@ export async function getStaticProps({ params }) {
 			remarkPlugins: [remarkGfm, remarkMath]
 		}
 	})
+	const similarPosts = await getSimilarPosts(params.slug)
 	return {
 		props: {
 			frontmatter: source.frontmatter,
-			source: source.compiledSource
+			source: source.compiledSource,
+			similarPosts
 		}
 	}
 }
 
-const PostDetails = ({ frontmatter, source }) => {
+const PostDetails = ({ frontmatter, source, similarPosts }) => {
 	const router = useRouter()
 	if (router.isFallback) return <div> Loading... </div>
 
@@ -156,6 +163,7 @@ const PostDetails = ({ frontmatter, source }) => {
 					}}
 				/>
 			</Box>
+			<SimilarPosts posts={similarPosts} />
 		</>
 	)
 }
