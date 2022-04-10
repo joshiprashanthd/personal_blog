@@ -28,7 +28,7 @@ const Home = ({ posts }) => {
 	return (
 		<>
 			<Head>
-				<title>Jastor J - Developer</title>
+				<title>Prashant Joshi</title>
 			</Head>
 			<Box>
 				<Flex
