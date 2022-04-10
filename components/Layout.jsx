@@ -10,8 +10,8 @@ const Layout = ({ children }) => {
 			maxWidth="full"
 			minHeight="100vh"
 			backgroundColor={bgColor}
-			transitionProperty="all"
-			transitionDuration="300ms"
+			transitionProperty="background-color"
+			transitionDuration="200ms"
 		>
 			<Container maxWidth="container.md">
 				<Header />

@@ -23,7 +23,7 @@ export async function getStaticProps() {
 }
 
 const Home = ({ posts }) => {
-	const subheadingColor = useColorModeValue('gray.600', 'gray.500')
+	const subheadingColor = useColorModeValue('gray.600', 'gray.400')
 
 	return (
 		<>

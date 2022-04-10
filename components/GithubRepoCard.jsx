@@ -1,18 +1,10 @@
-import {
-	useColorModeValue,
-	Box,
-	GridItem,
-	Heading,
-	Text,
-	Flex
-} from '@chakra-ui/react'
+import { useColorModeValue, Box, Heading, Text, Flex } from '@chakra-ui/react'
 import React from 'react'
 
 const GithubRepoCard = ({ repo }) => {
 	const bgColor = useColorModeValue('gray.50', 'gray.900')
 	const borderColor = useColorModeValue('gray.200', 'gray.700')
 	const subheadingColor = useColorModeValue('gray.600', 'gray.400')
-	const topicBgColor = useColorModeValue('blue.50', 'blue.900')
 
 	return (
 		<Box
@@ -45,13 +37,11 @@ const GithubRepoCard = ({ repo }) => {
 			<Text mb={4} color={subheadingColor}>
 				{repo.description}
 			</Text>
-			<Flex mb={2} gap={2} flexWrap>
+			<Flex gap={2}>
 				{repo.repositoryTopics.nodes.map((topic) => (
-					<Box bg={topicBgColor} py={1} px={2} rounded="full">
-						<Text color="blue.300" fontWeight="semibold" fontSize="sm">
-							{topic.topic.name}
-						</Text>
-					</Box>
+					<Text color="blue.400" fontWeight="semibold" fontSize="sm">
+						{topic.topic.name}
+					</Text>
 				))}
 			</Flex>
 		</Box>

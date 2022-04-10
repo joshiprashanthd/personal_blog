@@ -16,7 +16,7 @@ const PostCard = ({ post }) => {
 				cursor="pointer"
 				flexDirection="column"
 				rounded="lg"
-				border="1px"
+				borderWidth={2}
 				borderColor={borderColor}
 				flexBasis={{ base: 'full', md: 1 / 2, lg: 1 / 3 }}
 				backgroundColor={bgColor}

@@ -3,8 +3,8 @@ import React from 'react'
 import NextLink from 'next/link'
 
 const NewLink = ({ ...props }) => {
-	const color = useColorModeValue('gray.600', 'gray.500')
-	const hoverColor = useColorModeValue('gray.800', 'gray.300')
+	const color = useColorModeValue('gray.600', 'gray.400')
+	const hoverColor = useColorModeValue('gray.800', 'gray.200')
 	return (
 		<Link
 			as="a"
@@ -13,7 +13,6 @@ const NewLink = ({ ...props }) => {
 			color={color}
 			_hover={{
 				color: hoverColor,
-				animationDuration: '200ms',
 				outline: 'none',
 				ring: 'none'
 			}}
@@ -22,22 +21,15 @@ const NewLink = ({ ...props }) => {
 }
 
 const Label = ({ ...props }) => {
-	const color = useColorModeValue('gray.600', 'gray.400')
+	const color = useColorModeValue('gray.800', 'gray.200')
 	return <Text {...props} fontSize="sm" fontWeight="semibold" color={color} />
 }
 
 const Footer = () => {
 	return (
-		<Flex
-			paddingY={8}
-			columnGap={12}
-			rowGap={8}
-			flexDirection={['column', 'row']}
-		>
+		<Flex paddingY={8} columnGap={12} rowGap={8} flexDirection="row">
 			<Flex flexDirection="column" gap={4}>
-				<Label fontSize="sm" fontWeight="semibold" color="gray.600">
-					Explore
-				</Label>
+				<Label>Explore</Label>
 				<NextLink href="/">
 					<NewLink>Home</NewLink>
 				</NextLink>
@@ -49,9 +41,7 @@ const Footer = () => {
 				</NextLink>
 			</Flex>
 			<Flex flexDirection="column" gap={4}>
-				<Label fontSize="sm" fontWeight="semibold" color="gray.600">
-					Connect
-				</Label>
+				<Label>Connect</Label>
 				<NewLink href="https://twitter.com/prashantjoshi09" target="_blank">
 					Twitter
 				</NewLink>

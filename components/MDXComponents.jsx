@@ -45,8 +45,8 @@ export default {
 		return <span {...props} />
 	},
 	code: (props) => {
-		const inlineCodeBgColor = useColorModeValue('gray.200', 'gray.700')
-		const inlineCodeColor = useColorModeValue('gray.800', 'gray.300')
+		const inlineCodeBgColor = useColorModeValue('gray.200', 'gray.900')
+		const inlineCodeColor = useColorModeValue('gray.900', 'gray.200')
 
 		if (!props.className) {
 			return (
@@ -59,6 +59,7 @@ export default {
 					px={1}
 					fontFamily="mono"
 					fontSize="md"
+					boxShadow="sm"
 				/>
 			)
 		}

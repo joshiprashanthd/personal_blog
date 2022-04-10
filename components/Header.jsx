@@ -26,9 +26,8 @@ const Header = () => {
 	const router = useRouter()
 	const path = router.pathname
 
-	const activeTabColor = useColorModeValue('blue.400', 'blue.400')
-	const inactiveTabColor = useColorModeValue('gray.500', 'gray.400')
-	const iconColor = useColorModeValue('gray.700', 'gray.200')
+	const inactiveTabColor = useColorModeValue('gray.600', 'gray.400')
+	const iconColor = useColorModeValue('gray.800', 'gray.200')
 	const iconButtonColor = useColorModeValue('gray.200', 'gray.700')
 	const bgColor = useColorModeValue('gray.100', 'gray.800')
 
@@ -55,7 +54,7 @@ const Header = () => {
 						<NextLink href={route.href} key={route.href}>
 							<Button
 								bg="transparent"
-								color={path === route.href ? activeTabColor : inactiveTabColor}
+								color={path === route.href ? 'blue.400' : inactiveTabColor}
 								rounded="lg"
 							>
 								{route.name}

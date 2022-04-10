@@ -16,6 +16,8 @@ const GithubProfileCard = ({ user }) => {
 
 	return (
 		<Box
+			as="a"
+			display="block"
 			href="https://github.com/joshiprashanthd"
 			target="_blank"
 			flexGrow={1}
@@ -23,7 +25,7 @@ const GithubProfileCard = ({ user }) => {
 			w="full"
 			cursor="pointer"
 			rounded="lg"
-			borderWidth="1px"
+			borderWidth={2}
 			borderColor={borderColor}
 			backgroundColor={bgColor}
 			p={4}
@@ -37,22 +39,17 @@ const GithubProfileCard = ({ user }) => {
 				<Box className="mb-4">
 					<Image
 						src={user.avatarUrl}
-						height="80px"
 						width="80px"
 						rounded="full"
 						mb={[4, 0]}
-						mr={4}
+						mr={[0, 4]}
 					/>
 				</Box>
 				<Stack>
-					<Stack mb={1}>
-						<Heading fontSize="2xl" mb={-1}>
-							{user.name}
-						</Heading>
-						<Text color="blue.400" fontWeight="semibold">
-							{user.login}
-						</Text>
-					</Stack>
+					<Heading fontSize="2xl">{user.name}</Heading>
+					<Text color="blue.400" fontWeight="semibold">
+						{user.login}
+					</Text>
 					<Text color={subheadingColor}>{user.bio}</Text>
 				</Stack>
 			</Flex>
