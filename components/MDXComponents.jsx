@@ -1,6 +1,15 @@
-import Image from 'next/image'
-import { Text, Heading, Box, useColorModeValue } from '@chakra-ui/react'
+import NextImage from 'next/image'
+import { Text, Heading, Box, useColorModeValue, chakra } from '@chakra-ui/react'
 import Tex from '@matejmazur/react-katex'
+
+export const Image = (props) => {
+	const { src, alt, ...rest } = props
+	return (
+		<Box position="relative" {...rest} overflow="hidden">
+			<NextImage objectFit="cover" layout="fill" src={src} alt={alt} />
+		</Box>
+	)
+}
 
 export default {
 	h1: (props) => (
@@ -74,8 +83,11 @@ export default {
 				mb={4}
 				fontSize="md"
 				overflow="auto"
+				boxShadow="md"
 			/>
 		)
 	},
-	NextImage: (props) => <Image {...props} />
+	Image: (props) => (
+		<Image alt={props.alt} src={props.src} height="md" rounded="lg" mb={8} />
+	)
 }
