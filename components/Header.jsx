@@ -3,9 +3,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import {
 	Button,
-	Flex,
 	IconButton,
-	Box,
 	useColorMode,
 	useColorModeValue,
 	Show,
@@ -16,7 +14,8 @@ import {
 	Drawer,
 	DrawerOverlay,
 	Text,
-	Spacer
+	Spacer,
+	HStack
 } from '@chakra-ui/react'
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 
@@ -48,21 +47,21 @@ const Header = () => {
 	]
 
 	return (
-		<Flex py={8} mb={4}>
+		<HStack py={12}>
 			<Show above="sm">
-				<Flex gap={4}>
+				<HStack gap={8}>
 					{routes.map((route) => (
 						<NextLink href={route.href} key={route.href}>
 							<Button
 								bg="transparent"
 								color={path === route.href ? 'blue.400' : inactiveTabColor}
-								rounded="lg"
+								rounded="md"
 							>
 								{route.name}
 							</Button>
 						</NextLink>
 					))}
-				</Flex>
+				</HStack>
 				<Spacer />
 			</Show>
 			<Hide above="sm">
@@ -100,7 +99,7 @@ const Header = () => {
 				backgroundColor={iconButtonColor}
 				color={iconColor}
 			/>
-		</Flex>
+		</HStack>
 	)
 }
 
