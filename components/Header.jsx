@@ -63,8 +63,8 @@ const Header = () => {
 						</NextLink>
 					))}
 				</Flex>
+				<Spacer />
 			</Show>
-			<Spacer />
 			<Hide above="sm">
 				<IconButton
 					icon={<HamburgerIcon />}
@@ -72,8 +72,7 @@ const Header = () => {
 					color={iconColor}
 					onClick={onOpen}
 				/>
-				<Box flexGrow={1} />
-
+				<Spacer />
 				<Drawer isOpen={isOpen} placement="left" size="full" onClose={onClose}>
 					<DrawerOverlay />
 					<DrawerContent bg={bgColor} p={8}>
