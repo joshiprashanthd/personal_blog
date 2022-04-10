@@ -1,0 +1,150 @@
+---
+title: Function Pointers in C
+slug: function-pointers-in-c
+summary: Let's dive into the basics of function pointers in C.
+image: /static/images/function-pointers-in-c/coding.jpg
+publishedAt: '2022-03-04'
+category: Programming
+---
+
+<Image src={'/static/images/function-pointers-in-c/banner.jpg'} />
+
+# Introduction
+
+Before we move on to the fun stuff, I just want my readers to know that this is my first article on my blog, in fact, it's my first article anywhere. So you might sense some lack of proper structure in this article. Other than that, I tried my best to keep the language concise (I think..) and wrote only relevant points (besides this introduction…)
+
+The **Byte Sized Learning** is a series of minute topics that I find useful and essential as an intermediate programmer. As a programmer, you sometimes need to recall some concepts. And I am a very lazy person to read the whole detailed text about something in a reference book. So for my convenience, I used to write concepts or topics in a few words for instant knowledge. I hope you find the content in this article.
+
+## Functions Pointers
+
+Function in C is itself is not a variable but we can define pointers pointing to a function. Pointers to functions can be utilized in various forms. You can pass function pointers as an argument to other functions, we can assign a function pointer to another pointer.
+
+To grasp the concept, I’ve written a program in C to understand how we can use function pointers to count alphabets and numbers in a string.
+
+Here are the initial declarations of our program. I surmise you know `#include` and `#define` directives. Let’s just focus on line number 5 where we declare our `count` function. You can see it takes two arguments. The second argument defines a pointer to a function.
+
+```c
+#include <stdio.h>
+#include <string.h>
+#define MAXLEN 100
+
+int count(char *, int (*comp)(char));
+int isNumber(char);
+int isAlphabet(char);
+```
+
+Let’s break down the statement `int (*comp)(char)` .
+
+- The return type of function to which pointer `comp` points to are `int` .
+- The function takes `char` as argument.
+- `(*comp)` defines the function pointer’s name.
+
+If you are asking why we can’t use `int *comp(char)` , just for a moment stare at the statement and think again. It’s all in the syntax.
+
+Let’s see how `count` function use `comp` to increment local `count` variable.
+
+```c
+int count(char *str, int (*comp)(char)) {
+  int i, count = 0;
+
+  for(; *(str + i) != '\0'; i++) {
+    if((*comp)(*(str + i)) == 1)
+      count++;
+  }
+
+  return count;
+}
+
+int isNumber(char c) {
+  if(c >= 48 && c <= 57) return 1;
+  return 0;
+}
+
+int isAlphabet(char c) {
+  if((c >= 65 && c <= 90) || (c >= 97 && c <= 122)) return 1;
+  return 0;
+}
+```
+
+As you can see, `count` is a simple function that iterates through a string of characters using pointer arithmetic and a for loop. I intentionally used `*(str + i)` because it looks syntactically beautiful. You can use plain old `str[i]` in place of it.
+
+For absolute novices, `*(str + i)` simply gets the `char` at location `i` in string `str` . For example, `*(str + 4)` gets the 4th character in `str` .
+
+As a little exercise, try this program on your PC, and print the value of `comp` and see what it actually holds. It holds a value of type `unsigned long int` . You can use `%lu` format specifier in `printf` .
+
+At line number 5, we are calling `(*comp)` function. If you are wondering why we can’t use `*comp(*(str + i))` . Let’s understand it this way, `*comp(*(str + i))` is equivalent to `*(comp(*(str + i)))` . So first comp`(*(str + i))` gets executed, which is an invalid operation because `comp` contains an address of type `unsigned long int` which we cannot call. So before calling, we have to retrieve the function stored at the location `comp` refers to by `(*comp)` then we can call this and pass arguments to it.
+
+Below is the entire program
+
+```c
+#include <stdio.h>
+#include <string.h>
+#define MAXLEN 100
+
+int count(char *, int (*comp)(char));
+int isNumber(char);
+int isAlphabet(char);
+
+int main(int argc, char *argv[]) {
+  char input[MAXLEN];
+  int compareNumber = 0;
+
+  if(argc > 1 && strcmp(argv[1], "-n") == 0)
+    compareNumber = 1;
+
+  scanf("%[^\n]%*c", input);
+  printf("Input = %s\n", input);
+
+  int result = count(input, compareNumber ? isNumber : isAlphabet);
+  printf("%s Count : %d\n", compareNumber ? "Number" : "Alphabet", result);
+  return 0;
+}
+
+int count(char *str, int (*comp)(char)) {
+  int i, count = 0;
+
+  printf("%lu", (size_t)comp);
+
+  for(; *(str + i) != '\0'; i++) {
+    if((*comp)(*(str + i)) == 1)
+      count++;
+  }
+
+  return count;
+}
+
+int isNumber(char c) {
+  if(c >= 48 && c <= 57) return 1;
+  return 0;
+}
+
+int isAlphabet(char c) {
+  if((c >= 65 && c <= 90) || (c >= 97 && c <= 122)) return 1;
+  return 0;
+}
+```
+
+The output of the above program is as follows
+
+```bash
+$ gcc couting.c -o counting
+$ ./counting -n
+1234count this is 987
+Input : 1234count this is 987
+Number Count : 7
+$ gcc couting.c -o counting
+$ ./counting
+this is amazing
+Input : this is amazing
+Alphabet Count : 13
+```
+
+On running this program, we are giving users a choice to count numbers or alphabets in the input string. `-n` argument indicates numbers are to be counted in the given string.
+
+On line number 19, we are calling `count` function by giving `input` string and the function which we want to use in the counting process as arguments.
+
+You can see that function names are directly passed as an argument. A function name points to the first location from which the function starts executing.
+
+### That's all
+
+That’s all for now, I hope that you have learned something from this article. If you have any thoughts about this article, you can share them with me at @prashantjoshi09 on Twitter. Thank you😎.
