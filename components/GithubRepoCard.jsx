@@ -19,7 +19,7 @@ const GithubRepoCard = ({ repo }) => {
 			borderWidth={2}
 			borderColor={borderColor}
 			backgroundColor={bgColor}
-			transitionDuration="300ms"
+			transitionDuration="200ms"
 			_hover={{
 				shadow: 'lg',
 				transform: 'translateY(-1px)'

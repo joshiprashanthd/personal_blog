@@ -21,7 +21,7 @@ const PostCard = ({ post }) => {
 				flexBasis={{ base: 'full', md: 1 / 2, lg: 1 / 3 }}
 				backgroundColor={bgColor}
 				padding={4}
-				transitionDuration="300ms"
+				transitionDuration="200ms"
 				_hover={{
 					shadow: 'lg',
 					transform: 'translateY(-1px)'
@@ -50,10 +50,7 @@ const PostCard = ({ post }) => {
 						>
 							{format(new Date(post.publishedAt), 'MMM d, yyyy')}
 						</Text>
-						<Text
-							fontSize={{ base: 'smaller', sm: 'small' }}
-							color={subheadingColor}
-						>
+						<Text fontSize={{ base: 'smaller', sm: 'small' }}>
 							{post.readingTime.text}
 						</Text>
 					</Flex>

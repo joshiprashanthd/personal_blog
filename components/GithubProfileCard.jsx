@@ -29,7 +29,7 @@ const GithubProfileCard = ({ user }) => {
 			borderColor={borderColor}
 			backgroundColor={bgColor}
 			p={4}
-			transitionDuration="300ms"
+			transitionDuration="200ms"
 			_hover={{
 				shadow: 'lg',
 				transform: 'translateY(-1px)'
