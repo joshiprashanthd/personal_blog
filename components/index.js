@@ -1,5 +1,4 @@
 export { default as Header } from './Header'
-export { default as PostContent } from './PostContent'
 export { default as Layout } from './Layout'
 export { default as PostCard } from './PostCard'
 export { default as Footer } from './Footer'
