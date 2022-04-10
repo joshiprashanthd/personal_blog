@@ -88,6 +88,12 @@ export default {
 		)
 	},
 	Image: (props) => (
-		<Image alt={props.alt} src={props.src} height="md" rounded="lg" mb={8} />
+		<Image
+			alt={props.alt}
+			src={props.src}
+			height={['xs', 'md']}
+			rounded="lg"
+			mb={8}
+		/>
 	)
 }
