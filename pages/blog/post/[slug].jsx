@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 import { Text, Heading, useColorModeValue, Stack, Flex } from '@chakra-ui/react'
 import { SimilarPosts } from '../../../components'
-import MDXComponents from '../../../components/MDXComponents'
+import { MDXComponents } from '../../../components'
 
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
