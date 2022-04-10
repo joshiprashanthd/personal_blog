@@ -15,7 +15,8 @@ import {
 	DrawerContent,
 	Drawer,
 	DrawerOverlay,
-	Text
+	Text,
+	Spacer
 } from '@chakra-ui/react'
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 
@@ -49,7 +50,7 @@ const Header = () => {
 	return (
 		<Flex py={8} mb={4}>
 			<Show above="sm">
-				<Flex flexGrow={1} gap={4}>
+				<Flex gap={4}>
 					{routes.map((route) => (
 						<NextLink href={route.href} key={route.href}>
 							<Button
@@ -63,6 +64,7 @@ const Header = () => {
 					))}
 				</Flex>
 			</Show>
+			<Spacer />
 			<Hide above="sm">
 				<IconButton
 					icon={<HamburgerIcon />}
