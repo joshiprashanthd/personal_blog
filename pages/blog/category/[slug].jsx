@@ -42,8 +42,8 @@ const Category = ({ posts, category }) => {
 				</Heading>
 				<Grid templateColumns="repeat(2, 1fr)" gap={4}>
 					{posts.map((post) => (
-						<GridItem colSpan={{ base: 2, md: 1 }}>
-							<PostCard key={post.title} post={post.frontmatter} />
+						<GridItem colSpan={{ base: 2, md: 1 }} key={post.slug}>
+							<PostCard key={post.slug} post={post.frontmatter} />
 						</GridItem>
 					))}
 				</Grid>
