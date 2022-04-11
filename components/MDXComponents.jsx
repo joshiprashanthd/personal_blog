@@ -57,7 +57,7 @@ export default {
 		const inlineCodeBgColor = useColorModeValue('gray.200', 'gray.900')
 		const inlineCodeColor = useColorModeValue('gray.900', 'gray.200')
 		const codeBgColor = useColorModeValue('gray.50', 'gray.900')
-		const codeColor = useColorModeValue('gray.900', 'gray.50')
+		const codeColor = useColorModeValue('teal.500', 'teal.400')
 
 		if (!props.className) {
 			return (
