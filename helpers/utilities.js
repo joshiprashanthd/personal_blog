@@ -4,6 +4,8 @@ import * as matter from 'gray-matter'
 import readingTime from 'reading-time'
 import compareAsc from 'date-fns/compareAsc'
 
+const rootDir = process.cwd()
+
 export const getMDXPaths = (dirPath) => {
 	const filePaths = fs.readdirSync(dirPath)
 	return filePaths.filter((filePath) => filePath.endsWith('.mdx'))
@@ -32,7 +34,7 @@ export const getMDXData = (mdxPath) => {
 }
 
 export const getRecentPosts = (limit) => {
-	const mdxPaths = getMDXPathsRecursive('data/blog')
+	const mdxPaths = getMDXPathsRecursive(path.join(rootDir, 'data', 'blog'))
 	const mdxPosts = mdxPaths.map((mdxPath) => getMDXData(mdxPath))
 	return mdxPosts
 		.sort((a, b) =>
@@ -42,7 +44,7 @@ export const getRecentPosts = (limit) => {
 }
 
 export const getPostsByCategory = (category, limit) => {
-	const mdxPaths = getMDXPathsRecursive('data/blog')
+	const mdxPaths = getMDXPathsRecursive(path.join(rootDir, 'data', 'blog'))
 	const mdxPosts = mdxPaths.map((mdxPath) => getMDXData(mdxPath))
 
 	return mdxPosts
@@ -59,7 +61,7 @@ export const getPostsByCategory = (category, limit) => {
 }
 
 export const getCategories = () => {
-	const mdxPaths = getMDXPathsRecursive('data/blog')
+	const mdxPaths = getMDXPathsRecursive(path.join(rootDir, 'data', 'blog'))
 	const categories = mdxPaths.map((mdxPath) => {
 		const mdxRawContent = getMDXRawContent(mdxPath)
 		const mdxMatter = matter(mdxRawContent)
@@ -69,7 +71,7 @@ export const getCategories = () => {
 }
 
 export const getPosts = (limit) => {
-	const mdxPaths = getMDXPathsRecursive('data/blog')
+	const mdxPaths = getMDXPathsRecursive(path.join(rootDir, 'data', 'blog'))
 	const mdxPosts = mdxPaths.map((mdxPath) => getMDXData(mdxPath))
 	return mdxPosts
 		.sort((a, b) =>
@@ -82,7 +84,7 @@ export const getPosts = (limit) => {
 }
 
 export const getPostBySlug = (slug) => {
-	const mdxPaths = getMDXPathsRecursive('data/blog')
+	const mdxPaths = getMDXPathsRecursive(path.join(rootDir, 'data', 'blog'))
 	const paths = mdxPaths.filter((mdxPath) => mdxPath.includes(slug))
 	if (paths.length === 0) return null
 	const mdxPath = paths[0]
@@ -90,7 +92,7 @@ export const getPostBySlug = (slug) => {
 }
 
 export const searchPosts = (query) => {
-	const mdxPaths = getMDXPathsRecursive('data/blog')
+	const mdxPaths = getMDXPathsRecursive(path.join(rootDir, 'data', 'blog'))
 	const mdxPosts = mdxPaths.map((mdxPath) => getMDXData(mdxPath))
 
 	return mdxPosts.filter((mdxPost) => {
@@ -107,7 +109,7 @@ export const searchPosts = (query) => {
 }
 
 export const getSimilarPosts = (slug) => {
-	const mdxPaths = getMDXPathsRecursive('data/blog')
+	const mdxPaths = getMDXPathsRecursive(path.join(rootDir, 'data', 'blog'))
 	const mdxPost = getPostBySlug(slug)
 
 	if (!mdxPost) {
