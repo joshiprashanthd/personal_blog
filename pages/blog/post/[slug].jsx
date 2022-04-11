@@ -20,6 +20,7 @@ import { format } from 'date-fns'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import readingTime from 'reading-time'
+import rehypePrism from '@mapbox/rehype-prism'
 
 export async function getStaticPaths() {
 	const paths = (await getMDXPaths('data/blog')).map((path) => ({
@@ -37,7 +38,8 @@ export async function getStaticProps({ params }) {
 	const source = await serialize(content, {
 		parseFrontmatter: true,
 		mdxOptions: {
-			remarkPlugins: [remarkGfm, remarkMath]
+			remarkPlugins: [remarkGfm, remarkMath],
+			rehypePlugins: [rehypePrism]
 		}
 	})
 	const similarPosts = await getSimilarPosts(params.slug)
