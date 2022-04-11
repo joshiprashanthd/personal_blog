@@ -28,7 +28,7 @@ export default {
 				},
 			'.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string':
 				{
-					color: mode('pink.500', 'pink.400')(props)
+					color: mode('blue.500', 'blue.400')(props)
 				},
 			'.token.atrule, .token.attr-value, .token.keyword': {
 				color: mode('blue.500', 'blue.400')(props)
