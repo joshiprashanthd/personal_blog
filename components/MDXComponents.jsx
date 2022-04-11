@@ -56,6 +56,8 @@ export default {
 	code: (props) => {
 		const inlineCodeBgColor = useColorModeValue('gray.200', 'gray.900')
 		const inlineCodeColor = useColorModeValue('gray.900', 'gray.200')
+		const codeBgColor = useColorModeValue('gray.50', 'gray.900')
+		const codeColor = useColorModeValue('gray.900', 'gray.50')
 
 		if (!props.className) {
 			return (
@@ -72,13 +74,14 @@ export default {
 				/>
 			)
 		}
+
 		return (
 			<Box
 				as="pre"
 				{...props}
 				rounded="lg"
-				bg={inlineCodeBgColor}
-				color={inlineCodeColor}
+				bg={codeBgColor}
+				color={codeColor}
 				p={4}
 				mb={4}
 				fontSize="md"
