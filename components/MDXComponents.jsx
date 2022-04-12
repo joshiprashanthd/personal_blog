@@ -14,7 +14,7 @@ export const Image = (props) => {
 	const { src, alt, ...rest } = props
 	return (
 		<Box position="relative" {...rest} overflow="hidden">
-			<NextImage objectFit="cover" layout="fill" src={src} alt={alt} />
+			<NextImage objectFit="cover" layout="fill" src={src} alt={alt} priority />
 		</Box>
 	)
 }
@@ -93,6 +93,8 @@ export default {
 				/>
 			)
 		}
+
+		console.log(props.children)
 
 		return (
 			<Box position="relative">
