@@ -1,6 +1,14 @@
 import NextImage from 'next/image'
-import { Text, Heading, Box, useColorModeValue, chakra } from '@chakra-ui/react'
+import {
+	Text,
+	Heading,
+	Box,
+	useColorModeValue,
+	IconButton
+} from '@chakra-ui/react'
 import Tex from '@matejmazur/react-katex'
+import { CopyIcon } from '@chakra-ui/icons'
+import { useRef } from 'react'
 
 export const Image = (props) => {
 	const { src, alt, ...rest } = props
@@ -58,6 +66,16 @@ export default {
 		const inlineCodeColor = useColorModeValue('gray.900', 'gray.200')
 		const codeBgColor = useColorModeValue('gray.50', 'gray.900')
 		const codeColor = useColorModeValue('teal.500', 'teal.400')
+		const borderColor = useColorModeValue('gray.200', 'gray.700')
+		const iconColor = useColorModeValue('gray.800', 'gray.200')
+		const iconButtonColor = useColorModeValue('gray.200', 'gray.700')
+
+		const ref = useRef()
+
+		const copyToClipboard = () => {
+			const text = ref.current.innerText
+			navigator.clipboard.writeText(text)
+		}
 
 		if (!props.className) {
 			return (
@@ -67,27 +85,41 @@ export default {
 					rounded="md"
 					color={inlineCodeColor}
 					bg={inlineCodeBgColor}
+					borderColor={borderColor}
+					borderWidth={1}
 					px={1}
 					fontFamily="mono"
 					fontSize="md"
-					boxShadow="sm"
 				/>
 			)
 		}
 
 		return (
-			<Box
-				as="pre"
-				{...props}
-				rounded="lg"
-				bg={codeBgColor}
-				color={codeColor}
-				p={4}
-				mb={4}
-				fontSize="md"
-				overflow="auto"
-				boxShadow="md"
-			/>
+			<Box position="relative">
+				<Box
+					as="pre"
+					{...props}
+					rounded="lg"
+					bg={codeBgColor}
+					color={codeColor}
+					borderColor={borderColor}
+					borderWidth={2}
+					p={4}
+					mb={4}
+					fontSize="md"
+					overflow="auto"
+					ref={ref}
+				/>
+				<IconButton
+					icon={<CopyIcon />}
+					position="absolute"
+					top={4}
+					right={4}
+					onClick={copyToClipboard}
+					color={iconColor}
+					bg={iconButtonColor}
+				/>
+			</Box>
 		)
 	},
 	Image: (props) => (
