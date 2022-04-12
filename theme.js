@@ -26,7 +26,7 @@ export default {
 				{
 					color: mode('purple.500', 'purple.400')(props)
 				},
-			'.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string':
+			'.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string, .token.directive-hash':
 				{
 					color: mode('blue.500', 'blue.400')(props)
 				},
