@@ -63,13 +63,13 @@ const Home = ({ posts }) => {
 					<Heading mb={8} fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
 						Recent Posts
 					</Heading>
-					<Grid templateColumns="repeat(2, 1fr)" gap={4}>
-						{posts.map((post) => (
-							<GridItem colSpan={{ base: 2, md: 1 }}>
-								<PostCard key={post.title} post={post.frontmatter} />
-							</GridItem>
-						))}
-					</Grid>
+					{posts.map((post) => (
+						<PostCard key={post.title} postSlug={post.slug}>
+							<PostCard.Content p={4}>
+								<Text>{post.title}</Text>
+							</PostCard.Content>
+						</PostCard>
+					))}
 				</Box>
 			</Box>
 		</>

@@ -1,63 +1,67 @@
 import NextLink from 'next/link'
 import React from 'react'
-import { Flex, Heading, Stack, Text, useColorModeValue } from '@chakra-ui/react'
-import { format } from 'date-fns'
+import {
+	chakra,
+	Box,
+	Flex,
+	Stack,
+	Text,
+	useColorModeValue
+} from '@chakra-ui/react'
 
-const PostCard = ({ post }) => {
-	const bgColor = useColorModeValue('gray.50', 'gray.900')
-	const borderColor = useColorModeValue('gray.200', 'gray.700')
-	const subheadingColor = useColorModeValue('gray.600', 'gray.400')
+const Card = chakra(
+	({ children, postSlug, ...restProps }) => {
+		const backgroundColor = useColorModeValue('gray.300', 'gray.900')
+		return (
+			<NextLink href={`/blog/post/${postSlug}`}>
+				<Box
+					bgColor={backgroundColor}
+					{...restProps}
+					transition="ease-in"
+					transitionDuration={500}
+					transitionProperty="all"
+					_hover={{
+						bgGradient: 'linear(to-r, blue.600, pink.600)',
+						translateY: -2
+					}}
+				>
+					{children}
+				</Box>
+			</NextLink>
+		)
+	},
+	{
+		baseStyle: {
+			p: 4
+		}
+	}
+)
 
-	return (
-		<NextLink href={`/blog/post/${post.slug}`}>
-			<Flex
-				w="full"
-				flexGrow={1}
-				cursor="pointer"
-				flexDirection="column"
-				rounded="lg"
-				borderWidth={2}
-				borderColor={borderColor}
-				flexBasis={{ base: 'full', md: 1 / 2, lg: 1 / 3 }}
-				backgroundColor={bgColor}
-				padding={4}
-				transitionDuration="200ms"
-				_hover={{
-					shadow: 'lg',
-					transform: 'translateY(-1px)'
-				}}
-			>
-				<Stack>
-					<Text
-						color="blue.400"
-						fontWeight="bold"
-						fontSize={{ base: 'smaller', sm: 'small' }}
-					>
-						{post.category}
-					</Text>
-					<Heading fontSize={{ base: 'xl', sm: '2xl' }}>{post.title}</Heading>
-					<Text
-						fontSize={{ base: 'sm', sm: 'medium' }}
-						color={subheadingColor}
-						mb={2}
-					>
-						{post.summary}
-					</Text>
-					<Flex justify="space-between">
-						<Text
-							fontSize={{ base: 'smaller', sm: 'small' }}
-							color={subheadingColor}
-						>
-							{format(new Date(post.publishedAt), 'MMM d, yyyy')}
-						</Text>
-						<Text fontSize={{ base: 'smaller', sm: 'small' }}>
-							{post.readingTime.text}
-						</Text>
-					</Flex>
-				</Stack>
-			</Flex>
-		</NextLink>
-	)
+Card.Header = ({ children }) => {
+	return <Box mb={2}>{children}</Box>
 }
 
-export default PostCard
+Card.Content = chakra(
+	({ children, ...restProps }) => {
+		return <Stack {...restProps}>{children}</Stack>
+	},
+	{
+		baseStyle: {
+			my: 2
+		}
+	}
+)
+
+Card.Title = ({ children }) => (
+	<Text fontSize={{ base: '2xl', sm: '3xl' }}>{children}</Text>
+)
+
+Card.Subtitle = ({ children }) => (
+	<Text fontSize={{ base: 'large', sm: 'larger' }}>{children}</Text>
+)
+
+Card.Footer = ({ children }) => {
+	return <Flex justifyContent="space-between">{children}</Flex>
+}
+
+export default Card
