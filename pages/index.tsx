@@ -15,15 +15,18 @@ const Home = () => {
 			</Head>
 			<div className="flex flex-col items-center justify-center">
 				<img src="/profile.jfif" className="mb-4 h-40 w-40 rounded-full" />
-				<span className="mb-4 block font-serif text-4xl font-semibold">
+				<h1 className="mb-4 block font-serif text-4xl font-semibold">
 					Prashant Joshi
-				</span>
-				<span className="mb-8 w-96 text-center text-lg font-light">
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorem
-					impedit aspernatur inventore maxime distinctio veniam laudantium!
-					Cupiditate, hic officiis perspiciatis omnis commodi, similique rem
-					adipisci voluptatum aperiam accusantium quos tempore?
-				</span>
+				</h1>
+				<p className="mb-8 w-96 text-center text-base font-light">
+					I am a curious and passionate learner who is constantly exploring the
+					fascinating world of AI. I have a solid background in web development
+					and has completed several successful projects in this field.
+					Additionally, I have a deep understanding of creating and deploying
+					backend servers, which makes me a valuable asset to any tech team. If
+					you're looking for someone who is skilled in AI and web development, I
+					am a perfect fit for you.
+				</p>
 				<div className="flex w-full items-center justify-center space-x-8">
 					<a
 						className="b-hover flex min-w-max items-center bg-gray-200 px-4 py-2 font-medium text-black"
