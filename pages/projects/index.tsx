@@ -1,8 +1,7 @@
-import React from 'react'
+import { NextPage } from 'next'
 import Head from 'next/head'
-import GithubProfileCard from '../../components/GithubProfileCard'
+import React from 'react'
 import GithubRepoCard from '../../components/GithubRepoCard'
-import { Box, Grid, Heading, GridItem } from '@chakra-ui/react'
 
 const data = {
 	bio: 'Deep Learning and Algorithms Enthusiast.\r\nLove to create and learn new things.',
@@ -95,28 +94,28 @@ export async function getStaticProps() {
 	}
 }
 
-const Projects = ({ user }) => {
+const Projects: NextPage<{ user: typeof data }> = ({ user }) => {
 	return (
 		<>
 			<Head>
 				<title>Projects</title>
 			</Head>
-			<Box>
-				<Heading fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }} mb={8}>
-					Projects
-				</Heading>
-				<GithubProfileCard user={user} />
-				<Heading mb={8} fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
-					Repositories
-				</Heading>
-				<Grid templateColumns="repeat(2, 1fr)" gap={4}>
+			<div className="grid grid-cols-8 gap-8">
+				<div className="col-span-6 ">
+					<span className="mb-8 block pl-4 font-serif text-4xl font-semibold">
+						Projects
+					</span>
 					{user.repositories.nodes.map((repo) => (
-						<GridItem colSpan={{ base: 2, md: 1 }} key={repo.name}>
+						<div className="mb-4" key={repo.name}>
 							<GithubRepoCard repo={repo} />
-						</GridItem>
+						</div>
 					))}
-				</Grid>
-			</Box>
+				</div>
+				<div className="col-span-2 flex flex-col items-center ">
+					<img src={user.avatarUrl} className="mb-4 h-36 w-36 rounded-full" />
+					<span className="mb-4 block text-lg font-light">@{user.login}</span>
+				</div>
+			</div>
 		</>
 	)
 }

@@ -6,19 +6,15 @@
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^1.1.7",
-    "@chakra-ui/react": "^1.8.6",
-    "@emotion/react": "^11.8.2",
-    "@emotion/styled": "^11.8.1",
-    "@mapbox/rehype-prism": "^0.8.0",
+    "@mapbox/rehype-prism": "^0.7.0",
     "@matejmazur/react-katex": "^3.1.3",
+    "clsx": "^1.2.1",
     "date-fns": "^2.28.0",
     "gray-matter": "^4.0.3",
     "html-react-parser": "^1.4.8",
     "katex": "^0.15.3",
     "next": "latest",
     "next-mdx-remote": "^4.0.2",
-    "nextjs-progressbar": "^0.0.14",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "reading-time": "^1.5.0",
@@ -26,6 +22,13 @@
     "remark-math": "^5.1.1"
   },
   "devDependencies": {
-    "prettier": "^2.5.1"
+    "@types/katex": "^0.16.0",
+    "@types/node": "^18.15.3",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.4",
+    "prettier-plugin-tailwindcss": "^0.2.4",
+    "tailwindcss": "^3.2.7",
+    "typescript": "^5.0.2"
   }
 }

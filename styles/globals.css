@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	@apply text-green-300;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata,
+.token.punctuation {
+	@apply text-gray-300;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	@apply text-purple-300;
+}
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.directive-hash {
+	@apply text-blue-300;
+}
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	@apply text-blue-300;
+}
+.token.regex,
+.token.important,
+.token.variable {
+	@apply text-orange-300;
+}
+
+.token.function {
+	@apply text-red-300;
+}
+
+.b-hover {
+	@apply transition-all duration-300 hover:-translate-y-0.5;
+}
+
+.b-text-gradient {
+	@apply bg-gradient-to-br from-blue-600 to-purple-500 bg-clip-text text-transparent;
+}
+
+.b-hover-bg {
+	@apply hover:bg-[#252525];
+}
