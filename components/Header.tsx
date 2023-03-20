@@ -28,16 +28,25 @@ const Header = () => {
 					const isActive = path === route.href
 					return (
 						<NextLink href={route.href} key={route.href}>
-							<span
-								className={clsx(
-									'b-hover b-hover-bg inline-block cursor-pointer px-4 py-1 font-serif text-lg font-medium tracking-tight ',
-									{
-										'b-text-gradient scale-110 font-bold': isActive
-									}
-								)}
-							>
-								{route.name}
-							</span>
+							<div className="relative h-max w-max">
+								<p
+									className={clsx(
+										'cursor-pointer px-4 py-1 font-serif text-lg font-medium tracking-tight '
+									)}
+								>
+									{route.name}
+								</p>
+								<div
+									className={clsx(
+										'absolute inset-0 -z-10 h-full w-full origin-center scale-50 transition duration-100 ',
+										{
+											'translate-y-[0px] scale-100 bg-gradient-to-r from-blue-500 to-purple-500 opacity-100':
+												isActive,
+											'opacity-0': !isActive
+										}
+									)}
+								/>
+							</div>
 						</NextLink>
 					)
 				})}
