@@ -1,6 +1,9 @@
 import React from 'react'
+import { Repos } from '../pages/projects'
 
-const GithubRepoCard: React.FC<any> = ({ repo }) => {
+const GithubRepoCard: React.FC<{ repo: Repos['repositories']['nodes'][0] }> = ({
+	repo
+}) => {
 	return (
 		<a
 			href={repo.url}
