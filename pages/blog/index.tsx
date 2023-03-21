@@ -19,7 +19,10 @@ const Blog: NextPage<{ posts: Post[] }> = ({ posts }) => {
 				<title>Blog</title>
 			</Head>
 			<div>
-				<h1 className="mb-8 pl-4 font-serif text-4xl font-semibold">Blog</h1>
+				<div className="mb-8 flex items-center">
+					<h1 className="mb-1 pl-4 font-serif text-4xl font-semibold">Blog</h1>
+					<div className="mx-4 flex-1 border-t-2 border-gray-500" />
+				</div>
 				<section className="grid grid-cols-2">
 					{posts.map((post) => (
 						<PostCard key={post.frontmatter.title} post={post} />
