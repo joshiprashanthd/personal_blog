@@ -44,7 +44,7 @@ const PostDetails: NextPage<{ post: Post }> = ({ post }) => {
 					{post.frontmatter.title}
 				</h1>
 				<div className="mb-8 flex items-center">
-					<div className="bg-[#252525] px-1">
+					<div className="rounded-md bg-[#252525] px-1">
 						<span className="font-mono text-sm">
 							{format(new Date(post.frontmatter.publishedAt), 'MMM d, yyyy')}
 						</span>

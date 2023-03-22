@@ -33,7 +33,7 @@ export default {
 	code: (props) => {
 		if (!props.className) {
 			return (
-				<span className="bg-[#252525] px-1 font-mono text-sm tracking-wide text-white">
+				<span className="rounded-md bg-[#252525] px-1 font-mono text-sm tracking-wide text-white">
 					{props.children}
 				</span>
 			)
@@ -42,7 +42,7 @@ export default {
 		return (
 			<div
 				{...props}
-				className="mb-4 overflow-auto bg-[#252525] p-4 text-sm leading-relaxed tracking-wide"
+				className="mb-4 overflow-auto rounded-md bg-[#252525] p-4 text-sm leading-relaxed tracking-wide"
 			/>
 		)
 	},

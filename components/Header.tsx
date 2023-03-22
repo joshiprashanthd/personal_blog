@@ -38,7 +38,7 @@ const Header = () => {
 								</p>
 								<div
 									className={clsx(
-										'absolute inset-0 -z-10 h-full w-full origin-center transition duration-100 ',
+										'absolute inset-0 -z-10 h-full w-full origin-center rounded-md transition duration-100',
 										{
 											'translate-y-[0px] scale-100 bg-gradient-to-r from-blue-500 to-purple-500 opacity-100':
 												isActive,
