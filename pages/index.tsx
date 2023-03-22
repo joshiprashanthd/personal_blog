@@ -14,7 +14,10 @@ const Home = () => {
 				<title>Prashant Joshi</title>
 			</Head>
 			<div className="flex flex-col items-center justify-center">
-				<img src="/profile.jfif" className="mb-4 h-40 w-40 rounded-full" />
+				<img
+					src="https://picsum.photos/200/300?grayscale"
+					className="mb-4 h-40 w-40 rounded-full"
+				/>
 				<h1 className="mb-4 block font-serif text-4xl font-semibold">
 					Prashant Joshi
 				</h1>
@@ -29,7 +32,7 @@ const Home = () => {
 				</p>
 				<div className="flex w-full items-center justify-center space-x-8">
 					<a
-						className="b-hover flex min-w-max items-center bg-gray-200 px-4 py-2 font-medium text-black"
+						className="b-hover flex min-w-max items-center rounded-md bg-gray-200 px-4 py-2 font-medium text-black hover:shadow-md"
 						href="https://twitter.com/jprashanthd"
 					>
 						<img
@@ -39,7 +42,7 @@ const Home = () => {
 						Connect on twitter
 					</a>
 					<a
-						className="b-hover flex min-w-max items-center bg-gray-200 px-4 py-2 font-medium text-black"
+						className="b-hover flex min-w-max items-center rounded-md bg-gray-200 px-4 py-2 font-medium text-black hover:shadow-md"
 						href="https://github.com/joshiprashanthd"
 					>
 						<img
