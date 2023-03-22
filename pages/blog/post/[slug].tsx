@@ -56,7 +56,7 @@ const PostDetails: NextPage<{ post: Post }> = ({ post }) => {
 				</div>
 			</section>
 			<article>
-				<article className="prose prose-sm prose-neutral dark:prose-invert sm:prose-base ">
+				<article className="prose prose-sm prose-invert sm:prose-base">
 					<MDXRemote compiledSource={post.source} components={MDXComponents} />
 				</article>
 			</article>
