@@ -40,25 +40,25 @@ const PostDetails: NextPage<{ post: Post }> = ({ post }) => {
 				<title>{post.frontmatter.title}</title>
 			</Head>
 			<section>
-				<h1 className="mb-4 font-serif text-4xl font-bold">
+				<h1 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
 					{post.frontmatter.title}
 				</h1>
 				<div className="mb-8 flex items-center">
-					<div className="rounded-md bg-[#252525] px-1">
-						<span className="font-mono text-sm">
+					<div className="rounded-md border border-neutral-800 bg-neutral-900 px-1">
+						<span className="font-mono text-xs sm:text-sm">
 							{format(new Date(post.frontmatter.publishedAt), 'MMM d, yyyy')}
 						</span>
 					</div>
 					<div className="mx-4 flex-1 border-t-2 border-gray-500" />
-					<div className="font-light">
-						<span className="font-mono text-sm font-light text-gray-500">
-							{post.frontmatter.readingTime.text}
-						</span>
-					</div>
+					<span className="block font-mono text-xs font-light text-gray-500 sm:text-sm">
+						{post.frontmatter.readingTime.text}
+					</span>
 				</div>
 			</section>
 			<article>
-				<MDXRemote compiledSource={post.source} components={MDXComponents} />
+				<article className="prose prose-sm prose-neutral dark:prose-invert sm:prose-base ">
+					<MDXRemote compiledSource={post.source} components={MDXComponents} />
+				</article>
 			</article>
 		</>
 	)

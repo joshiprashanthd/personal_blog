@@ -6,53 +6,43 @@
 @tailwind components;
 @tailwind utilities;
 
-.token.property,
-.token.tag,
-.token.boolean,
-.token.number,
-.token.constant,
-.token.symbol,
-.token.deleted {
-	@apply text-green-300;
+.prose pre {
+	@apply border border-neutral-800 bg-neutral-900;
 }
 
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata,
-.token.punctuation {
-	@apply text-gray-300;
+.prose code {
+	@apply rounded-md border border-neutral-100 bg-neutral-100 px-0.5 text-neutral-800 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200;
 }
 
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin,
-.token.inserted {
-	@apply text-purple-300;
-}
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string,
-.token.directive-hash {
-	@apply text-blue-300;
-}
-.token.atrule,
-.token.attr-value,
-.token.keyword {
-	@apply text-blue-300;
-}
-.token.regex,
-.token.important,
-.token.variable {
-	@apply text-orange-300;
+code[class*='language-'],
+pre[class*='language-'] {
+	@apply border-none bg-none text-neutral-50;
 }
 
-.token.function {
-	@apply text-red-300;
+[data-rehype-pretty-code-fragment] .line--highlighted {
+	@apply bg-slate-500 bg-opacity-20;
+}
+
+[data-rehype-pretty-code-fragment] .line-highlighted span {
+	@apply relative;
+}
+
+[data-rehype-pretty-code-fragment] .word--highlighted {
+	@apply rounded-md bg-slate-500 bg-opacity-10 p-1;
+}
+
+[data-rehype-pretty-code-title] {
+	@apply order-[#1e1e1e] rounded-t-md bg-[#1c1c1c] px-2 py-1 font-mono text-[10px] font-light;
+}
+
+[data-rehype-pretty-code-title] + pre {
+	@apply mt-0 rounded-none rounded-b-md;
+}
+
+[data-rehype-pretty-code-fragment] code {
+	@apply rounded-none border-none bg-none text-xs sm:text-sm;
+	counter-reset: line;
+	box-decoration-break: clone;
 }
 
 .b-hover {

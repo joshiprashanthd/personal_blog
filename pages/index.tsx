@@ -18,10 +18,10 @@ const Home = () => {
 					src="https://picsum.photos/200/300?grayscale"
 					className="mb-4 h-40 w-40 rounded-full"
 				/>
-				<h1 className="mb-4 block font-serif text-4xl font-semibold">
+				<h1 className="mb-4 block font-serif text-3xl font-semibold sm:text-4xl">
 					Prashant Joshi
 				</h1>
-				<p className="mb-8 w-96 text-center text-base font-light">
+				<p className="mb-8 text-center text-sm font-light sm:text-base">
 					I am a curious and passionate learner who is constantly exploring the
 					fascinating world of AI. I have a solid background in web development
 					and has completed several successful projects in this field.
@@ -30,9 +30,9 @@ const Home = () => {
 					you're looking for someone who is skilled in AI and web development, I
 					am a perfect fit for you.
 				</p>
-				<div className="flex w-full items-center justify-center space-x-8">
+				<div className="flex w-full flex-col items-center justify-center space-y-8 sm:flex-row sm:space-x-8 sm:space-y-0">
 					<a
-						className="b-hover flex min-w-max items-center rounded-md bg-gray-200 px-4 py-2 font-medium text-black hover:shadow-md"
+						className="b-hover flex min-w-max items-center rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-black hover:shadow-md sm:text-base"
 						href="https://twitter.com/jprashanthd"
 					>
 						<img
@@ -42,7 +42,7 @@ const Home = () => {
 						Connect on twitter
 					</a>
 					<a
-						className="b-hover flex min-w-max items-center rounded-md bg-gray-200 px-4 py-2 font-medium text-black hover:shadow-md"
+						className="b-hover flex min-w-max items-center rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-black hover:shadow-md sm:text-base"
 						href="https://github.com/joshiprashanthd"
 					>
 						<img

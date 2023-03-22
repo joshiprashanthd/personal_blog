@@ -22,7 +22,7 @@ const Header = () => {
 		}
 	]
 	return (
-		<nav className="sticky mb-8 mt-8 ml-auto p-4 font-serif">
+		<nav className="sticky mb-8 mt-8 p-4 font-serif">
 			<div className="flex justify-center space-x-12 ">
 				{routes.map((route) => {
 					const isActive = path === route.href
@@ -31,7 +31,7 @@ const Header = () => {
 							<div className="relative h-max w-max">
 								<p
 									className={clsx(
-										'cursor-pointer px-4 py-1 font-serif text-lg font-medium tracking-tight '
+										'cursor-pointer px-4 py-1 font-serif text-base font-medium tracking-tight sm:text-lg'
 									)}
 								>
 									{route.name}
