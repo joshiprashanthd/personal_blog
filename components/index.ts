@@ -1,6 +1,5 @@
 export { default as Header } from './Header'
 export { default as Layout } from './Layout'
 export { default as PostCard } from './PostCard'
-export { default as SimilarPosts } from './SimilarPosts'
 export { default as GithubRepoCard } from './GithubRepoCard'
 export { default as MDXComponents } from './MDXComponents'
