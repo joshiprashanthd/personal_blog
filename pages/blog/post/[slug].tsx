@@ -40,7 +40,7 @@ const PostDetails: NextPage<{ post: Post }> = ({ post }) => {
 				<title>{post.frontmatter.title}</title>
 			</Head>
 			<section>
-				<h1 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
+				<h1 className="mb-4 font-serif text-4xl font-bold">
 					{post.frontmatter.title}
 				</h1>
 				<div className="mb-8 flex items-center">
