@@ -32,7 +32,7 @@ pre[class*='language-'] {
 }
 
 [data-rehype-pretty-code-title] {
-	@apply order-[#1e1e1e] rounded-t-md bg-[#1c1c1c] px-2 py-1 font-mono text-[10px] font-light;
+	@apply rounded-t-md bg-[#1c1c1c] px-2 py-1 font-mono text-[10px] font-light;
 }
 
 [data-rehype-pretty-code-title] + pre {
@@ -40,7 +40,7 @@ pre[class*='language-'] {
 }
 
 [data-rehype-pretty-code-fragment] code {
-	@apply rounded-none border-none bg-none text-xs sm:text-sm;
+	@apply rounded-none border-none bg-none text-sm;
 	counter-reset: line;
 	box-decoration-break: clone;
 }
