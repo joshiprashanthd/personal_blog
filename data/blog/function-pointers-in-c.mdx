@@ -4,7 +4,6 @@ slug: function-pointers-in-c
 summary: Let's dive into the basics of function pointers in C.
 image: /static/images/function-pointers-in-c/coding.jpg
 publishedAt: '2022-03-04'
-category: Programming
 ---
 
 <Image src={'/static/images/function-pointers-in-c/banner.jpg'} />
@@ -35,11 +34,11 @@ int isAlphabet(char);
 
 Let’s break down the statement `int (*comp)(char)` .
 
-- The return type of function to which pointer `comp` points to are `int` .
+- The return type of function to which pointer `comp` points to is `int` .
 - The function takes `char` as argument.
 - `(*comp)` defines the function pointer’s name.
 
-If you are asking why we can’t use `int *comp(char)` , just for a moment stare at the statement and think again. It’s all in the syntax.
+If you are asking why we can’t use `int *comp(char)`, try to look it in this way `int* comp(char)` and think.
 
 Let’s see how `count` function use `comp` to increment local `count` variable.
 
@@ -72,7 +71,7 @@ For absolute novices, `*(str + i)` simply gets the `char` at location `i` in str
 
 As a little exercise, try this program on your PC, and print the value of `comp` and see what it actually holds. It holds a value of type `unsigned long int` . You can use `%lu` format specifier in `printf` .
 
-At line number 5, we are calling `(*comp)` function. If you are wondering why we can’t use `*comp(*(str + i))` . Let’s understand it this way, `*comp(*(str + i))` is equivalent to `*(comp(*(str + i)))` . So first comp`(*(str + i))` gets executed, which is an invalid operation because `comp` contains an address of type `unsigned long int` which we cannot call. So before calling, we have to retrieve the function stored at the location `comp` refers to by `(*comp)` then we can call this and pass arguments to it.
+At line number 5, we are calling `(*comp)` function. If you are wondering why we can’t use `*comp(*(str + i))` . Let’s understand it this way, `*comp(*(str + i))` is equivalent to `*(comp(*(str + i)))` . So first `comp(*(str + i))` gets executed, which is an invalid operation because `comp` contains an address of type `unsigned long int` which we cannot call. So before calling, we have to retrieve the function stored at the location `comp` refers to by `(*comp)` then we can call this and pass arguments to it.
 
 Below is the entire program
 
