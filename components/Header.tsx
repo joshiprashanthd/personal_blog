@@ -40,7 +40,7 @@ const Header = () => {
 									className={clsx(
 										'absolute inset-0 -z-10 h-full w-full origin-center rounded-md transition duration-100',
 										{
-											'translate-y-[0px] scale-100 bg-gradient-to-r from-blue-500 to-purple-500 opacity-100':
+											'translate-y-[0px] scale-100 bg-purple-500 opacity-100':
 												isActive,
 											'scale-50 opacity-0': !isActive
 										}
