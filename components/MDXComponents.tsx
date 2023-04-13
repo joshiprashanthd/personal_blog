@@ -16,5 +16,11 @@ export default {
 		}
 		return <span {...props} />
 	},
-	Image: (props) => <img alt={props.alt} src={props.src} className="mb-8" />
+	Image: (props) => <img alt={props.alt} src={props.src} className="mb-8" />,
+	Note: (props) => (
+		<div
+			{...props}
+			className="border-l-4 border-l-purple-500 pl-4 font-medium text-white"
+		/>
+	)
 }
