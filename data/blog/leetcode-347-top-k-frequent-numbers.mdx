@@ -1,0 +1,202 @@
+---
+title: LeetCode 347 - Top K Frequent Numbers
+slug: leetcode-347-top-k-frequent-numbers
+summary: Two approaches to solve top k frequent numbers coding problem.
+publishedAt: '2023-04-13'
+---
+
+## Problem Statement
+
+Given an integer array `nums` and an integer `k`, return *the* `k` *most frequent elements*. You may return the answer in **any order**.
+
+**Examples:**
+
+**Input:** `nums = [1,1,1,2,2,3], k = 2`
+**Output:** `[1,2]`
+
+**Input:** `nums = [1], k = 1`
+**Output:** `[1]`
+
+Well honestly, for the first time, the question got me, I thought I cannot solve this question without some hint. So I did take a hint, hint was about using buckets of numbers. Then I solved it using buckets (don't worry I'll explain this concept in a minute) and then as every leetcoder should do, I looked at other people solutions, and there I found another way to solve this same problem. It was more intuitive than the bucket one. The second solution was using priority queues in a most elegant way.
+
+### Solution 1: Using buckets
+
+In real life, we might put objects having similar properties in a bucket, similarly in this solution, numbers with same frequency are put together in a bucket.
+
+```cpp
+vector<vector<int>> buckets(nums.size() + 1);
+vector<int> res;
+unordered_map<int, int> count;
+```
+
+- `buckets` is a `vector` of `vector`s. Each element of `buckets` at index `i` will contain a `vector` of integers having same frequency.
+- `res` will contain `k` most frequent elements
+- `count` maps number in the `nums` array with their frequencies.
+
+Now it's time to store frequencies of each number in `nums` array.
+
+```cpp
+for (int n : nums)
+	counts[n]++;
+```
+
+For example, if `nums = [1, 1, 2, 3, 2, 2, 2, 1, 5]` then
+
+```plain
+count = {
+	1 -> 2
+	2 -> 4
+	3 -> 1
+	5 -> 1
+}
+```
+
+Now, we have everything to fill `buckets` vector, let's do it.
+
+First traverse through the `count`. Each element of `count` map has two attributes, namely `first` and `second`.
+
+- `first` refers to the key, in this case, particular number from `nums` array.
+- `second` refers to the value, in this case, frequency of that number in `nums` vector.
+
+We are using `e.second` as an index to the `buckets` vector. Since `bucket[e.second]` is a `vector`, we `push_back` the `e.first`.
+
+```cpp
+for (auto e : count)
+	buckets[e.second].push_back(e.first);
+```
+
+After this `for` loop, vector at `buckets[i]` contains numbers with frequency `i`.
+
+For example, if `nums = [1, 1, 2, 3, 2, 2, 2, 1, 5]` then
+
+```plain
+buckets = [
+	0 -> []
+	1 -> [3, 5]
+	2 -> [1]
+	3 -> []
+	4 -> [2]
+	5 -> []
+	6 -> []
+	7 -> []
+	8 -> []
+]
+```
+
+See that, `buckets[1]` has `[3, 5]` and both `3` and `5` are occurred once in `nums` array.
+
+Since we need top `k` frequent numbers, we will traverse the `buckets` in reverse so that numbers with higher frequency are `push_back`ed first into `res` vector. We stop this process when we have `k` numbers in `res` vector.
+
+```cpp
+for (auto it = bucket.rbegin(); it != bucket.rend(); it++) {
+	for (int n : (*it)) {
+		if (res.size() == k) return res;
+		res.push_back(n);
+    }
+}
+```
+
+For example, if `nums = [1, 1, 2, 3, 2, 2, 2, 1, 5], k=3` then we first check vector in `buckets[8]`, then `buckets[7]` and so on.
+
+```
+res = [2, 1, 3]
+```
+
+**Entire Solution**:
+
+```cpp
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+		vector<vector<int>> bucket(nums.size() + 1);
+        vector<int> res;
+        unordered_map<int, int> count;
+
+        for (int n : nums)
+            count[n]++;
+
+        for (auto e : count)
+            bucket[e.second].push_back(e.first);
+
+        for (auto it = bucket.rbegin(); it != bucket.rend(); it++) {
+            for (int n : (*it)) {
+                if (k-- <= 0) return res;
+                res.push_back(n);
+            }
+        }
+
+        return res;
+    }
+};
+```
+
+### Solution 2: Using Priority Queue
+
+Unlike last solution, we don't have to traverse any `vector` to fill `res` vector. Now we use `priority_queue` to fill `k` most frequent numbers.
+
+```cpp
+vector<int> res;
+unordered_map<int, int> count;
+priority_queue<pair<int, int>> pq;
+```
+
+For example, `{4, 5}` refers to number `5` from `nums` array having frequency of `4`.
+
+```cpp
+for (int n : nums)
+	counts[n]++;
+```
+
+Nothing new in this, as usual we fill the `count` map.
+
+```cpp
+for (auto e : count)
+    pq.push({e.second, e.first})
+```
+
+Now, fill `pq` with pairs of numbers, where the first number is the frequency of a number in the array, and the second number is the number itself
+
+We are putting `e.second` before `e.first` in the pair, so that `pq` creates a _max heap_ based on `e.second`, which if you remember refers to the frequency of a number.
+
+<Note>
+	Remember that when we pop from a max-heap, we get highest priority object from
+	the heap.
+</Note>
+
+Fill `res` vector until `k` becomes `0`.
+
+- `pq.top().second` gets the number associated with the highest frequency.
+- `pq.pop()` removes top element from `pq`.
+
+```cpp
+while (k--) {
+	res.push_back(pq.top().second);
+	pq.pop();
+}
+```
+
+**Entire Solution:**
+
+```cpp
+class Solution {
+public:
+	vector<int> topKFrequent(vector<int>& nums, int k) {
+        vector<int> res;
+        unordered_map<int, int> count;
+        priority_queue<pair<int, int>> pq;
+
+        for (int n : nums)
+            count[n]++;
+
+        for (auto e : count)
+            pq.push({e.second, e.first})
+
+        while (k--) {
+	        res.push_back(pq.top().second);
+	        pq.pop();
+        }
+
+        return res;
+    }
+}
+```
