@@ -66,7 +66,7 @@ export const getPosts = (limit?: number) => {
 				new Date(a.frontmatter.publishedAt)
 			)
 		)
-		.slice(0, limit ?? 1)
+		.slice(0, limit)
 }
 
 const options = {
