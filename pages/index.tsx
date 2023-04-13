@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import React from 'react'
-import TwitterLogo from '../components/TwitterLogo'
 
 export async function getStaticProps() {
 	return {
