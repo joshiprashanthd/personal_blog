@@ -12,7 +12,7 @@ const PostCard = ({ post }: { post: Post }) => {
 			<span className="text-bold font-mono text-xs text-purple-400 group-hover:text-white">
 				{format(new Date(post.publishedAt), 'MMM d, yyyy')}
 			</span>
-			<h1 className="mb-1 font-semibold group-hover:text-purple-400 sm:text-lg">
+			<h1 className="mb-1 font-medium group-hover:text-purple-400 sm:text-lg">
 				{post.title}
 			</h1>
 			<p className="text-sm font-light sm:text-sm">{post.summary}</p>
