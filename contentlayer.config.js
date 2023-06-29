@@ -1,4 +1,8 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import remarkGfm from 'remark-gfm'
+import rehypePrettyCode from 'rehype-pretty-code'
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
@@ -19,13 +23,10 @@ const computedFields = {
 			datePublished: doc.publishedAt,
 			dateModified: doc.publishedAt,
 			description: doc.summary,
-			image: doc.image
-				? `https://leerob.io${doc.image}`
-				: `https://leerob.io/api/og?title=${doc.title}`,
-			url: `https://leerob.io/blog/${doc._raw.flattenedPath}`,
+			url: `https://prashantjoshi.vercel.app/blog/${doc._raw.flattenedPath}`,
 			author: {
 				'@type': 'Person',
-				name: 'Lee Robinson'
+				name: 'Prashant Joshi'
 			}
 		})
 	}
@@ -46,5 +47,39 @@ export const Post = defineDocumentType(() => ({
 
 export default makeSource({
 	contentDirPath: 'data/blog',
-	documentTypes: [Post]
+	documentTypes: [Post],
+	mdx: {
+		remarkPlugins: [remarkGfm],
+		rehypePlugins: [
+			rehypeSlug,
+			[
+				rehypePrettyCode,
+				{
+					theme: 'one-dark-pro',
+					keepBackground: false,
+					onVisitLine(node) {
+						// Prevent lines from collapsing in `display: grid` mode, and allow empty
+						// lines to be copy/pasted
+						if (node.children.length === 0) {
+							node.children = [{ type: 'text', value: ' ' }]
+						}
+					},
+					onVisitHighlightedLine(node) {
+						node.properties.className.push('line--highlighted')
+					},
+					onVisitHighlightedWord(node) {
+						node.properties.className = ['word--highlighted']
+					}
+				}
+			],
+			[
+				rehypeAutolinkHeadings,
+				{
+					properties: {
+						className: ['anchor']
+					}
+				}
+			]
+		]
+	}
 })
