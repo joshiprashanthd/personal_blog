@@ -1,4 +1,4 @@
-import Image from "next/image"
+import Image from 'next/image'
 export default async function HomePage() {
 	return (
 		<section className="flex flex-col justify-center">
@@ -9,14 +9,16 @@ export default async function HomePage() {
 				width={160}
 				alt="Random Image"
 			/>
-			<div className='flex items-center'>
+			<div className="flex items-center">
 				<h1 className="mb-1 font-serif text-2xl font-semibold sm:text-4xl">
 					Prashant Joshi
 				</h1>
 				<div className="mx-4 flex-1 border-t-2 border-purple-500" />
 			</div>
-			<div className='my-8'>
-				<h1 className='text-base sm:text-lg font-medium text-purple-500'>About ME</h1>
+			<div className="my-8">
+				<h1 className="text-base font-medium text-purple-500 sm:text-lg">
+					About ME
+				</h1>
 				<p>
 					I am a curious and passionate learner who is constantly exploring the
 					fascinating world of AI. I have a solid background in web development
@@ -27,10 +29,12 @@ export default async function HomePage() {
 					am a perfect fit for you.
 				</p>
 			</div>
-			<div className='grid-cols-1 md:grid-cols-2 grid w-full gap-4'>
+			<div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
 				<div>
-					<h1 className='text-base sm:text-lg font-medium text-purple-500'>Passionate About:</h1>
-					<ul className='ml-6 list-disc'>
+					<h1 className="text-base font-medium text-purple-500 sm:text-lg">
+						Passionate About:
+					</h1>
+					<ul className="ml-6 list-disc">
 						<li>Deep Learning</li>
 						<li>Natural Language Processing</li>
 						<li>Web Development</li>
@@ -39,8 +43,10 @@ export default async function HomePage() {
 					</ul>
 				</div>
 				<div>
-					<h1 className='text-base sm:text-lg font-medium text-purple-500'>I can code in:</h1>
-					<ul className='ml-6 list-disc'>
+					<h1 className="text-base font-medium text-purple-500 sm:text-lg">
+						I can code in:
+					</h1>
+					<ul className="ml-6 list-disc">
 						<li>Python</li>
 						<li>C and C++</li>
 						<li>Java</li>
@@ -48,7 +54,6 @@ export default async function HomePage() {
 						<li>HTML and CSS</li>
 					</ul>
 				</div>
-
 			</div>
 		</section>
 	)
