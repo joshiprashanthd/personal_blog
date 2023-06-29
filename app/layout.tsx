@@ -5,7 +5,7 @@ import Header from '../components/Header'
 import cn from '../helpers/cn'
 import './global.css'
 
-const workSans = Work_Sans({ subsets: ['latin'], variable: '--font-work-sans' })
+const workSans = Work_Sans({ subsets: ['latin'], variable: '--font-work-sans', weight: ['400', '500'] })
 const notoSansMono = Noto_Sans_Mono({
 	subsets: ['cyrillic'],
 	variable: '--font-noto-sans-mono'
