@@ -5,7 +5,11 @@ import Header from '../components/Header'
 import cn from '../helpers/cn'
 import './global.css'
 
-const workSans = Work_Sans({ subsets: ['latin'], variable: '--font-work-sans', weight: ['400', '500'] })
+const workSans = Work_Sans({
+	subsets: ['latin'],
+	variable: '--font-work-sans',
+	weight: ['400', '500']
+})
 const notoSansMono = Noto_Sans_Mono({
 	subsets: ['cyrillic'],
 	variable: '--font-noto-sans-mono'
@@ -14,7 +18,7 @@ const notoSansMono = Noto_Sans_Mono({
 const prataSerif = Prata({
 	weight: '400',
 	subsets: ['latin'],
-	variable: "--font-prata-serif"
+	variable: '--font-prata-serif'
 })
 
 export const metadata: Metadata = {
@@ -49,7 +53,6 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode
 }) {
-	console.log(workSans.className)
 	return (
 		<html
 			lang="en"
@@ -57,7 +60,7 @@ export default function RootLayout({
 				'bg-black text-white',
 				workSans.variable,
 				notoSansMono.variable,
-				prataSerif.variable,
+				prataSerif.variable
 			)}
 		>
 			<body className="container relative min-h-screen">
