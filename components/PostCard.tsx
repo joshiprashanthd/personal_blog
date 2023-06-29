@@ -7,12 +7,14 @@ const PostCard = ({ post }: { post: Post }) => {
 	return (
 		<Link
 			href={post.url}
-			className="b-hover b-hover-bg block rounded-md px-4 py-2 hover:shadow-md"
+			className="group block rounded-md px-4 py-2 transition-all hover:-translate-y-1 hover:bg-purple-500/20"
 		>
-			<span className="text-bold font-mono text-xs text-purple-400">
+			<span className="text-bold font-mono text-xs text-purple-400 group-hover:text-white">
 				{format(new Date(post.publishedAt), 'MMM d, yyyy')}
 			</span>
-			<h1 className="mb-1 font-semibold sm:text-lg">{post.title}</h1>
+			<h1 className="mb-1 font-semibold group-hover:text-purple-400 sm:text-lg">
+				{post.title}
+			</h1>
 			<p className="text-sm font-light sm:text-sm">{post.summary}</p>
 		</Link>
 	)
