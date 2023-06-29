@@ -9,7 +9,7 @@ const Nav = () => {
 	const pathname = usePathname()
 	return (
 		<nav>
-			<div className="flex flex-1 justify-center gap-4">
+			<div className="flex flex-1 justify-center gap-8">
 				{siteConfig.nav.links.map((route) => {
 					const isActive = pathname === route.href
 					return (
