@@ -7,7 +7,7 @@ export default function SocialLinks() {
 		<a href="https://www.github.com/joshiprashanthd" target='_blank'>
 		<GithubIcon />
 		</a>
-		<a href="https://www.twitter.com/" target="_blank">
+		<a href="https://twitter.com/prashantjoshi09" target="_blank">
 		<TwitterIcon />	
 		</a>
 	</div>
