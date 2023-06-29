@@ -6,6 +6,7 @@ module.exports = {
 			fontFamily: {
 				sans: ["var(--font-work-sans)"],
 				mono: ["var(--font-noto-sans-mono)"],
+				serif: ['var(--font-prata-serif)']
 			},
 			container: {
 				center: true,
