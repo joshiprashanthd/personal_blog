@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Work_Sans, Noto_Sans_Mono } from 'next/font/google'
+import { Work_Sans, Noto_Sans_Mono, Prata } from 'next/font/google'
 import React from 'react'
 import Header from '../components/Header'
 import cn from '../helpers/cn'
@@ -9,6 +9,12 @@ const workSans = Work_Sans({ subsets: ['latin'], variable: '--font-work-sans' })
 const notoSansMono = Noto_Sans_Mono({
 	subsets: ['cyrillic'],
 	variable: '--font-noto-sans-mono'
+})
+
+const prataSerif = Prata({
+	weight: '400',
+	subsets: ['latin'],
+	variable: "--font-prata-serif"
 })
 
 export const metadata: Metadata = {
@@ -50,7 +56,8 @@ export default function RootLayout({
 			className={cn(
 				'bg-black text-white',
 				workSans.variable,
-				notoSansMono.variable
+				notoSansMono.variable,
+				prataSerif.variable,
 			)}
 		>
 			<body className="container relative min-h-screen">
