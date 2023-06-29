@@ -1,11 +1,15 @@
 import type { Metadata } from 'next'
-import { Work_Sans } from 'next/font/google'
+import { Work_Sans, Noto_Sans_Mono } from 'next/font/google'
+import React from 'react'
 import Header from '../components/Header'
 import cn from '../helpers/cn'
 import './global.css'
-import React from 'react'
 
-const workSans = Work_Sans({ subsets: ['latin'] })
+const workSans = Work_Sans({ subsets: ['latin'], variable: '--font-work-sans' })
+const notoSansMono = Noto_Sans_Mono({
+	subsets: ['cyrillic'],
+	variable: '--font-noto-sans-mono'
+})
 
 export const metadata: Metadata = {
 	title: {
@@ -39,8 +43,16 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode
 }) {
+	console.log(workSans.className)
 	return (
-		<html lang="en" className={cn('bg-black text-white', workSans.className)}>
+		<html
+			lang="en"
+			className={cn(
+				'bg-black text-white',
+				workSans.variable,
+				notoSansMono.variable
+			)}
+		>
 			<body className="container relative min-h-screen">
 				<Header />
 				<main className={`pb-8`}>{children}</main>
