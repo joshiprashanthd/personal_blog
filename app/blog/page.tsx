@@ -11,7 +11,7 @@ const Blog = () => {
 				</h1>
 				<div className="mx-4 flex-1 border-t-2 border-purple-500" />
 			</div>
-			<div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-2">
 				{allPosts.map((post) => (
 					<PostCard key={post.title} post={post} />
 				))}
