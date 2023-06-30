@@ -32,7 +32,7 @@ export default async function HomePage() {
 			<div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
 				<div>
 					<h1 className="text-base font-medium text-purple-500 sm:text-lg">
-						Passionate About:
+						Passionate ABOUT
 					</h1>
 					<ul className="ml-6 list-disc">
 						<li>Deep Learning</li>
@@ -44,7 +44,7 @@ export default async function HomePage() {
 				</div>
 				<div>
 					<h1 className="text-base font-medium text-purple-500 sm:text-lg">
-						I can code in:
+						Languages I KNOW
 					</h1>
 					<ul className="ml-6 list-disc">
 						<li>Python</li>
