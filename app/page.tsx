@@ -29,7 +29,7 @@ export default async function HomePage() {
 					am a perfect fit for you.
 				</p>
 			</div>
-			<div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
+			<div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
 				<div>
 					<h1 className="text-base font-medium text-purple-500 sm:text-lg">
 						Passionate ABOUT
