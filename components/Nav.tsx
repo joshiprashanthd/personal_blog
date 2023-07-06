@@ -8,7 +8,7 @@ import { siteConfig } from '../helpers/siteConfig'
 const Nav = () => {
 	const pathname = usePathname()
 	return (
-		<nav>
+		<nav className="hidden sm:flex">
 			<div className="flex flex-1 justify-center gap-8">
 				{siteConfig.nav.links.map((route) => {
 					const isActive = pathname === route.href
