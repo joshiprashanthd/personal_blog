@@ -29,7 +29,7 @@
 }
 
 .prose a {
-	@apply decoration-neutral-600 decoration-[0.1em] underline-offset-2 transition-all;
+	@apply decoration-primary decoration-[0.1em] underline-offset-2 transition-all;
 }
 
 .prose .anchor:after {
