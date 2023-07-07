@@ -1,8 +1,13 @@
 import React from 'react'
 import PostCard from '../../components/PostCard'
 import { allPosts } from 'contentlayer/generated'
+import { compareDesc } from 'date-fns'
 
 const Blog = () => {
+	const posts = allPosts.sort((a, b) =>
+		compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
+	)
+
 	return (
 		<section>
 			<div className="mb-8 flex items-center">
@@ -12,7 +17,7 @@ const Blog = () => {
 				<div className="mx-4 flex-1 border-t-2 border-primary" />
 			</div>
 			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-2">
-				{allPosts.map((post) => (
+				{posts.map((post) => (
 					<PostCard key={post.title} post={post} />
 				))}
 			</div>
