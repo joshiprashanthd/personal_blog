@@ -13,10 +13,10 @@ export default async function HomePage() {
 				<h1 className="mb-1 font-serif text-2xl font-semibold sm:text-4xl">
 					Prashant Joshi
 				</h1>
-				<div className="mx-4 flex-1 border-t-2 border-purple-500" />
+				<div className="mx-4 flex-1 border-t-2 border-primary" />
 			</div>
 			<div className="my-8">
-				<h1 className="text-base font-medium text-purple-500 sm:text-lg">
+				<h1 className="text-base font-medium text-primary sm:text-lg">
 					About ME
 				</h1>
 				<p>
@@ -31,7 +31,7 @@ export default async function HomePage() {
 			</div>
 			<div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
 				<div>
-					<h1 className="text-base font-medium text-purple-500 sm:text-lg">
+					<h1 className="text-base font-medium text-primary sm:text-lg">
 						Passionate ABOUT
 					</h1>
 					<ul className="ml-6 list-disc">
@@ -43,7 +43,7 @@ export default async function HomePage() {
 					</ul>
 				</div>
 				<div>
-					<h1 className="text-base font-medium text-purple-500 sm:text-lg">
+					<h1 className="text-base font-medium text-primary sm:text-lg">
 						Languages I KNOW
 					</h1>
 					<ul className="ml-6 list-disc">

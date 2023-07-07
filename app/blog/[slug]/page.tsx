@@ -21,7 +21,7 @@ export default async function Post({ params }) {
 				<span className="font-mono text-xs sm:text-sm">
 					{format(new Date(post.publishedAt), 'MMM d, yyyy')}
 				</span>
-				<div className="mx-4 flex-1 border-t-2 border-purple-500" />
+				<div className="mx-4 flex-1 border-t-2 border-primary" />
 			</div>
 			<Mdx code={post.body.code} />
 		</section>

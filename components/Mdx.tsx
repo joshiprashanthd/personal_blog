@@ -6,7 +6,7 @@ const components = {
 	Note: (props) => (
 		<div
 			{...props}
-			className="border-l-4 border-l-purple-500 pl-4 font-medium text-white"
+			className="border-l-4 border-l-primary pl-4 font-medium text-white"
 		/>
 	)
 }
