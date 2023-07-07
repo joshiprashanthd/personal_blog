@@ -57,7 +57,7 @@ export default function RootLayout({
 		<html
 			lang="en"
 			className={cn(
-				'bg-black text-white',
+				'bg-background text-foreground',
 				workSans.variable,
 				notoSansMono.variable,
 				prataSerif.variable
