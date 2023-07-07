@@ -8,8 +8,9 @@ import './global.css'
 const workSans = Work_Sans({
 	subsets: ['latin'],
 	variable: '--font-work-sans',
-	weight: ['400', '500']
+	weight: ['400', '500', '600']
 })
+
 const notoSansMono = Noto_Sans_Mono({
 	subsets: ['cyrillic'],
 	variable: '--font-noto-sans-mono'
