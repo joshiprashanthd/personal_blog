@@ -3,12 +3,15 @@
 @tailwind utilities;
 
 ::selection {
-	background-color: #47a3f3;
-	color: #fefefe;
+	@apply bg-primary/40 text-white;
 }
 
 .prose {
 	@apply w-full;
+}
+
+.prose strong {
+	@apply font-medium;
 }
 
 .prose .anchor {
