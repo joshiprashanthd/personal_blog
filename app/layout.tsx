@@ -64,6 +64,12 @@ export default function RootLayout({
 				prataSerif.variable
 			)}
 		>
+			<head>
+				<link
+					href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+					rel="stylesheet"
+				></link>
+			</head>
 			<body className="container relative min-h-screen">
 				<Header />
 				<main className={`pb-8`}>{children}</main>
