@@ -1,23 +1,34 @@
 import React from 'react'
-import GithubRepoCard from '../../components/GithubRepoCard'
-import { siteConfig } from '../../helpers/siteConfig'
+import {siteConfig} from '../../helpers/siteConfig'
+import Link from "next/link";
+import {Card, CardDescription, CardHeader, CardTitle} from "../../components/ui/Card";
+import {format} from "date-fns";
 
 const Projects = () => {
-	return (
-		<section>
-			<div className="mb-8 flex items-center">
-				<h1 className="mb-1 pl-4 font-serif text-3xl font-semibold sm:text-4xl">
-					Projects
-				</h1>
-				<div className="mx-4 flex-1 border-t-2 border-primary" />
-			</div>
-			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-2">
-				{siteConfig.projects.map((repo) => (
-					<GithubRepoCard key={repo.url} repo={repo} />
-				))}
-			</div>
-		</section>
-	)
+    return (
+        <section>
+            <div className="mb-8 flex items-center">
+                <h1 className="mb-1 pl-4 font-serif text-3xl font-semibold sm:text-4xl">
+                    Projects
+                </h1>
+                <div className="mx-4 flex-1 border-t-2 border-primary-light dark:border-primary-dark"/>
+            </div>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-2">
+                {siteConfig.projects.map((repo) => (
+                    <Card asChild>
+                        <Link href={repo.url}>
+                            <CardTitle>
+                                {repo.name}
+                            </CardTitle>
+                            <CardDescription>
+                                {repo.description}
+                            </CardDescription>
+                        </Link>
+                    </Card>
+                ))}
+            </div>
+        </section>
+    )
 }
 
 export default Projects
