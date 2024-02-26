@@ -19,7 +19,7 @@ const components = {
 export function Mdx({ code }: { code: string }) {
 	const Component = useMDXComponent(code)
 	return (
-		<article className="prose prose-invert max-w-full prose-pre:font-mono">
+		<article className="prose dark:prose-invert max-w-full prose-pre:font-mono">
 			<Component components={{ ...components }} />
 		</article>
 	)

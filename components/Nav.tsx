@@ -18,7 +18,7 @@ const Nav = () => {
 							key={route.href}
 							className={cn(
 								'cursor-pointer tracking-tight',
-								isActive && 'font-medium text-primary'
+								isActive && 'font-bold text-primary-light dark:text-primary-dark'
 							)}
 						>
 							{route.title}

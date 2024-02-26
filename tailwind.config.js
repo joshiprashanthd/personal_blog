@@ -2,13 +2,15 @@ const colors = require('tailwindcss/colors')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+	darkMode: "selector",
 	content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		extend: {
 			colors: {
 				background: colors.black,
 				foreground: colors.white,
-				primary: colors.purple[500]
+				'primary-dark': colors.blue[500],
+				'primary-light': colors.blue[700]
 			},
 			fontFamily: {
 				sans: ['var(--font-work-sans)'],
