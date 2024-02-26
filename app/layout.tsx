@@ -23,6 +23,7 @@ const prataSerif = Prata({
 })
 
 export const metadata: Metadata = {
+	metadataBase: new URL("https://prashantjoshi.vercel.app"),
 	title: {
 		default: 'Prashant Joshi',
 		template: '%s | Prashant Joshi'
