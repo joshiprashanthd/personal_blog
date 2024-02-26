@@ -104,11 +104,11 @@ table {
 }
 
 [data-rehype-pretty-code-fragment] pre[data-theme='dark'] {
-	@apply border dark:border-primary-dark/50 dark:bg-primary-dark/10 hidden dark:block;
+	@apply border dark:border-neutral-800 dark:bg-neutral-900 hidden dark:block;
 }
 
 [data-rehype-pretty-code-fragment] pre[data-theme='light'] {
-	@apply bg-white dark:hidden border-primary-light/50;
+	@apply  dark:hidden border-slate-100 bg-slate-50;
 }
 
 .math-display{
