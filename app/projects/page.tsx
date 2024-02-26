@@ -1,8 +1,7 @@
 import React from 'react'
 import {siteConfig} from '../../helpers/siteConfig'
 import Link from "next/link";
-import {Card, CardDescription, CardHeader, CardTitle} from "../../components/ui/Card";
-import {format} from "date-fns";
+import {Card, CardDescription, CardTitle} from "../../components/ui/Card";
 
 const Projects = () => {
     return (
