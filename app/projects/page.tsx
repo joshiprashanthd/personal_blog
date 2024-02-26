@@ -13,7 +13,7 @@ const Projects = () => {
 			</div>
 			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-2">
 				{siteConfig.projects.map((repo) => (
-					<GithubRepoCard repo={repo} />
+					<GithubRepoCard key={repo.url} repo={repo} />
 				))}
 			</div>
 		</section>
