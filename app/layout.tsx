@@ -4,6 +4,7 @@ import React from 'react'
 import Header from '../components/Header'
 import cn from '../helpers/cn'
 import './global.css'
+import {ThemeProvider} from "../components/ThemeProvider";
 
 const workSans = Work_Sans({
 	subsets: ['latin'],
@@ -59,7 +60,6 @@ export default function RootLayout({
 		<html
 			lang="en"
 			className={cn(
-				'bg-background text-foreground',
 				workSans.variable,
 				notoSansMono.variable,
 				prataSerif.variable
@@ -72,8 +72,13 @@ export default function RootLayout({
 				></link>
 			</head>
 			<body className="container relative min-h-screen">
+			<ThemeProvider
+				attribute="class"
+				defaultTheme="light"
+			>
 				<Header />
-				<main className={`pb-8`}>{children}</main>
+				<main className={cn(`pb-8`)}>{children}</main>
+			</ThemeProvider>
 			</body>
 		</html>
 	)
