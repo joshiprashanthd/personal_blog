@@ -112,7 +112,7 @@ table {
 }
 
 .math-display{
-	@apply overflow-scroll m-0
+	@apply overflow-x-scroll m-0;
 }
 .math-inline {
 	@apply inline-block m-0

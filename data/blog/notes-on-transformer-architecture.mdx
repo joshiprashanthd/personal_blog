@@ -1,0 +1,257 @@
+---
+title: Notes on Transformer Architecture
+summary: Gives enough information to implement transformer architecture by yourself.
+publishedAt: 2024-03-20
+---
+
+## Model Architecture
+
+- Transformer model consist of encoding and decoding component
+- Encoding component is a stack of six encoders
+- Decoding component is a stack of six decoders
+- Encoders has the identical structure
+- Encoder does NOT share the same weights
+- Each encoder has two layers within it.
+Self attention layer --> feed forward network.
+- Self attention layer helps in focus on the other words while encoding the current word
+- Each decoder has three layers.
+Self attention --> encoder-decoder attention --> feed forward network
+- Encoder-decoder attention helps in focus on relevant part of the input sequence to produce a next word
+![[transformer.png]]
+## High-level encoder
+
+- Each word is embedded into a **$512$ dimensional vector**
+- Embedding only happens at the bottom most encoder
+- Each encoder receives list of vectors of size $512$
+- For the bottom most encoder, we give a list of embedding vectors. This list of embedding vectors represents a sentence with words represented as vectors.
+- Size of the list is dependent on the longest sentence in the training corpus.
+- **In Encoder**:
+    - the number of vectors ($x_1, x_2, ..., x_n$) we feed to self attention layer, the same number of vector it produces as output ($z_1, z_2, ... z_n$)
+    - then this output is fed through feed forward network to produce ($r_1, r_2, ... r_n$)
+- Each word flows through its own path in the encoder
+    - in self attention layer, these path are dependent on each other thus words cannot be processed in parallel
+    - but in feed forward network these paths are independent and parallel processing of these words is possible
+## Encoder Internals
+
+- In RNN the hidden state vector is passed along the input sequence to store the meaning of the input sequence
+- At time step $t$,
+    - hidden state contains the meaning of words that occurred at previous time steps $[1, t-1]$
+    - at time step $t$, model incorporates the meaning of the current word into the hidden state
+    - this hidden state is supposed to learn the inter-word dependencies in the input sequence
+    - but it does not perform that well
+- self attention is used to incorporate understanding of different words at different locations into the encoding of current word
+### Self attention in detail
+#### First Step
+-  create three vectors from each of the embedding vectors
+    1. **key vector** ($k$)
+    2. **query vector** ($q$)
+    3. **value vector** ($v$)
+- these vectors are created by multiplying by three matrices that we train during the training process
+$$
+\begin{align}
+k_i &= e_i \times W^K \\
+q_i &= e_i \times W^Q \\
+v_i &= e_i \times W^V \\
+\end{align}
+$$
+- $e_i$ is the embedding vector of $512$ dimensions
+- $W^K$ , $W^Q$ and $W^V$ has shape of $512 \times 64$
+- this means shape of $k_i$ , $q_i$ and $v_i$ is $64$
+#### Second Step
+- calculate attention score for each word against the current word
+- attention score of word $x_j$ for the word $x_i$ is calculated by dot product between key between key vector of $x_j$ and query vector of $x_i$
+$$
+score_{ij} = q_i \cdot k_j
+$$
+- $score_{ij}$ tells you that how much attention should be given to the word $x_j$ for the encoding of word $x_i$
+#### Third Step
+- divide the attention scores by square root of the dimension of key vector
+$$
+score\_new_{ij} = \frac{score_{ij}}{\sqrt{d_k}}
+$$
+- $d_k$ dimensions in key vector
+- softmax function which is applied after this step can be sensitive to very large scores
+- this can kill off gradients
+- $\sqrt{d_k}$ normalizes the scores
+#### Fourth Step
+- apply softmax to all $score\_new_{ij}$
+$$
+\begin{align}
+softmax\_score_{ij} &= softmax(score\_new_{ij}) \\ \\
+&= \frac{e^{score\_new_{ij}}}{\sum_k e^{score\_new_{ik}}}
+\end{align}
+$$
+#### Fifth Step
+- create multiple new value vectors for the word $x_i$ by multiplying value vector $v_j$ of each word $x_j$ by the $softmax\_score_{ij}$
+$$
+v\_new_{ij} = softmax\_score_{ij} \cdot v_j
+$$
+- think of value vector as information about a word
+- by multiplying softmax score with a value vector we are determining how much information of a word should I need to encode a certain word
+#### Sixth Step
+- Create new vector $z_i$ which encodes the word $x_i$ by summing new value vectors created from each word in the sentence
+$$
+z_i = \sum_j v\_new_{ij}
+$$
+- $z_i$ encodes all the understanding from different word at different locations for the current word $x_i$
+### Matrix Calculation of Attention
+
+- suppose we have a $4 \times 512$ matrix $X$
+    - sentence length is $4$
+    - embedding vector has $512$ dimensions
+- we have $W^K$, $W^Q$ and $W^V$ matrices of $512 \times 64$ dimensions
+- now we'll create key, query and value vectors of all words in a sentence
+$$
+\begin{align}
+K &= X \times W^K\\
+Q &= X \times W^Q \\
+V &= X \times W^V
+\end{align}
+$$
+- $K$, $Q$ and $V$ each has dimensions of $4 \times 64$
+- now find attention score of every word by multiplying query vector of a word with all the key vectors
+$$
+A = Q \times K^T
+$$
+- $A$ has $4 \times 4$ dimensions
+    - each $i^{th}$ row represents the attention scores of all words against the $i^{th}$ word in the sentence
+- now we want to divide every value by square root of number of dimensions in key vector
+
+$$
+A = \frac{A}{\sqrt{d^K}}
+$$
+- apply softmax on column wise on matrix $A$ to convert attention scores
+$$
+S = softmax(A)
+$$
+- now we find $Z$ matrix containing final encoding of each word by multiplying $S$ by value matrix $V$
+    - $Z$ has $4 \times 64$ dimensions
+$$
+Z = S \times V
+$$
+- all the above operations can be written in one formula
+$$
+Z = softmax\left( \frac{Q \times K^T}{\sqrt{d^K}}\right) \times V
+$$
+## Multiheaded Attention
+
+- in single headed attention, $z$ vector contains little bit of every word encoding but it could be possible that a irrelevant word encoding may have gotten higher attention score than anyone else.
+    - **For example,** consider sentence "plane crashed into the sea"
+    - it is possible that attention score for word "crashed" against the word "sea" is higher compared to word "plane"
+    - this means that model is thinking that it is "sea" that is "crashed" and not the "plane" which is meaningless
+- with multiheaded attention the possibility of domination of a certain word encoding in the $z$ vector is reduced
+- each head has it's own set of randomly initialized $W^Q$, $W^K$ and $W^V$ weight matrices
+- each set will project input embeddings into different subspaces
+- each head will then create different encoding for the same input embeddings
+- different encodings of the same input is like assigning multiple meaning to a sentence
+- each encoding will focus on different aspects of the same sentence
+- in the actual transformer model number of heads is $8$ (this could be any other value)
+- this creates $8$ encoding matrices $Z_1, Z_2, ... Z_8$
+- each $Z_1, Z_2, ..., Z_8$ has dimensions $4 \times 64$
+- but the feed forward network after this attention layer expects a single matrix
+- so we concatenate all $Z$ matrices to create a single matrix of dimension $4 \times 512$ and multiply with another weight matrix $W^O$ of dimension $512 \times 512$
+$$
+Z = cat(Z_1, Z_2, ..., Z_8) \times W^O
+$$
+- $Z$ matrix has dimension $4 \times 512$
+- now this $Z$ matrix goes through a feed forward network to create a new $R$ matrix which is then forwarded to the next encoder block
+
+### Efficient Multiheaded Attention
+- creating multiple heads of attention also comes with multiple sets of $W^Q$, $W^K$ and $W^V$ weight matrices
+- suppose $k$ is the number of dimensions in embedding vector of a word
+- therefore input $X$ will have shape $sentence\_len \times k$
+- a single head in a multiheaded attention can have weight matrices of shape $k \times \frac{k}{h}$
+    - every head now has $3\frac{k^2}{h}$ parameters
+    - $h$ number of heads will have $h \times 3\frac{k^2}{h} = 3k^2$ parameters
+    - which is same as having a *single head attention* with weight matrices of shape $k \times k$ because it will also have $3k^2$ parameters
+- each head $i$ produces a $Z_i$ matrix of shape $sentence\_len \times \frac{k}{h}$
+- concatenating $Z_i$s gives another matric of shape $sentence\_len \times k$
+- then we pass this concatenated matrix through feed forward network
+## Using Positional Encoding
+
+- in LSTM or classical RNN techniques model learns relative positions of words by itself because we process sentences sequentially
+- so during processing of a word, RNN model knows that at what position does word arrive at and what words it had processed before the current word
+- but in transformers since we are processing the whole sentence in parallel it becomes difficult to learn about relative positions of words within the sentence
+- that's why positional encodings are used to encode the position of a word into the embedding vector of the word
+- positional encodings are learned by model and follows a specific pattern at the end of training
+- positional encodings are added to the embedding vectors at the bottom most encoder layer
+- two approaches to initialize positional encodings:
+    - **fixed positional encodings**: using sine and cosine functions
+    - **randomly initialized**: positional encodings are learned by model itself but it is more computationally expensive
+$$
+X' = X + P
+$$
+- $P$ is positional embedding matrix of shape $sentence\_len \times k$
+- $X$ is input matrix of shape $sentence\_len \times k$
+- $X'$ is modified input matrix which also contains the positional information of each word embedding vector
+## Residual Connection
+
+- encoders and decoders are deep neural networks therefore there's risk of vanishing gradients
+- residual connection prevents vanishing gradient problem
+- layer normalization prevents inputs from being too small or too large which in turn improves stability
+- after each self-attention layer and feed forward network layer, there is residual connection
+- layer normalization is applied on residual connection
+$$
+\begin{align}
+Z &= self\_attention(X) \\
+Z' &= layernorm(X + Z) \\
+R &= FFN(Z') \\
+R' &= layernorm(R + Z')
+\end{align}
+$$
+- $R'$ is then fed to the next encoder block
+- similar structure is followed by each decoder block
+
+## Decoder Internals
+
+### Using target mask
+
+- during training, we don't want decoder to know about the next token in the target sequence
+- to do this we use target mask to zero out attention scores for future tokens
+$$
+target\_mask = \begin{bmatrix} 1 && 0 && 0 \\ 1 && 1 && 0 \\ 1 && 1 && 1 \end{bmatrix}
+$$
+- now suppose that we have 3 words in the sentence and we calculate attention score as follows
+
+$$
+attention\_score = \begin{bmatrix} 5 && 2 && 1 \\ 4 && 8 && 3 \\ 7 && 6 && 9 \end{bmatrix}
+$$
+- each $i^{th}$ row represent the attention scores for $i^{th}$ word
+- for the first word we should not know about attention score for second and third word i.e. future tokens so we zero out those values and similarly we do this for second and third word
+
+$$
+\begin{align}
+attention &= attention\_score \cdot target\_mark \\ \\
+attention &= \begin{bmatrix} 5 && 0 && 0 \\ 4 && 8 && 0 \\ 7 && 6 && 9 \end{bmatrix}
+\end{align}
+$$
+- this ensures that $i^{th}$ word decoding does not use information about future words at $[i+1, i+2, ... i+n]$ locations
+
+### Encoder-Decoder Attention Layer
+
+- this attention layer uses encodings produced by encoder layer to generate key and value matrices
+- so we have target word embeddings $T$ of shape $4 \times 512$ which means that target sentence contains only $4$ words and encodings from encoder $E$ of shape $4 \times 512$
+$$
+\begin{align}
+Q &= T \times W^Q \\
+K &= E \times W^K \\
+V &= E \times W^V \\
+\end{align}
+$$
+- $W^Q$ , $W^K$ and $W^V$ has shape $512 \times 64$
+- $Q$ , $K$ and $V$ has shape $4 \times 64$
+- then we calculate $Z$ matrix and pass it through the layer normalization layer to the feed forward layer
+### After last decoder layer
+
+- now we have $Z$ matrix of shape $4 \times 64$
+- we want to find the next predicted word for each word in $Z$ matrix
+- predicting next word is simply assigning a score to each word in the vocabulary and whoever has the highest score is our predicted next word
+- suppose we have $1000$ words in our vocabulary so we want to assign a score to each word
+- we do this passing $Z$ through a linear layer which has output dimensions of $1000$
+
+$$
+O = Z \times W
+$$
+- here $W$ has shape $64 \times 1000$ which generates output matrix $O$ of shape $4 \times 1000$
+- in $O$,  $i^{th}$ row has $1000$ numbers and index at which maximum number is assigned is the index of our next predicted word for $i^{th}$ word
+
