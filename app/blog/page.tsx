@@ -12,7 +12,7 @@ const Blog = () => {
 	return (
 		<section>
 			<div className="mb-8 flex items-center">
-				<h1 className="mb-1 pl-4 font-serif text-3xl font-semibold sm:text-4xl">
+				<h1 className="mb-1 pl-4 font-ui text-3xl font-semibold sm:text-4xl">
 					Blog
 				</h1>
 				<div className="mx-4 flex-1 border-t-2 border-primary-light dark:border-primary-dark" />

@@ -16,7 +16,7 @@ export default async function Post({ params }) {
 
 	return (
 		<section>
-			<h1 className="mb-4 font-serif text-4xl font-bold">{post.title}</h1>
+			<h1 className="mb-4 font-ui text-4xl font-bold">{post.title}</h1>
 			<div className="mb-8 flex items-center">
 				<span className="font-mono text-xs sm:text-sm">
 					{format(new Date(post.publishedAt), 'MMM d, yyyy')}
