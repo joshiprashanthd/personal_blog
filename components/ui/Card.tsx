@@ -2,7 +2,6 @@ import * as React from "react"
 
 import cn from "../../helpers/cn"
 import {Slot} from "@radix-ui/react-slot";
-import {buttonVariants} from "./Button";
 
 const Card = React.forwardRef<
     HTMLDivElement,
@@ -38,7 +37,7 @@ const CardTitle = React.forwardRef<
     <h3
         ref={ref}
         className={cn(
-            "mb-1 font-bold text-primary-light dark:text-primary-dark sm:text-lg",
+            "mb-1 font-bold text-primary-light dark:text-primary-dark sm:text-lg font-ui",
             className
         )}
         {...props}
