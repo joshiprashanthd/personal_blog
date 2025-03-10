@@ -22,7 +22,7 @@ export default async function Post({ params }) {
 			<div className="h-4" />
 			<h1 className="mb-4 font-ui text-4xl font-bold">{post.title}</h1>
 			<div className="mb-8 flex items-center">
-				<span className="font-mono text-xs sm:text-sm">
+				<span className="text-xs sm:text-sm">
 					{format(new Date(post.publishedAt), 'MMM d, yyyy')}
 				</span>
 				<div className="mx-4 flex-1 border-t-2 border-primary-light dark:border-primary-dark" />

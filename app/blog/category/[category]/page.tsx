@@ -21,9 +21,11 @@ const Blog = () => {
 	)
 
 	const category = pathname === '/blog' ? undefined : pathname.split('/').pop()
-	const filteredPosts = category
+	// pathname contains %20 for space, replace it with space
+	const cleanedCategory = category ? category.replace(/%20/g, ' ') : undefined
+	const filteredPosts = cleanedCategory
 		? posts.filter(
-				(post) => post.category.toLowerCase() === category.toLowerCase()
+				(post) => post.category.toLowerCase() === cleanedCategory.toLowerCase()
 		  )
 		: posts
 
