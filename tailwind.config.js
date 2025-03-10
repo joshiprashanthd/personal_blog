@@ -13,9 +13,9 @@ module.exports = {
 				'primary-light': colors.blue[700]
 			},
 			fontFamily: {
-				ui: ['var(--font-outfit)'],
-				sans: ['var(--font-work-sans)'],
-				mono: ['var(--font-noto-sans-mono)'],
+				ui: ['var(--font-rubik)'],
+				sans: ['var(--font-rubik)'],
+				mono: ['var(--font-jetbrains-mono)'],
 			},
 			container: {
 				center: true,

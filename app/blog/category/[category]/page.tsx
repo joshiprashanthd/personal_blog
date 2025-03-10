@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { allPosts, Post } from 'contentlayer/generated'
 import { compareDesc, format } from 'date-fns'
@@ -7,14 +8,24 @@ import {
 	CardDescription,
 	CardHeader,
 	CardTitle
-} from '../../components/ui/Card'
+} from '@components/ui/Card'
 
-import CategoryChip from '../../components/CategoryChip'
+import CategoryChip from '@components/CategoryChip'
+import { usePathname, useRouter } from 'next/navigation'
 
 const Blog = () => {
+	// read category from the path /blog/category/[category]
+	const pathname = usePathname()
 	const posts: Post[] = allPosts.sort((a, b) =>
 		compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
 	)
+
+	const category = pathname === '/blog' ? undefined : pathname.split('/').pop()
+	const filteredPosts = category
+		? posts.filter(
+				(post) => post.category.toLowerCase() === category.toLowerCase()
+		  )
+		: posts
 
 	return (
 		<section>
@@ -25,7 +36,7 @@ const Blog = () => {
 				<div className="mx-4 flex-1 border-t-2 border-primary-light dark:border-primary-dark" />
 			</div>
 			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-2">
-				{posts.map((post) => (
+				{filteredPosts.map((post) => (
 					<Card>
 						<CardHeader>
 							{format(new Date(post.publishedAt), 'MMM d, yyyy')}

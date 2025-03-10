@@ -1,30 +1,30 @@
 import type { Metadata } from 'next'
-import { Work_Sans, Noto_Sans_Mono, Outfit } from 'next/font/google'
+import {
+	Work_Sans,
+	Noto_Sans_Mono,
+	Outfit,
+	JetBrains_Mono,
+	Rubik
+} from 'next/font/google'
 import React from 'react'
 import Header from '../components/Header'
 import cn from '../helpers/cn'
 import './global.css'
-import {ThemeProvider} from "../components/ThemeProvider";
+import { ThemeProvider } from '../components/ThemeProvider'
 
-const outfit = Outfit({
+const rubik = Rubik({
 	subsets: ['latin'],
-	variable: '--font-outfit',
-	weight: ['400', '500', '600'],
-})
-
-const workSans = Work_Sans({
-	subsets: ['latin'],
-	variable: '--font-work-sans',
+	variable: '--font-rubik',
 	weight: ['400', '500', '600']
 })
 
-const notoSansMono = Noto_Sans_Mono({
+const jetbrainsMono = JetBrains_Mono({
 	subsets: ['cyrillic'],
-	variable: '--font-noto-sans-mono'
+	variable: '--font-jetbrains-mono'
 })
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://prashantjoshi.vercel.app"),
+	metadataBase: new URL('https://prashantjoshi.vercel.app'),
 	title: {
 		default: 'Prashant Joshi',
 		template: '%s | Prashant Joshi'
@@ -57,28 +57,20 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<html
-			lang="en"
-			className={cn(
-				workSans.variable,
-				notoSansMono.variable,
-				outfit.variable,
-			)}
-		>
+		<html lang="en" className={cn(rubik.variable, jetbrainsMono.variable)}>
 			<head>
 				<link
 					href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
 					rel="stylesheet"
 				></link>
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<meta name="theme-color" content="#000000" />
 			</head>
 			<body className="container relative min-h-screen">
-			<ThemeProvider
-				attribute="class"
-				defaultTheme="light"
-			>
-				<Header />
-				<main className={cn(`pb-8`)}>{children}</main>
-			</ThemeProvider>
+				<ThemeProvider attribute="class" defaultTheme="light">
+					<Header />
+					<main className={cn(`pb-8`)}>{children}</main>
+				</ThemeProvider>
 			</body>
 		</html>
 	)

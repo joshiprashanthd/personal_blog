@@ -1,7 +1,7 @@
 import React from 'react'
 import { format } from 'date-fns'
 import { allPosts } from 'contentlayer/generated'
-import { Mdx } from '../../../components/Mdx'
+import { Mdx } from '@components/Mdx'
 import CategoryChip from '@components/CategoryChip'
 
 export async function generateStaticParams() {

@@ -3,3 +3,8 @@ export type Project = {
 	description: string
 	url: string
 }
+
+export type Post = {
+	title: string
+	publishedAt: string
+}

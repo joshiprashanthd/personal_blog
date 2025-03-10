@@ -10,11 +10,11 @@ import remarkMath from 'remark-math'
 const computedFields = {
 	slug: {
 		type: 'string',
-		resolve: (doc) => doc._raw.flattenedPath
+		resolve: (doc) => doc._raw.flattenedPath.split("/").pop()
 	},
 	url: {
 		type: 'string',
-		resolve: (post) => `/blog/${post._raw.flattenedPath}`
+		resolve: (post) => `/blog/category/${post.category.toLowerCase()}/${post._raw.flattenedPath.split("/").pop()}`
 	},
 	structuredData: {
 		type: 'json',
@@ -42,6 +42,7 @@ export const Post = defineDocumentType(() => ({
 		title: { type: 'string', required: true },
 		summary: { type: 'string', required: true },
 		imageUrl: { type: 'string' },
+		category: {type: 'string', required: true, default: 'General'},
 		publishedAt: { type: 'date', required: true }
 	},
 	computedFields

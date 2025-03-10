@@ -16,7 +16,9 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"paths": {
-			"contentlayer/generated": ["./.contentlayer/generated"]
+			"contentlayer/generated": ["./.contentlayer/generated"],
+			"@components/*": ["components/*"],
+			"@lib/*": ["helpers/*"],
 			// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 		},
 		"plugins": [
