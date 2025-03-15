@@ -87,6 +87,10 @@ table {
 	margin: 0 !important;
 }
 
+[data-rehype-pretty-code-fragment] {
+	@apply text-base;
+}
+
 [data-rehype-pretty-code-fragment] code {
 	@apply border-none shadow-none;
 }
