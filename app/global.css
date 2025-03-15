@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 ::selection {
-	@apply bg-primary-light dark:bg-primary-dark/40 text-white;
+	@apply bg-primary-light text-white dark:bg-primary-dark/40;
 }
 
 .prose {
@@ -29,7 +29,7 @@
 }
 
 .prose a {
-	@apply dark:decoration-primary-dark decoration-[0.1em] underline-offset-2 transition-all;
+	@apply decoration-[0.1em] underline-offset-2 transition-all dark:decoration-primary-dark;
 }
 
 .prose .anchor:after {
@@ -42,7 +42,7 @@
 }
 
 .prose code {
-	@apply rounded-md shadow-sm border dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200;
+	@apply rounded-md border shadow-sm dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200;
 }
 
 .prose img {
@@ -88,7 +88,7 @@ table {
 }
 
 [data-rehype-pretty-code-fragment] code {
-	@apply border-none shadow-none
+	@apply border-none shadow-none;
 }
 
 [data-rehype-pretty-code-fragment] [data-line] {
@@ -100,20 +100,20 @@ table {
 }
 
 [data-rehype-pretty-code-fragment] pre {
-	@apply shadow-sm border;
+	@apply border shadow-sm;
 }
 
 [data-rehype-pretty-code-fragment] pre[data-theme='dark'] {
-	@apply border dark:border-neutral-800 dark:bg-neutral-900 hidden dark:block;
+	@apply hidden border dark:block dark:border-neutral-800 dark:bg-neutral-900;
 }
 
 [data-rehype-pretty-code-fragment] pre[data-theme='light'] {
-	@apply  dark:hidden border-slate-100 bg-slate-50;
+	@apply border-slate-100 bg-slate-50 dark:hidden;
 }
 
-.math-display{
-	@apply overflow-x-scroll m-0 dark:text-gray-100;
+.math-display {
+	@apply m-0 overflow-x-scroll text-base dark:text-gray-100;
 }
 .math-inline {
-	@apply inline-block m-0 dark:text-gray-100
+	@apply m-0 inline-block text-base dark:text-gray-100;
 }

@@ -4,7 +4,8 @@ import {
 	Noto_Sans_Mono,
 	Outfit,
 	JetBrains_Mono,
-	Rubik
+	Rubik,
+	Crimson_Pro
 } from 'next/font/google'
 import React from 'react'
 import Header from '../components/Header'
@@ -21,6 +22,12 @@ const rubik = Rubik({
 const jetbrainsMono = JetBrains_Mono({
 	subsets: ['cyrillic'],
 	variable: '--font-jetbrains-mono'
+})
+
+const crimsonPro = Crimson_Pro({
+	subsets: ['latin'],
+	variable: '--font-crimson-pro',
+	weight: ['400', '500', '600']
 })
 
 export const metadata: Metadata = {
@@ -57,7 +64,14 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<html lang="en" className={cn(rubik.variable, jetbrainsMono.variable)}>
+		<html
+			lang="en"
+			className={cn(
+				rubik.variable,
+				jetbrainsMono.variable,
+				crimsonPro.variable
+			)}
+		>
 			<head>
 				<link
 					href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"

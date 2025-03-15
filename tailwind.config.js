@@ -2,7 +2,7 @@ const colors = require('tailwindcss/colors')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	darkMode: "selector",
+	darkMode: 'selector',
 	content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		extend: {
@@ -15,7 +15,8 @@ module.exports = {
 			fontFamily: {
 				ui: ['var(--font-rubik)'],
 				sans: ['var(--font-rubik)'],
-				mono: ['var(--font-jetbrains-mono)'],
+				serif: ['var(--font-crimson-pro)'],
+				mono: ['var(--font-jetbrains-mono)']
 			},
 			container: {
 				center: true,
